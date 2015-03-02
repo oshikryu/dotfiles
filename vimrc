@@ -474,3 +474,6 @@ filetype plugin on
 
 "delimitMate
 let delimitMate_expand_cr=1
+
+" set case insensitive search by default
+:set ignorecase
