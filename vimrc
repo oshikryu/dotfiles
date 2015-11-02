@@ -1,5 +1,5 @@
-" Tobin's vimrc file 
-
+" Ryuta's vimrc file 
+"
 " vundle init
 set nocompatible
 filetype off
@@ -32,8 +32,8 @@ filetype plugin indent on
 
 " Colors
 set t_Co=256
-syntax on
 set background=dark
+syntax on
 colorscheme desert256
 
 if has("gui_running")
@@ -278,10 +278,12 @@ nnoremap <silent> <C-l> :nohl<CR><C-l>
 " easytagsder
 let g:easytags_dynamic_files = 2
 
-" nerdtree
+ " nerdtree
+autocmd VimEnter * wincmd p
 nmap <silent> <leader>p :NERDTreeToggle<CR>
-nmap <silent> <leader>P :NERDTree<CR>
 let NERDTreeIgnore = ['\.pyc$']
+autocmd VimEnter * nmap <F3> :NERDTreeToggle<CR>
+autocmd VimEnter * imap <F3> <Esc>:NERDTreeToggle<CR>a
 
 " *.ipy files
 autocmd BufNewFile,BufRead *.ipy set filetype=python
@@ -451,3 +453,24 @@ endfunction
 command! -range=% FormatXML <line1>,<line2>call DoFormatXML()
 nmap <silent> <leader>x :%FormatXML<CR>
 vmap <silent> <leader>x :FormatXML<CR>
+
+" insert ipdb for python
+map <Leader>p :call InsertLine()<CR>
+function! InsertLine()
+  let trace = expand("import ipdb; ipdb.set_trace()")
+  execute "normal o".trace
+endfunction
+
+
+" insert debugger
+map <Leader>d :call InsertDebug()<CR>
+function! InsertDebug()
+  let trace = expand("debugger;")
+  execute "normal o".trace
+endfunction
+
+"nerdcommenter
+filetype plugin on
+
+"delimitMate
+let delimitMate_expand_cr=1

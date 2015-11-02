@@ -36,14 +36,14 @@ source $ZSH/oh-my-zsh.sh
 
 
 # -----------------------------------------------------------------------------
-# THVP
+# oshikryu
 
 # helper for prompt
 function virtualenv_info {
     [ $VIRTUAL_ENV ] && echo '['`basename $VIRTUAL_ENV`']'
 }
 
-PROMPT='%{$fg[blue]%}%m:%{$fg[cyan]%}%~ %{$fg[red]%}%n➜ %{$reset_color%}'
+PROMPT='%{$fg[green]%}%m:%{$fg[cyan]%}%~ %{$fg[white]%}∴ %{$reset_color%}'
 RPROMPT='$(vi_mode_prompt_info) %{$fg[green]%}$(virtualenv_info) $(git_prompt_info)%{$reset_color%}%'
 VIRTUAL_ENV_DISABLE_PROMPT=1
 
