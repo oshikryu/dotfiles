@@ -485,6 +485,9 @@ let delimitMate_expand_cr=1
 " set case insensitive search by default
 :set ignorecase
 
+" vim commit
+autocmd Filetype gitcommit setlocal spell textwidth=72
+
 "
 inoremap <Esc>A <up>
 inoremap <Esc>B <down>
