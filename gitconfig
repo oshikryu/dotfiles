@@ -1,3 +1,7 @@
+[user]
+	name = Ryuta Oshikiri
+	email = surfindaeac@gmail.com
+
 [color]
 	diff = auto
 	status = auto
@@ -13,6 +17,3 @@
 
 [push]
 	default = upstream
-[user]
-	email = tobin@h2ometrics.com
-	name = Tobin
