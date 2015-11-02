@@ -85,6 +85,7 @@ alias greset="git reset head ."
 alias gstash="git stash"
 alias gstasha="git stash apply"
 alias gundo='git reset --soft head^'
+alias gpushup='git push --set-upstream origin'
 # automatically stage all tracked files (including deleted ones)
 alias adderall='git add -u .'
 # git remove all removed tracked files
