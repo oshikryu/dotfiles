@@ -477,3 +477,9 @@ let delimitMate_expand_cr=1
 
 " set case insensitive search by default
 :set ignorecase
+
+"
+inoremap <Esc>A <up>
+inoremap <Esc>B <down>
+inoremap <Esc>C <right>
+inoremap <Esc>D <left>
