@@ -5,7 +5,7 @@
 1. Install git:
     
     ```
-    git clone git@github.com:tobinvanpelt/dotfiles.git ~/.dot
+    git clone git@github.com:oshikryu/dotfiles.git ~/.dot
     cd ~/.dot
     git submodule update --init --recursive
     ```
