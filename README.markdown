@@ -68,3 +68,13 @@
 ### Instant Markdown
 
     sudo npm -g install instant-markdown-d
+
+
+
+## Common problems
+Also make sure that the vimrc is pointing to the correct vundle install directory nested under `/bundle`
+
+http://unix.stackexchange.com/questions/27851/after-installing-oh-my-zsh-zshrcsource34-no-such-file-or-directory
+
+no submodule mapping
+http://stackoverflow.com/questions/4185365/no-submodule-mapping-found-in-gitmodule-for-a-path-thats-not-a-submodule
