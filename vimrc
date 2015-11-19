@@ -3,11 +3,12 @@
 " vundle init
 set nocompatible
 filetype off
-set rtp+=~/.vim/Vundle.vim
+set rtp+=~/.vim/bundle/Vundle.vim
 
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdcommenter'
 Plugin 'kien/ctrlp.vim'
 Plugin 'Lokaltog/vim-powerline'
 Plugin 'SirVer/ultisnips'
@@ -26,6 +27,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'Peeja/vim-cdo'
 Plugin 'chase/vim-ansible-yaml'
 Plugin 'lepture/vim-jinja'
+Plugin 'Rainmondi/delimitMate'
 call vundle#end()
 filetype plugin indent on
 
@@ -487,6 +489,9 @@ let delimitMate_expand_cr=1
 
 " vim commit
 autocmd Filetype gitcommit setlocal spell textwidth=72
+
+" mustache abbreviations
+let g:mustache_abbreviations = 1
 
 "
 inoremap <Esc>A <up>
