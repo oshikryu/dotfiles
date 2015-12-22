@@ -1,5 +1,19 @@
 # Dotfiles
 
+## Pre-Installation
+
+1. Create ssh keys and add to github https://help.github.com/articles/generating-ssh-keys/
+```
+ls -al ~/.ssh
+ssh-keygen -t rsa -b 4096
+<enter>
+<enter>
+<enter>
+ssh-add ~/.ssh/id_rsa
+```
+2. Copy id_rsa.pub
+
+
 ## Installation
 
 1. Install git:
