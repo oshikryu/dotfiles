@@ -58,7 +58,6 @@ set -g message-attr bright
 # status lines
 set -g status-left-length 60
 set -g status-left "#h #[fg=green][#S] #[fg=yellow]#W:#T"
-set -g status-utf8 on
 
 
 # 15% | 28 Nov 18:15

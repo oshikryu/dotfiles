@@ -102,3 +102,8 @@ alias sup='supervisorctl'
 ###########
 alias vagrantnp='vagrant up --no-provision'
 
+
+# docker #
+# auto execute
+alias byo='docker exec -it ma script -c "byobu"'
+alias dzsh="docker exec -it zsh"

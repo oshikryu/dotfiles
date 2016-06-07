@@ -27,7 +27,8 @@ Plugin 'tpope/vim-surround'
 Plugin 'Peeja/vim-cdo'
 Plugin 'chase/vim-ansible-yaml'
 Plugin 'lepture/vim-jinja'
-Plugin 'Rainmondi/delimitMate'
+Plugin 'Raimondi/delimitMate'
+Plugin 'kchmck/vim-coffee-script'
 call vundle#end()
 filetype plugin indent on
 
