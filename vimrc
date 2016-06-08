@@ -474,6 +474,8 @@ endfunction
 
 " Console log from insert mode; Puts focus inside parentheses
 imap cll console.log();<Esc>==f(a
+" Console log coffeescript version
+imap clc console.log()<Esc>==f(a
 " Console log from visual mode on next line, puts visual selection inside parentheses
 vmap cll yocll<Esc>p
 " Console log from normal mode, inserted on next line with word your on inside parentheses
@@ -499,3 +501,11 @@ inoremap <Esc>A <up>
 inoremap <Esc>B <down>
 inoremap <Esc>C <right>
 inoremap <Esc>D <left>
+
+
+" Auto reload vim when vimrc is changed!
+" http://superuser.com/questions/132029/how-do-you-reload-your-vimrc-file-without-restarting-vim
+augroup myvimrc
+    au!
+    au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
+augroup END

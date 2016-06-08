@@ -2,15 +2,45 @@
 PATH=/usr/local/bin:$PATH
 PATH=/usr/local/share/npm/bin:$PATH
 PATH=$HOME/.dot/bin:$PATH
+PATH=$HOME/.local/bin:$PATH
+export TENANT_SUBDOMAINS="cs.ma-dev,geog.ma-dev,demo.ma-dev,fiat.ma-dev,shaw.ma-dev,gsk.ma-dev"
 export PATH
 
 # set editors
 export EDITOR=vim
 export VISUAL=vim
 
-if [ -f ~/.bash_profile ]; then
-    source ~/.bash_profile
-fi
+#if [ -f ~/.bash_profile ]; then
+    #source ~/.bash_profile
+#fi
 
 # refresh build env for h2oclient
-alias nombom='echo "\n (╯°□°）╯︵ ┻━┻ \n" && npm cache clear && bower cache clean && rm -rf node_modules bower_components && npm install && bower install'
+alias nombom='echo "\n (╯°□°）╯︵ ┻━┻ \n" && npm cache clear && rm -rf node_modules && npm install'
+
+#######
+# GIT #
+#######
+alias gs="git status"
+alias GS="git status"
+alias pusho="git push origin"
+alias pullo="git pull origin"
+alias gd='git diff | mate'
+alias gaa="git add --all"
+alias gco='git checkout'
+alias greset="git reset head ."
+alias gundo='git reset --soft head^'
+alias gpushup='git push --set-upstream origin'
+alias gdc='git diff --cached'
+# automatically stage all tracked files (including deleted ones)
+alias adderall='git add -u .'
+# git remove all removed tracked files
+alias removeall='git rm $(git ls-files --deleted)'
+# git link to origin
+alias linkbranch='git branch -u origin'
+
+# terminal notifier
+alias brunchd='brunch watch --env dev'
+
+# docker #
+# auto execute
+alias dma="docker exec -it ma bash"
