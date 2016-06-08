@@ -8,6 +8,9 @@ export PATH
 PYTHONPATH=$HOME/h2oserver:$PYTHONPATH
 export PYTHONPATH
 
+# work specific
+export TENANT_SUBDOMAINS="cs.ma-dev,geog.ma-dev,demo.ma-dev,fiat.ma-dev,shaw.ma-dev"
+
 # set editors
 export EDITOR=vim
 export VISUAL=vim
@@ -107,3 +110,7 @@ alias vagrantnp='vagrant up --no-provision'
 # auto execute
 alias byo='docker exec -it ma script -c "byobu"'
 alias dzsh="docker exec -it zsh"
+
+
+# terminal notifier
+alias brunchd='brunch watch --env dev'

@@ -68,3 +68,7 @@ ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[green]%} ✓"
 #if [ -n "$VIRTUAL_ENV" ]; then
 #    workon $(basename $VIRTUAL_ENV)
 #fi
+source $ZSH/plugins/history-substring-search/history-substring-search.zsh
+zmodload zsh/terminfo
+bindkey "$terminfo[kcuu1]" history-substring-search-up
+bindkey "$terminfo[kcud1]" history-substring-search-down
