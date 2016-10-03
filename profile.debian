@@ -3,7 +3,7 @@ PATH=/usr/local/bin:$PATH
 PATH=/usr/local/share/npm/bin:$PATH
 PATH=$HOME/.dot/bin:$PATH
 PATH=$HOME/.local/bin:$PATH
-export TENANT_SUBDOMAINS="cs.ma-dev,geog.ma-dev,demo.ma-dev,fiat.ma-dev,shaw.ma-dev,gsk.ma-dev"
+export TENANT_SUBDOMAINS="cs.ma-dev,geog.ma-dev,demo.ma-dev,fiat.ma-dev,shaw.ma-dev,gsk.ma-dev, inteva.ma-dev"
 export PATH
 
 # set editors
