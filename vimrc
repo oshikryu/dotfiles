@@ -477,12 +477,6 @@ endfunction
 " Settings for paste
 set pastetoggle=<F2>
 
-" Turn off auto-insert of comments
-augroup auto_comment
-    au!
-    au FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-augroup END
-
 " Console log from insert mode; Puts focus inside parentheses
 imap cll console.log();<Esc>==f(a
 " Console log coffeescript version
