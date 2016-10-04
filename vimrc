@@ -9,11 +9,11 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/syntastic'
 Plugin 'kien/ctrlp.vim'
 Plugin 'Lokaltog/vim-powerline'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
-Plugin 'scrooloose/syntastic'
 Plugin 'davidhalter/jedi-vim'
 Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'groenewege/vim-less'
@@ -29,6 +29,8 @@ Plugin 'chase/vim-ansible-yaml'
 Plugin 'lepture/vim-jinja'
 Plugin 'Raimondi/delimitMate'
 Plugin 'kchmck/vim-coffee-script'
+Plugin 'othree/html5.vim'
+Plugin 'mxw/vim-jsx'
 call vundle#end()
 filetype plugin indent on
 
