@@ -359,6 +359,8 @@ let g:syntastic_loc_list_height=4
 let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
 
+let g:syntastic_javascript_checkers = ['jshint']
+
 nmap <silent> <leader>E :SyntasticToggleMode<CR>
 nmap <silent> <leader>e :SyntasticCheck<CR>
 
@@ -466,6 +468,8 @@ function! InsertLine()
   execute "normal o".trace
 endfunction
 
+" jsx highlighting in js files
+let g:jsx_ext_required = 0
 
 " insert debugger
 map <Leader>d :call InsertDebug()<CR>
@@ -507,6 +511,8 @@ inoremap <Esc>B <down>
 inoremap <Esc>C <right>
 inoremap <Esc>D <left>
 
+" DOS and nginx conf file highlighting
+autocmd BufRead,BufNewFile /etc/nginx/sites-*/* setfiletype conf
 
 " Auto reload vim when vimrc is changed!
 " http://superuser.com/questions/132029/how-do-you-reload-your-vimrc-file-without-restarting-vim
