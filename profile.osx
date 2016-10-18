@@ -94,6 +94,10 @@ alias removeall='git rm $(git ls-files --deleted)'
 # git link to origin
 alias linkbranch='git branch -u origin'
 
+# docker #
+# auto execute
+alias dma="docker exec -it ma bash"
+
 ##############
 # supervisor #
 ##############
