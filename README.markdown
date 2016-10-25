@@ -84,6 +84,9 @@ ssh-add ~/.ssh/id_rsa
     sudo npm -g install instant-markdown-d
 
 
+## Updating submodules
+    ```vim :PluginUpdate or vim :PluginInstall!```
+
 
 ## Common problems
 Also make sure that the vimrc is pointing to the correct vundle install directory nested under `/bundle`
