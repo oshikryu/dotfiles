@@ -34,6 +34,8 @@ Plugin 'mxw/vim-jsx'
 call vundle#end()
 filetype plugin indent on
 
+" remap leader key
+let mapleader=","
 
 " Colors
 set t_Co=256

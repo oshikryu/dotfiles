@@ -119,3 +119,5 @@ alias dzsh="docker exec -it zsh"
 
 # terminal notifier
 alias brunchd='brunch watch --env dev'
+
+alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
