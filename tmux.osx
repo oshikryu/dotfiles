@@ -90,6 +90,6 @@ bind -t vi-copy y copy-selection
 bind -t vi-copy Escape cancel
 
 # OSX keyboard
-# set-option -g default-command "reattach-to-user-namespace -l zsh"
+set -g default-command 'reattach-to-user-namespace $SHELL --login'
 bind C-c run "tmux save-buffer - | reattach-to-user-namespace pbcopy"
 bind C-v run "reattach-to-user-namespace pbpaste | tmux load-buffer - && tmux paste-buffer"
