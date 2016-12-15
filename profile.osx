@@ -31,7 +31,7 @@ ulimit -S -n 2048
 
 # refresh build env for h2oclient
 alias nombom='echo "\n (╯°□°）╯︵ ┻━┻ \n" && npm cache clear && bower cache clean && rm -rf node_modules bower_components && npm install && bower install'
-alias nomnom='echo "\n (╯°□°）╯︵ ┻━┻ \n" && npm cache clear && rm -rf node_modules && npm install && echo "\n¯\_(ツ)_/ ¯"'
+alias nomnom='echo "\n (╯°□°）╯︵ ┻━┻ \n" && npm cache clear && rm -rf node_modules && npm install && echo "\n¯\_(ツ)_/¯"'
 
 
 alias lsa='ls -lah' # l for list style, a for all including hidden, h for human readable file sizes
@@ -119,5 +119,3 @@ alias dzsh="docker exec -it zsh"
 
 # terminal notifier
 alias brunchd='brunch watch --env dev'
-
-alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
