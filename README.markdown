@@ -75,7 +75,7 @@ ssh-add ~/.ssh/id_rsa
     ```
     cd ~/.vim/bundle/YouCompleteMe
     git submodule update --init --recursive
-    ./install.sh
+    ./install.py
     ```
 
 
