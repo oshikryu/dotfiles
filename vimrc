@@ -354,7 +354,7 @@ let g:syntastic_loc_list_height=4
 let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
 
-let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_javascript_checkers = ['jshint', 'eslint']
 
 nmap <silent> <leader>E :SyntasticToggleMode<CR>
 nmap <silent> <leader>e :SyntasticCheck<CR>

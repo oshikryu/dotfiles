@@ -20,7 +20,7 @@ export ARCHFLAGS="-arch i386 -arch x86_64"
 
 # virtualenv wrapper
 #export WORKON_HOME=$HOME/.virtualenvs
-#export PROJECT_HOME=$HOME/Devel 
+#export PROJECT_HOME=$HOME/Devel
 #source /usr/local/bin/virtualenvwrapper.sh
 
 # use mvim when possible - faster
@@ -117,5 +117,9 @@ alias byo='docker exec -it ma script -c "byobu"'
 alias dzsh="docker exec -it zsh"
 
 
-# terminal notifier
-alias brunchd='brunch watch --env dev'
+# start smtool
+venvsm() {
+    test ! -d ${HOME}/.virtualenvs/smtool && virtualenv ${HOME}/.virtualenvs/smtool
+    . ${HOME}/.virtualenvs/smtool/bin/activate
+    pip install /opt/sightmachine/smtool/
+}
