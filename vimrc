@@ -27,6 +27,9 @@ Plugin 'sheerun/vim-polyglot'
 call vundle#end()
 filetype plugin indent on
 
+" performance improvement by using older version of regex
+set re=1
+
 " remap leader key
 let mapleader=","
 
@@ -74,11 +77,14 @@ highlight CursorLine cterm=bold ctermbg=238 ctermfg=NONE
 let &colorcolumn=join(range(101,999),",")
 let g:cursorline = 1
 
-autocmd WinEnter,BufEnter * call UpdateCursorLine()
-autocmd WinLeave,BufLeave * setlocal nocursorline
+augroup updateCursor
+    au!
+    autocmd WinEnter,BufEnter * call UpdateCursorLine()
+    autocmd WinLeave,BufLeave * setlocal nocursorline
 
-autocmd InsertEnter * call CursorInsertHighlight()
-autocmd InsertLeave * call CursorNormalHighlight()
+    autocmd InsertEnter * call CursorInsertHighlight()
+    autocmd InsertLeave * call CursorNormalHighlight()
+augroup END
 
 func! SetCursorline()
     setlocal cursorline!
@@ -203,29 +209,32 @@ set completeopt+=longest
 "set number
 set incsearch
 
-" line numbers
-autocmd FileType vim set number
-autocmd FileType python set number
-autocmd FileType javascript set number
-autocmd FileType coffee set number
-autocmd FileType html set number
-autocmd FileType css set number
+" line numbers and tabs and spaces for file types
+augroup setFileNumsAndSpacing
+    au!
+    autocmd FileType vim set number
+    autocmd FileType python set number
+    autocmd FileType javascript set number
+    autocmd FileType coffee set number
+    autocmd FileType html set number
+    autocmd FileType css set number
 
-" HTML
-autocmd FileType html setlocal sw=2
-autocmd FileType html setlocal ts=2
-autocmd FileType html setlocal sts=2
-autocmd FileType html setlocal textwidth=0
+    " HTML
+    autocmd FileType html setlocal sw=2
+    autocmd FileType html setlocal ts=2
+    autocmd FileType html setlocal sts=2
+    autocmd FileType html setlocal textwidth=0
 
-" CSS
-autocmd FileType css setlocal sw=2
-autocmd FileType css setlocal ts=2
-autocmd FileType css setlocal sts=2
+    " CSS
+    autocmd FileType css setlocal sw=2
+    autocmd FileType css setlocal ts=2
+    autocmd FileType css setlocal sts=2
 
-" js tabs
-autocmd FileType javascript setlocal sw=2
-autocmd FileType javascript setlocal ts=2
-autocmd FileType javascript setlocal sts=2
+    " js tabs
+    autocmd FileType javascript setlocal sw=2
+    autocmd FileType javascript setlocal ts=2
+    autocmd FileType javascript setlocal sts=2
+augroup END
 
 " folding
 "set foldmethod=syntax
@@ -239,10 +248,13 @@ set foldlevel=1
 set foldignore=
 
 " auto completes
-autocmd FileType python set omnifunc=pythoncomplete#Complete
-autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+augroup autoCompleteGroup
+    au!
+    autocmd FileType python set omnifunc=pythoncomplete#Complete
+    autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+    autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+    autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+augroup END
 
 set hidden
 set virtualedit=all
@@ -279,11 +291,15 @@ nnoremap <silent> <C-l> :nohl<CR><C-l>
 let g:easytags_dynamic_files = 2
 
  " nerdtree
-autocmd VimEnter * wincmd p
-nmap <silent> <leader>p :NERDTreeToggle<CR>
-let NERDTreeIgnore = ['\.pyc$']
-autocmd VimEnter * nmap <F3> :NERDTreeToggle<CR>
-autocmd VimEnter * imap <F3> <Esc>:NERDTreeToggle<CR>a
+augroup nerdTreeCommands
+    au!
+    autocmd VimEnter * wincmd p
+    nmap <silent> <leader>p :NERDTreeToggle<CR>
+    let NERDTreeIgnore = ['\.pyc$']
+    autocmd VimEnter * nmap <F3> :NERDTreeToggle<CR>
+    autocmd VimEnter * imap <F3> <Esc>:NERDTreeToggle<CR>a
+    let g:NERDTreeWinSize = 45
+augroup END
 
 " *.ipy files
 autocmd BufNewFile,BufRead *.ipy set filetype=python
@@ -363,7 +379,10 @@ nmap <silent> <leader>e :SyntasticCheck<CR>
 " --- Jedi --------------------------------------------------------------------
 let g:jedi#use_tabs_not_buffers = 0
 let g:jedi#popup_on_dot = 0
-autocmd FileType python setlocal completeopt-=preview
+augroup jediGroup
+    au!
+    autocmd FileType python setlocal completeopt-=preview
+augroup END
 
 
 " --- Supertab ----------------------------------------------------------------
@@ -495,7 +514,10 @@ let delimitMate_expand_cr=1
 :set ignorecase
 
 " vim commit
-autocmd Filetype gitcommit setlocal spell textwidth=72
+augroup vimCommits
+    au!
+    autocmd Filetype gitcommit setlocal spell textwidth=72
+augroup END
 
 " mustache abbreviations
 let g:mustache_abbreviations = 1
@@ -507,7 +529,10 @@ inoremap <Esc>C <right>
 inoremap <Esc>D <left>
 
 " DOS and nginx conf file highlighting
-autocmd BufRead,BufNewFile /etc/nginx/sites-*/* setfiletype conf
+augroup nginx-highlighter
+    au!
+    autocmd BufRead,BufNewFile /etc/nginx/sites-*/* setfiletype conf
+augroup END
 
 " Auto reload vim when vimrc is changed!
 " http://superuser.com/questions/132029/how-do-you-reload-your-vimrc-file-without-restarting-vim
