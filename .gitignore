@@ -2,4 +2,6 @@
 .netrwhist
 vim/bundle
 vim/vim
-oh-my-zsh
+vim/plugged
+vim/autoload
+oh-my-zsh/
