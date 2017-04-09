@@ -1,36 +1,34 @@
-" Ryuta's vimrc file 
-"
-" vundle init
-set nocompatible
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
+" Ryuta's vimrc file
 
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'scrooloose/syntastic'
-Plugin 'kien/ctrlp.vim'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-Plugin 'davidhalter/jedi-vim'
-Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'suan/vim-instant-markdown'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-surround'
-Plugin 'lepture/vim-jinja'
-Plugin 'Raimondi/delimitMate'
-Plugin 'sheerun/vim-polyglot'
-call vundle#end()
+" vim-plug stuff
+call plug#begin()
+Plug 'tpope/vim-sensible'
+Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/syntastic'
+Plug 'kien/ctrlp.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+"Plug 'SirVer/ultisnips'
+"Plug 'honza/vim-snippets'
+Plug 'davidhalter/jedi-vim'
+Plug 'nathanaelkane/vim-indent-guides'
+"Plug 'Valloric/YouCompleteMe'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'lepture/vim-jinja'
+Plug 'Raimondi/delimitMate'
+Plug 'sheerun/vim-polyglot'
+
+" On-demand loading
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+call plug#end()
+
 filetype plugin indent on
 
 " performance improvement by using older version of regex
 set re=1
 
-" remap leader key
+" remap leader key if not using US keyboard
 let mapleader=","
 
 " Colors
@@ -39,20 +37,7 @@ set background=dark
 syntax on
 colorscheme desert256
 
-if has("gui_running")
-    if has("gui_win32")
-        "set guifont=Lucida_Console:h9:cANSI
-        set guifont=Consolas\ for\ Powerline\ FixedD:h9
-
-        set guioptions-=m
-        set guioptions-=T
-        set guioptions-=r
-
-        au GUIEnter * simalt ~x
-    endif                              
-endif
-
-" change Searh highligh
+" change Search highlight
 highlight Search ctermfg=None ctermbg=244
 
 " map some leaders quick keys
@@ -99,7 +84,7 @@ func! UpdateCursorLine()
     if g:cursorline
         setlocal cursorline
     endif
-endfunc                                   
+endfunc
 
 func! CursorInsertHighlight()
     highlight CursorLine ctermbg=235
@@ -192,7 +177,7 @@ endif " has("autocmd")
 " Only define it when not defined already.
 if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
-		  \ | wincmd p | diffthis
+      \ | wincmd p | diffthis
 endif
 
 set ai
@@ -279,16 +264,13 @@ call system('rm -f ~/.vim/tmp/backup/.*~')
 " -----------------------------------------------------------------------------
 
 " quick vimrc access
-command! Vimrc edit ~/.vimrc 
+command! Vimrc edit ~/.vimrc
 
 " remove ^M in dos files
 command! FileToUnix %s///g
 
 " clear search when refreshing
 nnoremap <silent> <C-l> :nohl<CR><C-l>
-
-" easytagsder
-let g:easytags_dynamic_files = 2
 
  " nerdtree
 augroup nerdTreeCommands
@@ -309,13 +291,6 @@ autocmd FileType coffee setlocal sw=2
 autocmd FileType coffee setlocal ts=2
 autocmd FileType coffee setlocal sts=2
 
-let coffee_make_options = '--bare'
-"au BufWritePost *.coffee silent CoffeeMake! -b | cwindow | redraw!
-let coffee_compile_vert = 1
-
-command! Watch CoffeeCompile watch vert
-command! WatchBottom wincmd J | Watch
-
 " indentation for coffeescript
 au BufNewFile,BufReadPost *.coffee setl foldmethod=indent nofoldenable
 au BufNewFile,BufReadPost *.coffee setl shiftwidth=2 expandtab
@@ -325,7 +300,7 @@ au BufNewFile,BufReadPost *.coffee setl shiftwidth=2 expandtab
 "let g:ctrlp_cmd = 'CtrlPBuffer'
 let g:ctrlp_arg_map = 1
 let g:ctrlp_dotfiles = 1
-let g:ctrlp_custom_ignore= '\.js$\|\.pyc$'
+let g:ctrlp_custom_ignore = '.pyc$\|node_modules\|DS_Store\|git\|out'
 command! ShowJS let g:ctrlp_custom_ignore= '\.pyc$' | :ClearAllCtrlPCaches
 command! HideJS let g:ctrlp_custom_ignore= '\.js$\|\.pyc$' | :ClearAllCtrlPCaches
 
@@ -348,24 +323,13 @@ let g:pymode_breakpoint=0
 let g:pymode_run=0
 
 
-" --- tagbar ------------------------------------------------------------------
-let g:tagbar_sort = 0
-let g:tagbar_autoclose = 1
-
-nnoremap <silent> <leader>t :TagbarToggle<CR>
-                               
-set nocompatible   " Disable vi-compatibility
-set laststatus=2   " Always show the statusline
-set encoding=utf-8 " Necessary to show unicode glyphs
-
-
 " --- Syntastic ---------------------------------------------------------------
 let g:syntastic_python_checkers=['flake8']
 let g:syntastic_python_flake8_args='--ignore=E126,E127,E128,E701,E702'
 let g:syntastic_python_flake8_args='--max-line-length=100'
 let g:syntastic_python_python_exec = 'python3'
 
-let g:syntastic_check_on_open=1 
+let g:syntastic_check_on_open=1
 let g:syntastic_loc_list_height=4
 let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
@@ -385,14 +349,6 @@ augroup jediGroup
 augroup END
 
 
-" --- Supertab ----------------------------------------------------------------
-"let g:SuperTabDefaultCompletionType = "context"
-""let g:SuperTabContextDefaultCompletionType="<c-x><c-k>"
-"let g:SuperTabLongestEnhanced = 1
-"let g:SuperTabLongestHighlight = 1
-"let g:SuperTabClosePreviewOnPopupClose = 1
-
-
 " --- Ultisnips ---------------------------------------------------------------
 let g:UltiSnipsSnippetDirectories = ["UltiSnips"]
 let g:UltiSnipsExpandTrigger="<c-l>"
@@ -408,72 +364,11 @@ let g:ycm_confirm_extra_conf=0
 set completeopt-=preview
 
 
-" --- vim-instant-markdown ----------------------------------------------------
-let g:instant_markdown_slow = 1
-
-
 " pydoc.vim
 let g:pydoc_cmd = 'python -m pydoc'
 let g:pydoc_open_cmd = 'vsplit'
-let g:pydoc_highlight = 0 
+let g:pydoc_highlight = 0
 
-
-
-" TODO: move this to its own file
-" XML formatter
-function! DoFormatXML() range
-    " Save the file type
-    let l:origft = &ft
-
-    " Clean the file type
-    set ft=
-
-    " Add fake initial tag (so we can process multiple top-level elements)
-    exe ":let l:beforeFirstLine=" . a:firstline . "-1"
-    if l:beforeFirstLine < 0
-        let l:beforeFirstLine=0
-    endif
-    exe a:lastline . "put ='</PrettyXML>'"
-    exe l:beforeFirstLine . "put ='<PrettyXML>'"
-    exe ":let l:newLastLine=" . a:lastline . "+2"
-    if l:newLastLine > line('$')
-        let l:newLastLine=line('$')
-    endif
-
-    " Remove XML header
-    exe ":" . a:firstline . "," . a:lastline . "s/<\?xml\\_.*\?>\\_s*//e"
-
-    " Recalculate last line of the edited code
-    let l:newLastLine=search('</PrettyXML>')
-
-    " Execute external formatter
-    exe ":silent " . a:firstline . "," . l:newLastLine . "!xmllint --noblanks --format --recover -"
-
-    " Recalculate first and last lines of the edited code
-    let l:newFirstLine=search('<PrettyXML>')
-    let l:newLastLine=search('</PrettyXML>')
-    
-    " Get inner range
-    let l:innerFirstLine=l:newFirstLine+1
-    let l:innerLastLine=l:newLastLine-1
-
-    " Remove extra unnecessary indentation
-    exe ":silent " . l:innerFirstLine . "," . l:innerLastLine "s/^  //e"
-
-    " Remove fake tag
-    exe l:newLastLine . "d"
-    exe l:newFirstLine . "d"
-
-    " Put the cursor at the first line of the edited code
-    exe ":" . l:newFirstLine
-
-    " Restore the file type
-    exe "set ft=" . l:origft
-endfunction
-
-command! -range=% FormatXML <line1>,<line2>call DoFormatXML()
-nmap <silent> <leader>x :%FormatXML<CR>
-vmap <silent> <leader>x :FormatXML<CR>
 
 " insert ipdb for python
 map <Leader>p :call InsertLine()<CR>
@@ -502,10 +397,7 @@ imap clc console.log()<Esc>==f(a
 " Console log from visual mode on next line, puts visual selection inside parentheses
 vmap cll yocll<Esc>p
 " Console log from normal mode, inserted on next line with word your on inside parentheses
-nmap cll yiwocll<Esc>p 
-
-"nerdcommenter
-filetype plugin on
+nmap cll yiwocll<Esc>p
 
 "delimitMate
 let delimitMate_expand_cr=1

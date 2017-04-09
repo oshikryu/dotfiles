@@ -24,7 +24,7 @@ ssh-add ~/.ssh/id_rsa
     git submodule update --init --recursive
     ```
 
-2. Install zsh (on Deian):
+2. Install zsh (on Debian):
 
     ```
     sudo apt-get update
@@ -47,12 +47,13 @@ ssh-add ~/.ssh/id_rsa
 5. Create symlinks by editing and run the `init_osx` or `init_debian` script.
 
 
-6. Install vundle:
+6. Install vim-plug:
+    ```
+     curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    ```
 
-    ```
-    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-    vim +BundleInstall +qall
-    ```
+    Follow this up by running `:PluginInstall` in vim.
 
 7. Be sure that vim is built with python. For debian: 
 
@@ -70,7 +71,7 @@ ssh-add ~/.ssh/id_rsa
 
     ```brew install cmake```
 
-10. Install YouCompleteMe:
+10. (Optional) Install YouCompleteMe:
 
     ```
     cd ~/.vim/bundle/YouCompleteMe
@@ -78,19 +79,11 @@ ssh-add ~/.ssh/id_rsa
     ./install.py
     ```
 
-
-### Instant Markdown
-
-    sudo npm -g install instant-markdown-d
-
-
 ## Updating submodules
     ```vim :PluginUpdate or vim :PluginInstall!```
 
 
 ## Common problems
-Also make sure that the vimrc is pointing to the correct vundle install directory nested under `/bundle`
-
 http://unix.stackexchange.com/questions/27851/after-installing-oh-my-zsh-zshrcsource34-no-such-file-or-directory
 
 no submodule mapping
