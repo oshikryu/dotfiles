@@ -8,16 +8,18 @@ Plug 'scrooloose/syntastic'
 Plug 'kien/ctrlp.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-"Plug 'SirVer/ultisnips'
-"Plug 'honza/vim-snippets'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 Plug 'davidhalter/jedi-vim'
 Plug 'nathanaelkane/vim-indent-guides'
-"Plug 'Valloric/YouCompleteMe'
+Plug 'Valloric/YouCompleteMe'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'lepture/vim-jinja'
 Plug 'Raimondi/delimitMate'
 Plug 'sheerun/vim-polyglot'
+" adds function param completion
+Plug 'othree/jspc.vim'
 
 " On-demand loading
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
@@ -44,6 +46,10 @@ set t_Co=256
 set background=dark
 syntax on
 colorscheme desert256
+augroup colorSchemeSetup
+    au!
+    autocmd ColorScheme * highlight Pmenu guibg=brown gui=bold
+augroup END
 
 " change Search highlight
 highlight Search ctermfg=None ctermbg=244
@@ -67,6 +73,14 @@ highlight SignColumn ctermbg=None
 highlight LineNr ctermfg=229 ctermbg=None
 highlight CursorLineNr cterm=bold ctermbg=238 ctermfg=208
 highlight CursorLine cterm=bold ctermbg=238 ctermfg=NONE
+
+" Syntax coloring lines that are too long just slows down the world
+set synmaxcol=128
+
+" vim speedups
+set ttyfast " u got a fast terminal
+set ttyscroll=3
+set lazyredraw " to avoid scrolling problems
 
 let &colorcolumn=join(range(101,999),",")
 let g:cursorline = 1
@@ -213,7 +227,6 @@ set sw=4
 set textwidth=99
 
 set ofu=syntaxcomplete#Complete
-autocmd ColorScheme * highlight Pmenu guibg=brown gui=bold
 set completeopt+=longest
 
 " line numbers and tabs and spaces for file types
@@ -303,16 +316,22 @@ augroup nerdTreeCommands
 augroup END
 
 " *.ipy files
-autocmd BufNewFile,BufRead *.ipy set filetype=python
+augroup pysetup
+    au!
+    autocmd BufNewFile,BufRead *.ipy set filetype=python
+augroup END
 
 " coffee-script
-autocmd FileType coffee setlocal sw=2
-autocmd FileType coffee setlocal ts=2
-autocmd FileType coffee setlocal sts=2
+augroup coffeeSetup
+    au!
+    autocmd FileType coffee setlocal sw=2
+    autocmd FileType coffee setlocal ts=2
+    autocmd FileType coffee setlocal sts=2
 
-" indentation for coffeescript
-au BufNewFile,BufReadPost *.coffee setl foldmethod=indent nofoldenable
-au BufNewFile,BufReadPost *.coffee setl shiftwidth=2 expandtab
+    " indentation for coffeescript
+    au BufNewFile,BufReadPost *.coffee setl foldmethod=indent nofoldenable
+    au BufNewFile,BufReadPost *.coffee setl shiftwidth=2 expandtab
+augroup END
 
 " ctrlp
 
@@ -320,8 +339,8 @@ au BufNewFile,BufReadPost *.coffee setl shiftwidth=2 expandtab
 let g:ctrlp_arg_map = 1
 let g:ctrlp_dotfiles = 1
 let g:ctrlp_custom_ignore = '.pyc$\|node_modules\|DS_Store\|git\|out'
-command! ShowJS let g:ctrlp_custom_ignore= '\.pyc$' | :ClearAllCtrlPCaches
-command! HideJS let g:ctrlp_custom_ignore= '\.js$\|\.pyc$' | :ClearAllCtrlPCaches
+"command! ShowJS let g:ctrlp_custom_ignore= '\.js$\|\.pyc$' | :ClearAllCtrlPCaches
+"command! HideJS let g:ctrlp_custom_ignore= '\.js$\|\.pyc$' | :ClearAllCtrlPCaches
 
 " keeps ctrlp away from build dirs
 let g:ctrlp_mruf_exclude = '\/build\/'
