@@ -31,6 +31,14 @@ set re=1
 " remap leader key if not using US keyboard
 let mapleader=","
 
+" vim render hacks
+" http://www.gbonfant.com/blog/improving-vim-rendering
+" https://vi.stackexchange.com/questions/10495/most-annoying-slow-down-of-a-plain-text-editor
+set ttyfast
+set nocursorcolumn
+set nocursorline
+set norelativenumber
+
 " Colors
 set t_Co=256
 set background=dark
@@ -39,6 +47,7 @@ colorscheme desert256
 
 " change Search highlight
 highlight Search ctermfg=None ctermbg=244
+
 
 " map some leaders quick keys
 nnoremap <silent> <leader>c :call SetCursorline()<CR>
@@ -116,11 +125,11 @@ endif
 inoremap <special> <Esc> <Esc>hl
 
 
-set hlsearch
-
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
+set undolevels=1000      " use many muchos levels of undo
+set wildignore=*.swp,*.bak,*.pyc,*.class
 set history=50		" keep 50 lines of command line history
 set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
@@ -180,6 +189,22 @@ if !exists(":DiffOrig")
       \ | wincmd p | diffthis
 endif
 
+" settings
+" http://nvie.com/posts/how-i-boosted-my-vim/
+set shiftround
+set visualbell           " don't beep
+set noerrorbells         " don't beep
+
+" clear search when refreshing
+nnoremap <silent> <C-l> :nohl<CR><C-l>
+set hlsearch
+
+" set case insensitive search by default
+set ignorecase
+
+" paste mode hotkey
+set pastetoggle=<F2>
+
 set ai
 set ts=4
 set sts=4
@@ -190,9 +215,6 @@ set textwidth=99
 set ofu=syntaxcomplete#Complete
 autocmd ColorScheme * highlight Pmenu guibg=brown gui=bold
 set completeopt+=longest
-
-"set number
-set incsearch
 
 " line numbers and tabs and spaces for file types
 augroup setFileNumsAndSpacing
@@ -268,9 +290,6 @@ command! Vimrc edit ~/.vimrc
 
 " remove ^M in dos files
 command! FileToUnix %s///g
-
-" clear search when refreshing
-nnoremap <silent> <C-l> :nohl<CR><C-l>
 
  " nerdtree
 augroup nerdTreeCommands
@@ -387,9 +406,6 @@ function! InsertDebug()
   execute "normal o".trace
 endfunction
 
-" Settings for paste
-set pastetoggle=<F2>
-
 " Console log from insert mode; Puts focus inside parentheses
 imap cll console.log();<Esc>==f(a
 " Console log coffeescript version
@@ -401,9 +417,6 @@ nmap cll yiwocll<Esc>p
 
 "delimitMate
 let delimitMate_expand_cr=1
-
-" set case insensitive search by default
-:set ignorecase
 
 " vim commit
 augroup vimCommits
