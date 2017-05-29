@@ -77,11 +77,6 @@ highlight CursorLine cterm=bold ctermbg=238 ctermfg=NONE
 " Syntax coloring lines that are too long just slows down the world
 set synmaxcol=128
 
-" vim speedups
-set ttyfast " u got a fast terminal
-set ttyscroll=3
-set lazyredraw " to avoid scrolling problems
-
 let &colorcolumn=join(range(101,999),",")
 let g:cursorline = 1
 
