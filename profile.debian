@@ -44,3 +44,10 @@ alias brunchd='brunch watch --env dev'
 # docker #
 # auto execute
 alias dma="docker exec -it ma bash"
+
+# start smtool
+venvsm() {
+    test ! -d ${HOME}/.virtualenvs/smtool && virtualenv ${HOME}/.virtualenvs/smtool
+    . ${HOME}/.virtualenvs/smtool/bin/activate
+    pip install /opt/sightmachine/smtool/
+}
