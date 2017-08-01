@@ -12,7 +12,7 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'davidhalter/jedi-vim'
 Plug 'nathanaelkane/vim-indent-guides'
-Plug 'Valloric/YouCompleteMe'
+"Plug 'Valloric/YouCompleteMe'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'lepture/vim-jinja'
@@ -20,6 +20,7 @@ Plug 'Raimondi/delimitMate'
 Plug 'sheerun/vim-polyglot'
 " adds function param completion
 Plug 'othree/jspc.vim'
+Plug 'flowtype/vim-flow'
 
 " On-demand loading
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
@@ -75,7 +76,9 @@ highlight CursorLineNr cterm=bold ctermbg=238 ctermfg=208
 highlight CursorLine cterm=bold ctermbg=238 ctermfg=NONE
 
 " Syntax coloring lines that are too long just slows down the world
-set synmaxcol=128
+set synmaxcol=512
+" do not rerender when macros running
+set lazyredraw
 
 let &colorcolumn=join(range(101,999),",")
 let g:cursorline = 1
@@ -307,7 +310,7 @@ augroup nerdTreeCommands
     let NERDTreeIgnore = ['\.pyc$']
     autocmd VimEnter * nmap <F3> :NERDTreeToggle<CR>
     autocmd VimEnter * imap <F3> <Esc>:NERDTreeToggle<CR>a
-    let g:NERDTreeWinSize = 45
+    let g:NERDTreeWinSize = 20
 augroup END
 
 " *.ipy files
@@ -452,6 +455,9 @@ augroup nginx-highlighter
     au!
     autocmd BufRead,BufNewFile /etc/nginx/sites-*/* setfiletype conf
 augroup END
+
+" airline caching
+let g:airline_highlighting_cache=1
 
 " Auto reload vim when vimrc is changed!
 " http://superuser.com/questions/132029/how-do-you-reload-your-vimrc-file-without-restarting-vim

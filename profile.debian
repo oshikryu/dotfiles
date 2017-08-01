@@ -44,6 +44,7 @@ alias brunchd='brunch watch --env dev'
 # docker #
 # auto execute
 alias dma="docker exec -it ma bash"
+alias dmo="docker exec -it mongo bash"
 
 # start smtool
 venvsm() {

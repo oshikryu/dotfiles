@@ -74,7 +74,7 @@ ssh-add ~/.ssh/id_rsa
 10. (Optional) Install YouCompleteMe:
 
     ```
-    cd ~/.vim/bundle/YouCompleteMe
+    cd ~/.vim/plugged/YouCompleteMe
     git submodule update --init --recursive
     ./install.py
     ```
