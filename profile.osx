@@ -97,6 +97,7 @@ alias linkbranch='git branch -u origin'
 # docker #
 # auto execute
 alias dma="docker exec -it ma bash"
+alias dftx="docker exec -it factorytx bash"
 
 ##############
 # supervisor #

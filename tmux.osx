@@ -85,9 +85,12 @@ bind DOWN resize-pane -Z
 
 
 # Copy mode
-bind -t vi-copy v begin-selection
-bind -t vi-copy y copy-selection
-bind -t vi-copy Escape cancel
+# ctrl + b, P
+bind P paste-buffer
+#bind-key -t vi-copy 'v' begin-selection
+#bind-key -t vi-copy 'y' copy-selection
+#bind-key -t vi-copy 'r' rectangle-toggle
+#bind -t vi-copy 'Escape' cancel
 
 # OSX keyboard
 set -g default-command 'reattach-to-user-namespace $SHELL --login'
