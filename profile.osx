@@ -123,3 +123,14 @@ venvsm() {
     . ${HOME}/.virtualenvs/smtool/bin/activate
     pip install /opt/sightmachine/smtool/
 }
+
+# restart tunnelblick
+tuntap() {
+    sudo kextunload -b net.sf.tuntaposx.tun
+    sudo kextunload -b net.sf.tuntaposx.tap
+}
+
+# docker-compose up for factory text
+ftxup() {
+    docker-compose -f docker-compose.yml up --build
+}
