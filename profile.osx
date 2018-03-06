@@ -8,9 +8,6 @@ export PATH
 PYTHONPATH=$HOME/h2oserver:$PYTHONPATH
 export PYTHONPATH
 
-# work specific
-export TENANT_SUBDOMAINS="cs.ma-dev,sz.ma-dev,t2.ma-dev,pc.ma-dev,shaw.ma-dev,fujitsu.ma-dev,geog.ma-dev,martinrea.ma-dev,fiat.ma-dev,demo.ma-dev,inteva.ma-dev"
-
 # set editors
 export EDITOR=vim
 export VISUAL=vim
@@ -134,4 +131,8 @@ tuntap() {
 # docker-compose up for factory text
 ftxup() {
     docker-compose -f docker-compose.yml up --build
+}
+
+ftxdev() {
+    docker-compose -f docker-compose-dev.yml run factorytx-dev
 }
