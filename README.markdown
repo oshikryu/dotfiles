@@ -53,7 +53,7 @@ ssh-add ~/.ssh/id_rsa
         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     ```
 
-    Follow this up by running `:PluginInstall` in vim.
+    Follow this up by running `:PlugInstall` in vim.
 
 7. Be sure that vim is built with python. For debian: 
 
@@ -79,9 +79,13 @@ ssh-add ~/.ssh/id_rsa
     ./install.py
     ```
 
-## Updating submodules
-    ```vim :PluginUpdate or vim :PluginInstall!```
+11. (Optional) Install prettier
+```
+yarn global add prettier
+```
 
+## Updating submodules
+    ```vim :PlugUpdate or vim :PlugInstall!```
 
 ## Common problems
 http://unix.stackexchange.com/questions/27851/after-installing-oh-my-zsh-zshrcsource34-no-such-file-or-directory
