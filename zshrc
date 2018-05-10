@@ -90,3 +90,5 @@ if [ -f '/Users/ryuta/Downloads/google-cloud-sdk/path.zsh.inc' ]; then source '/
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/ryuta/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/ryuta/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
