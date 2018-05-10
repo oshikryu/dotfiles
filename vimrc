@@ -310,7 +310,7 @@ augroup nerdTreeCommands
     let NERDTreeIgnore = ['\.pyc$']
     autocmd VimEnter * nmap <F3> :NERDTreeToggle<CR>
     autocmd VimEnter * imap <F3> <Esc>:NERDTreeToggle<CR>a
-    let g:NERDTreeWinSize = 20
+    let g:NERDTreeWinSize = 30
 augroup END
 
 " *.ipy files

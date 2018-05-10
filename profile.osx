@@ -114,6 +114,7 @@ alias vagrantnp='vagrant up --no-provision'
 alias byo='docker exec -it ma script -c "byobu"'
 alias dzsh="docker exec -it zsh"
 
+export SM_REGISTRY=registry-uw2-aws.int.sightmachine.com
 
 # start smtool
 venvsm() {
@@ -135,4 +136,9 @@ ftxup() {
 
 ftxdev() {
     docker-compose -f docker-compose-dev.yml run factorytx-dev
+}
+
+voltronup() {
+    . ~/.virtualenvs/voltron/bin/activate
+    FLASK_APP=/opt/sightmachine/voltron/flask/local.py flask run
 }
