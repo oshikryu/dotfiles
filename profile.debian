@@ -3,7 +3,6 @@ PATH=/usr/local/bin:$PATH
 PATH=/usr/local/share/npm/bin:$PATH
 PATH=$HOME/.dot/bin:$PATH
 PATH=$HOME/.local/bin:$PATH
-export TENANT_SUBDOMAINS="cs.ma-dev,sz.ma-dev,t2.ma-dev,pc.ma-dev,shaw.ma-dev,fujitsu.ma-dev,geog.ma-dev,martinrea.ma-dev,fiat.ma-dev,demo.ma-dev,inteva.ma-dev"
 export PATH
 
 # set editors
@@ -27,8 +26,8 @@ alias pullo="git pull origin"
 alias gd='git diff | mate'
 alias gaa="git add --all"
 alias gco='git checkout'
-alias greset="git reset head ."
-alias gundo='git reset --soft head^'
+alias greset="git reset HEAD ."
+alias gundo='git reset --soft HEAD^'
 alias gpushup='git push --set-upstream origin'
 alias gdc='git diff --cached'
 # automatically stage all tracked files (including deleted ones)
