@@ -248,6 +248,11 @@ augroup setFileNumsAndSpacing
     autocmd FileType css setlocal ts=2
     autocmd FileType css setlocal sts=2
 
+    " LESS
+    autocmd FileType less setlocal sw=2
+    autocmd FileType less setlocal ts=2
+    autocmd FileType less setlocal sts=2
+
     " js tabs
     autocmd FileType javascript setlocal sw=2
     autocmd FileType javascript setlocal ts=2
@@ -272,6 +277,7 @@ augroup autoCompleteGroup
     autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
     autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
     autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+    autocmd FileType less set omnifunc=csscomplete#CompleteCSS
 augroup END
 
 set hidden
@@ -369,12 +375,12 @@ let g:syntastic_check_on_open=1
 let g:syntastic_loc_list_height=4
 let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
-
 let g:syntastic_javascript_checkers = ['jshint', 'eslint']
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 nmap <silent> <leader>E :SyntasticToggleMode<CR>
 nmap <silent> <leader>e :SyntasticCheck<CR>
-
 
 " --- Jedi --------------------------------------------------------------------
 let g:jedi#use_tabs_not_buffers = 0
