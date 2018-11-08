@@ -371,13 +371,19 @@ let g:syntastic_python_flake8_args='--ignore=E126,E127,E128,E701,E702'
 let g:syntastic_python_flake8_args='--max-line-length=100'
 let g:syntastic_python_python_exec = 'python3'
 
-let g:syntastic_check_on_open=1
 let g:syntastic_loc_list_height=4
-let g:syntastic_error_symbol='✗'
-let g:syntastic_warning_symbol='⚠'
-let g:syntastic_javascript_checkers = ['jshint', 'eslint']
+
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
+let g:syntastic_error_symbol='✗'
+let g:syntastic_warning_symbol='⚠'
+let g:syntastic_style_error_symbol = '?!'
+let g:syntastic_style_warning_symbol = '💩'
+
+let g:syntastic_javascript_checkers = ['jshint', 'eslint']
+" optional default eslint
+"let g:syntastic_javascript_eslint_exe = '[ -f $(npm bin)/eslint ] && $(npm bin)/eslint || eslint'
 
 nmap <silent> <leader>E :SyntasticToggleMode<CR>
 nmap <silent> <leader>e :SyntasticCheck<CR>
