@@ -19,8 +19,6 @@ alias nombom='echo "\n (╯°□°）╯︵ ┻━┻ \n" && npm cache clear && 
 #######
 # GIT #
 #######
-alias gs="git status"
-alias GS="git status"
 alias pusho="git push origin"
 alias pullo="git pull origin"
 alias gd='git diff | mate'
