@@ -73,6 +73,10 @@ alias rdbc="rake db:create"
 #######
 # GIT #
 #######
+alias gs='git status'
+alias GS='git status'
+alias Gs='git status'
+alias gS='git status'
 alias pusho="git push origin"
 alias pullo="git pull origin"
 alias gd='git diff | mate'
@@ -88,6 +92,15 @@ alias adderall='git add -u .'
 alias removeall='git rm $(git ls-files --deleted)'
 # git link to origin
 alias linkbranch='git branch -u origin'
+# --no-pager is underrated
+alias glnp="git --no-pager log --oneline -n30"
+alias gitpretty="git log --graph --oneline --decorate --all"
+alias gitprettyall="git log --oneline --decorate --all --  graph --stat"
+alias gfiles="git show --pretty='' --name-only $1"
+alias gitstat="git log --stat"
+alias gitchangelog="git log --oneline --no-merges ${1}..HEAD"
+alias gittopcontrib="git shortlog -ns"
+alias gitdiff="git difftool $1"
 
 # docker #
 # auto execute

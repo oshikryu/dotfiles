@@ -300,6 +300,15 @@ endif
 call system('rm -f ~/.vim/tmp/backup/*~')
 call system('rm -f ~/.vim/tmp/backup/.*~')
 
+" infinite undos
+  set undofile
+  set undodir=~/.vim/undodir
+
+" clear out undos older than 90 days
+  let s:undos = split(globpath(&undodir, '*'), "\n")
+  call filter(s:undos, 'getftime(v:val) < localtime() - (60 * 60 * 24 * 90)')
+  call map(s:undos, 'delete(v:val)')
+
 " -----------------------------------------------------------------------------
 
 " quick vimrc access
