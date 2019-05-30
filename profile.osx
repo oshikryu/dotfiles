@@ -154,3 +154,14 @@ voltronup() {
     . ~/.virtualenvs/voltron/bin/activate
     FLASK_APP=/opt/sightmachine/voltron/flask/local.py flask run
 }
+
+etl3clean() {
+    cd /opt/sightmachine/etl3/etl3
+    mvn clean install -U
+    mvn dependency:go-offline
+    patch docker-compose.yml /opt/sightmachine/ma/ma/etl3_rest_api/docker-compose.yml.patch -o docker-compose.yml.patched
+}
+
+etl3up() {
+ docker-compose -f docker-compose.yml.patched up --force-recreate
+ }
