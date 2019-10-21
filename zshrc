@@ -86,9 +86,10 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/ryuta/Downloads/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/ryuta/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '/Users/ryuta/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/ryuta/Downloads/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/ryuta/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/ryuta/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f '/Users/ryuta/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/ryuta/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+#export PATH="/usr/local/opt/ruby/bin:$PATH"
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
