@@ -92,3 +92,9 @@ http://unix.stackexchange.com/questions/27851/after-installing-oh-my-zsh-zshrcso
 
 no submodule mapping
 http://stackoverflow.com/questions/4185365/no-submodule-mapping-found-in-gitmodule-for-a-path-thats-not-a-submodule
+
+Autoindent is not working:
+:set indentexpr=
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+Updating osx version needs to have compatible brew macvim

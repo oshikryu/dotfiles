@@ -8,7 +8,7 @@ Plug 'scrooloose/syntastic'
 Plug 'kien/ctrlp.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-"Plug 'SirVer/ultisnips'
+Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'davidhalter/jedi-vim'
 Plug 'nathanaelkane/vim-indent-guides'
@@ -218,10 +218,10 @@ set ignorecase
 set pastetoggle=<F2>
 
 set ai
-set ts=4
-set sts=4
+set ts=2
+set sts=2
 set et
-set sw=4
+set sw=2
 set textwidth=99
 
 set ofu=syntaxcomplete#Complete
