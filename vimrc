@@ -8,19 +8,13 @@ Plug 'scrooloose/syntastic'
 Plug 'kien/ctrlp.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'davidhalter/jedi-vim'
-Plug 'nathanaelkane/vim-indent-guides'
 Plug 'Valloric/YouCompleteMe'
-Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
-Plug 'lepture/vim-jinja'
 Plug 'Raimondi/delimitMate'
 Plug 'sheerun/vim-polyglot'
-" adds function param completion
-Plug 'othree/jspc.vim'
-Plug 'flowtype/vim-flow'
+Plug 'pangloss/vim-javascript'
 
 " On-demand loading
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
@@ -233,9 +227,11 @@ augroup setFileNumsAndSpacing
     autocmd FileType vim set number
     autocmd FileType python set number
     autocmd FileType javascript set number
+    autocmd FileType jsx set number
     autocmd FileType coffee set number
     autocmd FileType html set number
     autocmd FileType css set number
+    autocmd FileType less set number
 
     " HTML
     autocmd FileType html setlocal sw=2
@@ -407,8 +403,8 @@ augroup END
 
 
 " --- Ultisnips ---------------------------------------------------------------
-let g:UltiSnipsSnippetDirectories = ["UltiSnips"]
-let g:UltiSnipsExpandTrigger="<c-l>"
+"let g:UltiSnipsSnippetDirectories = ["UltiSnips"]
+"let g:UltiSnipsExpandTrigger="<c-l>"
 
 
 " --- delimitMate -------------------------------------------------------------
@@ -435,7 +431,7 @@ function! InsertLine()
 endfunction
 
 " jsx highlighting in js files
-let g:jsx_ext_required = 0
+let g:javascript_plugin_flow = 1
 
 " insert debugger
 map <Leader>d :call InsertDebug()<CR>
