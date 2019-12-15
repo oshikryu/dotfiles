@@ -12,6 +12,12 @@ export PYTHONPATH
 export EDITOR=vim
 export VISUAL=vim
 
+# fzf vim plugin
+export FZF_DEFAULT_COMMAND='rg --files --follow --hidden'
+
+# Fish syntax
+# set -gx FZF_DEFAULT_COMMAND  'rg --files --follow --hidden'
+
 # added for xcode compiling - THVP
 export ARCHFLAGS="-arch i386 -arch x86_64"
 
@@ -119,38 +125,3 @@ alias sup='supervisorctl'
 # vagrant #
 ###########
 alias vagrantnp='vagrant up --no-provision'
-
-
-# docker #
-# auto execute
-alias byo='docker exec -it ma script -c "byobu"'
-alias dzsh="docker exec -it zsh"
-
-export SM_REGISTRY=registry-uw2-aws.int.sightmachine.com
-
-# start smtool
-venvsm() {
-    test ! -d ${HOME}/.virtualenvs/smtool && virtualenv ${HOME}/.virtualenvs/smtool
-    . ${HOME}/.virtualenvs/smtool/bin/activate
-    pip install /opt/sightmachine/smtool/
-}
-
-# restart tunnelblick
-tuntap() {
-    sudo kextunload -b net.sf.tuntaposx.tun
-    sudo kextunload -b net.sf.tuntaposx.tap
-}
-
-# docker-compose up for factory text
-ftxup() {
-    docker-compose -f docker-compose.yml up --build
-}
-
-ftxdev() {
-    docker-compose -f docker-compose-dev.yml run factorytx-dev
-}
-
-voltronup() {
-    . ~/.virtualenvs/voltron/bin/activate
-    FLASK_APP=/opt/sightmachine/voltron/flask/local.py flask run
-}

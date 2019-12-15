@@ -5,7 +5,6 @@ call plug#begin()
 Plug 'tpope/vim-sensible'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/syntastic'
-Plug 'kien/ctrlp.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'honza/vim-snippets'
@@ -14,7 +13,8 @@ Plug 'Valloric/YouCompleteMe'
 Plug 'tpope/vim-surround'
 Plug 'Raimondi/delimitMate'
 Plug 'sheerun/vim-polyglot'
-Plug 'pangloss/vim-javascript'
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
 
 " On-demand loading
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
@@ -70,7 +70,7 @@ highlight CursorLineNr cterm=bold ctermbg=238 ctermfg=208
 highlight CursorLine cterm=bold ctermbg=238 ctermfg=NONE
 
 " Syntax coloring lines that are too long just slows down the world
-set synmaxcol=512
+set synmaxcol=200
 " do not rerender when macros running
 set lazyredraw
 
@@ -135,7 +135,9 @@ inoremap <special> <Esc> <Esc>hl
 set backspace=indent,eol,start
 
 set undolevels=1000      " use many muchos levels of undo
-set wildignore=*.swp,*.bak,*.pyc,*.class
+ " Ignore node_modules and images from search results
+set wildignore+=**/node_modules/**,**/dist/**,**_site/**,*.swp,*.png,*.jpg,*.gif,*.webp,*.jpeg,*.map,*.bak,*.pyc,*.class,**/out/**
+
 set history=50		" keep 50 lines of command line history
 set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
@@ -227,7 +229,7 @@ augroup setFileNumsAndSpacing
     autocmd FileType vim set number
     autocmd FileType python set number
     autocmd FileType javascript set number
-    autocmd FileType jsx set number
+    autocmd FileType javascript.jsx set number
     autocmd FileType coffee set number
     autocmd FileType html set number
     autocmd FileType css set number
@@ -256,9 +258,9 @@ augroup setFileNumsAndSpacing
 augroup END
 
 " folding
-"set foldmethod=syntax
-"set foldlevelstart=99
-"let javascript_fold=1
+set foldmethod=syntax
+set foldlevelstart=99
+let javascript_fold=1
 
 set foldmethod=indent
 set foldnestmax=10
@@ -280,10 +282,17 @@ set hidden
 set virtualedit=all
 set wildmenu
 
+" -----------------------------------------------------------------------------
 " a few settings for swap and backup
+" -----------------------------------------------------------------------------
 set backup
 set writebackup
 set swapfile
+
+" No swap file
+"set noswapfile
+"set nobackup
+"set nowritebackup
 
 if has('unix')
     set backupdir=~/.vim/tmp/backup//
@@ -330,38 +339,53 @@ augroup pysetup
     autocmd BufNewFile,BufRead *.ipy set filetype=python
 augroup END
 
+" -----------------------------------------------------------------------------
 " coffee-script
-augroup coffeeSetup
-    au!
-    autocmd FileType coffee setlocal sw=2
-    autocmd FileType coffee setlocal ts=2
-    autocmd FileType coffee setlocal sts=2
+" -----------------------------------------------------------------------------
+"augroup coffeeSetup
+    "au!
+    "autocmd FileType coffee setlocal sw=2
+    "autocmd FileType coffee setlocal ts=2
+    "autocmd FileType coffee setlocal sts=2
 
-    " indentation for coffeescript
-    au BufNewFile,BufReadPost *.coffee setl foldmethod=indent nofoldenable
-    au BufNewFile,BufReadPost *.coffee setl shiftwidth=2 expandtab
-augroup END
+    "" indentation for coffeescript
+    "au BufNewFile,BufReadPost *.coffee setl foldmethod=indent nofoldenable
+    "au BufNewFile,BufReadPost *.coffee setl shiftwidth=2 expandtab
+"augroup END
 
-" ctrlp
-
+" -----------------------------------------------------------------------------
+" ctrlp (DEPRECATED)
+" -----------------------------------------------------------------------------
 "let g:ctrlp_cmd = 'CtrlPBuffer'
-let g:ctrlp_arg_map = 1
-let g:ctrlp_dotfiles = 1
-let g:ctrlp_custom_ignore = '.pyc$\|node_modules\|DS_Store\|git\|out'
-"command! ShowJS let g:ctrlp_custom_ignore= '\.js$\|\.pyc$' | :ClearAllCtrlPCaches
-"command! HideJS let g:ctrlp_custom_ignore= '\.js$\|\.pyc$' | :ClearAllCtrlPCaches
+"let g:ctrlp_arg_map = 1
+"let g:ctrlp_dotfiles = 1
+"let g:ctrlp_custom_ignore = '.pyc$\|node_modules\|DS_Store\|git\|out'
+""command! ShowJS let g:ctrlp_custom_ignore= '\.js$\|\.pyc$' | :ClearAllCtrlPCaches
+""command! HideJS let g:ctrlp_custom_ignore= '\.js$\|\.pyc$' | :ClearAllCtrlPCaches
 
-" keeps ctrlp away from build dirs
-let g:ctrlp_mruf_exclude = '\/build\/'
+"" keeps ctrlp away from build dirs
+"let g:ctrlp_mruf_exclude = '\/build\/'
 
-nnoremap <silent> <leader>f :CtrlP<CR>
-nnoremap <silent> <leader>b :CtrlPBuffer<CR>
-nnoremap <silent> <leader>m :CtrlPMRUFiles<CR>
+"nnoremap <silent> <leader>f :CtrlP<CR>
+"nnoremap <silent> <leader>b :CtrlPBuffer<CR>
+"nnoremap <silent> <leader>m :CtrlPMRUFiles<CR>
 
-" defualt split locations
+" #FZF {{{
+let g:fzf_command_prefix = 'Fzf'
+nnoremap <Leader>b :FzfBuffers<CR>
+nnoremap <Leader>h :FzfHistory<CR>
+nnoremap <Leader>m :FzfHistory<CR>
+nnoremap <Leader>t :FzfBTags<CR>
+nnoremap <Leader>T :FzfTags<CR>
+nnoremap <C-p> :FzfFiles<CR>
+" Have FZF list all tracked files plus untracked files minus your ignored files
+nnoremap <Leader>p :FzfGitFiles --exclude-standard --others --cached<CR>
+nnoremap <Leader>gt :FzfRg<CR>
+" }}}
+
+" default split locations
 set splitbelow
 set splitright
-
 
 " python mode
 " turn off lint, breakpoint, and run
@@ -430,8 +454,18 @@ function! InsertLine()
   execute "normal o".trace
 endfunction
 
+"----------------------------------------
+" JAVASCRIPT
+"----------------------------------------
+
 " jsx highlighting in js files
 let g:javascript_plugin_flow = 1
+
+" Stop concealing quotes in JSON
+let g:vim_json_syntax_conceal = 0
+
+" Enable JSX syntax highlighting in .js files
+let g:jsx_ext_required = 0
 
 " insert debugger
 map <Leader>d :call InsertDebug()<CR>
@@ -458,9 +492,6 @@ augroup vimCommits
     autocmd Filetype gitcommit setlocal spell textwidth=72
 augroup END
 
-" mustache abbreviations
-let g:mustache_abbreviations = 1
-
 "
 inoremap <Esc>A <up>
 inoremap <Esc>B <down>
@@ -468,13 +499,19 @@ inoremap <Esc>C <right>
 inoremap <Esc>D <left>
 
 " DOS and nginx conf file highlighting
-augroup nginx-highlighter
+augroup fileTypeUpdater
     au!
-    autocmd BufRead,BufNewFile /etc/nginx/sites-*/* setfiletype conf
+    autocmd BufRead,BufNewFile /etc/nginx/sites-*/* set filetype=conf
+    autocmd bufnewfile,bufread *.jsx set filetype=javascript.jsx
 augroup END
 
 " airline caching
 let g:airline_highlighting_cache=1
+
+" Strip trailing whitespace from all files
+autocmd BufWritePre * %s/\s\+$//e
+autocmd BufWritePre * %s/\s\+$//e
+autocmd BufWritePre * %s/\s\+$//e
 
 " Auto reload vim when vimrc is changed!
 " http://superuser.com/questions/132029/how-do-you-reload-your-vimrc-file-without-restarting-vim

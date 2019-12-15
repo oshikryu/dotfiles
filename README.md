@@ -17,7 +17,7 @@ ssh-add ~/.ssh/id_rsa
 ## Installation
 
 1. Install git:
-    
+
     ```
     git clone git@github.com:oshikryu/dotfiles.git ~/.dot
     cd ~/.dot
@@ -55,7 +55,7 @@ ssh-add ~/.ssh/id_rsa
 
     Follow this up by running `:PlugInstall` in vim.
 
-7. Be sure that vim is built with python. For debian: 
+7. Be sure that vim is built with python. For debian:
 
     ```sudo apt-get install vim-nox```
 
@@ -82,6 +82,15 @@ ssh-add ~/.ssh/id_rsa
 11. (Optional) Install prettier
 ```
 yarn global add prettier
+```
+
+12. fzf
+I changed the fuzzy finding library from ctrlp because that was way slow. Install fzf via brew or
+change the vimrc to install via vim-plug
+
+```
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 ```
 
 ## Updating submodules
