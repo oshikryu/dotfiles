@@ -107,3 +107,7 @@ Autoindent is not working:
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 Updating osx version needs to have compatible brew macvim
+
+TMUX
+https://superuser.com/questions/397076/tmux-exits-with-exited-on-mac-os-x
+brew install reattach-to-user-namespace

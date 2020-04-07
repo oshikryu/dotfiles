@@ -377,9 +377,10 @@ nnoremap <Leader>h :FzfHistory<CR>
 nnoremap <Leader>m :FzfHistory<CR>
 nnoremap <Leader>t :FzfBTags<CR>
 nnoremap <Leader>T :FzfTags<CR>
-nnoremap <C-p> :FzfFiles<CR>
+" does not work??
+"nnoremap <C-p> :FzfFiles<CR>
 " Have FZF list all tracked files plus untracked files minus your ignored files
-nnoremap <Leader>p :FzfGitFiles --exclude-standard --others --cached<CR>
+nnoremap <C-p> :FzfGitFiles --exclude-standard --others --cached<CR>
 nnoremap <Leader>gt :FzfRg<CR>
 " }}}
 
@@ -402,8 +403,8 @@ let g:syntastic_python_python_exec = 'python3'
 
 let g:syntastic_loc_list_height=4
 
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 1
 
 let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
@@ -509,9 +510,9 @@ augroup END
 let g:airline_highlighting_cache=1
 
 " Strip trailing whitespace from all files
-autocmd BufWritePre * %s/\s\+$//e
-autocmd BufWritePre * %s/\s\+$//e
-autocmd BufWritePre * %s/\s\+$//e
+"autocmd BufWritePre * %s/\s\+$//e
+"autocmd BufWritePre * %s/\s\+$//e
+"autocmd BufWritePre * %s/\s\+$//e
 
 " Auto reload vim when vimrc is changed!
 " http://superuser.com/questions/132029/how-do-you-reload-your-vimrc-file-without-restarting-vim
