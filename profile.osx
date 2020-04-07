@@ -112,7 +112,7 @@ alias gitdiff="git difftool $1"
 # auto execute
 alias dma="docker exec -it ma bash"
 alias dmo="docker exec -it mongo bash"
-alias dftx="docker exec -it factorytx bash"
+alias dfe="docker exec -it frontend-yarn-server bash"
 
 ##############
 # supervisor #
