@@ -295,8 +295,8 @@ set swapfile
 "set nowritebackup
 
 if has('unix')
-    set backupdir=~/.vim/tmp/backup//
-    set directory=~/.vim/tmp/swap//
+    set backupdir=~/.vim/vim/tmp/backup//
+    set directory=~/.vim/vim/tmp/swap//
 else
     set backupdir=~/.dot/vim/tmp/backup//
     set directory=~/.dot/vim/tmp/swap//

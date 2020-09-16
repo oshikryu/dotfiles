@@ -13,6 +13,18 @@ ssh-add ~/.ssh/id_rsa
 ```
 2. Copy id_rsa.pub
 
+3. For OSX 10.12 > you need to add your SSH key to the SSH agent
+https://docs.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#adding-your-ssh-key-to-the-ssh-agent
+
+4. (If no config file) `touch ~/.ssh/config`
+5. Open your ~/.ssh/config file, then modify the file, replacing ~/.ssh/id_rsa if you are not using the default location and name for your id_rsa key.
+
+```
+Host *
+  AddKeysToAgent yes
+  UseKeychain yes
+  IdentityFile ~/.ssh/id_rsaOpen your ~/.ssh/config file, then modify the file, replacing ~/.ssh/id_rsa if you are not using the default location and name for your id_rsa key.
+```
 
 ## Installation
 
@@ -55,12 +67,14 @@ ssh-add ~/.ssh/id_rsa
 
     Follow this up by running `:PlugInstall` in vim.
 
-7. Be sure that vim is built with python. For debian:
+7. (Linux) Be sure that vim is built with python
 
-    ```sudo apt-get install vim-nox```
+    ```
+    sudo apt-get install vim-nox
+    ```
 
 
-8. Be sure you have build tools (on Debian)
+8. (Linux) Be sure you have build tools
 
     ```
     sudo apt-get install build-essential cmake
@@ -80,21 +94,25 @@ ssh-add ~/.ssh/id_rsa
     ```
 
 11. (Optional) Install prettier
-```
-yarn global add prettier
-```
 
-12. fzf
+    ```
+    yarn global add prettier
+    ```
+
+12. Installing fzf
+
 I changed the fuzzy finding library from ctrlp because that was way slow. Install fzf via brew or
 change the vimrc to install via vim-plug
 
-```
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-```
+    ```
+    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+    Plug 'junegunn/fzf.vim'
+    ```
 
 ## Updating submodules
-    ```vim :PlugUpdate or vim :PlugInstall!```
+    ```
+    vim :PlugUpdate or vim :PlugInstall!
+    ```
 
 ## Common problems
 http://unix.stackexchange.com/questions/27851/after-installing-oh-my-zsh-zshrcsource34-no-such-file-or-directory
@@ -111,3 +129,8 @@ Updating osx version needs to have compatible brew macvim
 TMUX
 https://superuser.com/questions/397076/tmux-exits-with-exited-on-mac-os-x
 brew install reattach-to-user-namespace
+
+backup/swap files:
+Getting the must overwrite and no backup? link the proper dir and chmod
+`sudo chmod 0750 ~/.vim/vim/tmp/swap`
+`sudo chmod 0750 ~/.vim/vim/tmp/backup`
