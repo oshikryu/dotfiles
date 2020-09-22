@@ -1,6 +1,6 @@
 [user]
 	name = Ryuta Oshikiri
-	email = ryushikiri@gmail.com
+	email = ryuta.oshikiri@truepill.com
 
 [color]
 	diff = auto
@@ -17,3 +17,5 @@
 
 [push]
 	default = upstream
+[pull]
+	ff = only
