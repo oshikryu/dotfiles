@@ -108,22 +108,17 @@ alias gitchangelog="git log --oneline --no-merges ${1}..HEAD"
 alias gittopcontrib="git shortlog -ns"
 alias gitdiff="git difftool $1"
 
-# docker #
-# auto execute
-alias dma="docker exec -it ma bash"
-alias dmo="docker exec -it mongo bash"
-alias dfe="docker exec -it frontend-yarn-server bash"
+# kubernetes #
+alias kd="kubectl -n development"
+alias ks="kubectl -n sandbox"
+alias kprod="kubectl -n production"
 
-##############
 # supervisor #
-##############
 alias supstatus='supervisorctl status'
 alias sup='supervisorctl'
 
 
-###########
 # vagrant #
-###########
 alias vagrantnp='vagrant up --no-provision'
 
 export NVM_DIR="$HOME/.nvm"
