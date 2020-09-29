@@ -26,6 +26,8 @@ Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 call plug#end()
 
 filetype plugin indent on
+" highlighting breaks on yaml
+set mmp=5000
 
 " performance improvement by using older version of regex
 set re=1
@@ -235,6 +237,7 @@ augroup setFileNumsAndSpacing
     autocmd FileType python set number
     autocmd FileType javascript set number
     autocmd FileType javascript.jsx set number
+    autocmd FileType typescript set number
     autocmd FileType coffee set number
     autocmd FileType html set number
     autocmd FileType css set number
