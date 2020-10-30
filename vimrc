@@ -16,6 +16,11 @@ Plug 'sheerun/vim-polyglot'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 
+Plug 'pangloss/vim-javascript'    " JavaScript support
+Plug 'leafgarland/typescript-vim' " TypeScript syntax
+Plug 'maxmellon/vim-jsx-pretty'   " JS and JSX syntax
+Plug 'jparise/vim-graphql'        " GraphQL syntax
+
 " post install (yarn install | npm install) then load plugin only for editing supported files
 Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
@@ -30,7 +35,8 @@ filetype plugin indent on
 set mmp=5000
 
 " performance improvement by using older version of regex
-set re=1
+" slows down typescript highlighting by a lot
+" set re=1
 
 " remap leader key if not using US keyboard
 let mapleader=","
@@ -77,9 +83,13 @@ highlight CursorLineNr cterm=bold ctermbg=238 ctermfg=208
 highlight CursorLine cterm=bold ctermbg=238 ctermfg=NONE
 
 " Syntax coloring lines that are too long just slows down the world
-set synmaxcol=200
+set synmaxcol=1000
+
 " do not rerender when macros running
-set lazyredraw
+" set lazyredraw
+
+" always higlight
+" set redrawtime=10000
 
 let &colorcolumn=join(range(101,999),",")
 let g:cursorline = 1
@@ -297,11 +307,6 @@ set backup
 set writebackup
 set swapfile
 
-" No swap file
-"set noswapfile
-"set nobackup
-"set nowritebackup
-
 if has('unix')
     set backupdir=~/.vim/vim/tmp/backup//
     set directory=~/.vim/vim/tmp/swap//
@@ -346,37 +351,6 @@ augroup pysetup
     au!
     autocmd BufNewFile,BufRead *.ipy set filetype=python
 augroup END
-
-" -----------------------------------------------------------------------------
-" coffee-script
-" -----------------------------------------------------------------------------
-"augroup coffeeSetup
-    "au!
-    "autocmd FileType coffee setlocal sw=2
-    "autocmd FileType coffee setlocal ts=2
-    "autocmd FileType coffee setlocal sts=2
-
-    "" indentation for coffeescript
-    "au BufNewFile,BufReadPost *.coffee setl foldmethod=indent nofoldenable
-    "au BufNewFile,BufReadPost *.coffee setl shiftwidth=2 expandtab
-"augroup END
-
-" -----------------------------------------------------------------------------
-" ctrlp (DEPRECATED)
-" -----------------------------------------------------------------------------
-"let g:ctrlp_cmd = 'CtrlPBuffer'
-"let g:ctrlp_arg_map = 1
-"let g:ctrlp_dotfiles = 1
-"let g:ctrlp_custom_ignore = '.pyc$\|node_modules\|DS_Store\|git\|out'
-""command! ShowJS let g:ctrlp_custom_ignore= '\.js$\|\.pyc$' | :ClearAllCtrlPCaches
-""command! HideJS let g:ctrlp_custom_ignore= '\.js$\|\.pyc$' | :ClearAllCtrlPCaches
-
-"" keeps ctrlp away from build dirs
-"let g:ctrlp_mruf_exclude = '\/build\/'
-
-"nnoremap <silent> <leader>f :CtrlP<CR>
-"nnoremap <silent> <leader>b :CtrlPBuffer<CR>
-"nnoremap <silent> <leader>m :CtrlPMRUFiles<CR>
 
 " #FZF {{{
 let g:fzf_command_prefix = 'Fzf'
@@ -468,7 +442,7 @@ endfunction
 "----------------------------------------
 
 " jsx highlighting in js files
-let g:javascript_plugin_flow = 1
+" let g:javascript_plugin_flow = 1
 
 " Stop concealing quotes in JSON
 let g:vim_json_syntax_conceal = 0
