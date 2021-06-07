@@ -134,3 +134,11 @@ backup/swap files:
 Getting the must overwrite and no backup? link the proper dir and chmod
 `sudo chmod 0750 ~/.vim/vim/tmp/swap`
 `sudo chmod 0750 ~/.vim/vim/tmp/backup`
+
+
+python error when sinstalling YCM
+https://stackoverflow.com/questions/62546912/youcompleteme-completed-failed
+ERROR: Python headers are missing in /Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.8/Headers.
+/usr/local/bin/python3.9 install.py --all
+
+install go https://github.com/ycm-core/YouCompleteMe/issues/3074

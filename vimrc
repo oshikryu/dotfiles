@@ -15,6 +15,7 @@ Plug 'Raimondi/delimitMate'
 Plug 'sheerun/vim-polyglot'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
+Plug 'Quramy/tsuquyomi'
 
 Plug 'pangloss/vim-javascript'    " JavaScript support
 Plug 'leafgarland/typescript-vim' " TypeScript syntax
@@ -505,6 +506,7 @@ augroup fileTypeUpdater
     au!
     autocmd BufRead,BufNewFile /etc/nginx/sites-*/* set filetype=conf
     autocmd bufnewfile,bufread *.jsx set filetype=javascript.jsx
+    autocmd bufnewfile,bufread *.tsx set filetype=javascript.jsx
 augroup END
 
 " airline caching
