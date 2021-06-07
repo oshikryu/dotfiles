@@ -112,7 +112,7 @@ alias gitdiff="git difftool $1"
 # kubernetes #
 alias kd="kubectl -n development"
 alias ks="kubectl -n sandbox"
-alias kprod="kubectl -n production"
+alias kp="kubectl -n production"
 
 # supervisor #
 alias supstatus='supervisorctl status'
