@@ -1,6 +1,6 @@
 # Dotfiles
 
-## Pre-Installation
+## SSH keys
 
 1. Create ssh keys and add to github https://help.github.com/articles/generating-ssh-keys/
 ```
@@ -19,100 +19,102 @@ https://docs.github.com/en/github/authenticating-to-github/generating-a-new-ssh-
 4. (If no config file) `touch ~/.ssh/config`
 5. Open your ~/.ssh/config file, then modify the file, replacing ~/.ssh/id_rsa if you are not using the default location and name for your id_rsa key.
 
-```
+>
 Host *
   AddKeysToAgent yes
   UseKeychain yes
   IdentityFile ~/.ssh/id_rsaOpen your ~/.ssh/config file, then modify the file, replacing ~/.ssh/id_rsa if you are not using the default location and name for your id_rsa key.
+
+## Git
+Since the `gitconfig` is symlinked, update the email to match the proper system usage
+
+## Installation (OSX)
+Install brew
+```
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
-## Installation
+Install related brew libraries
+```
+brew update
+brew install python3
+brew install git
+brew install zsh
+brew install tmux
+brew install reattach-user-namespace
+brew install cmake
+brew install fzf
+```
 
-1. Install git:
+Clone repo and git dependencies:
 
-    ```
-    git clone git@github.com:oshikryu/dotfiles.git ~/.dot
-    cd ~/.dot
-    git submodule update --init --recursive
-    ```
+```
+git clone git@github.com:oshikryu/dotfiles.git ~/.dot
+cd ~/.dot
+git submodule update --init --recursive
+```
 
-2. Install zsh (on Debian):
+Change to zsh:
 
-    ```
-    sudo apt-get update
-    sudo apt-get install zsh
-    ```
+```
+chsh -s /bin/zsh
+```
 
-3. Install zsh (on osx):
+Create symlinks by editing and run the `init_osx`
 
-    ```
-    brew update
-    brew install zsh
-    ```
+```
+./init_osx
+```
 
-4. Change to zsh:
+Your shell zsh theme should change
 
-    ```
-    chsh -s /bin/zsh
-    ```
+## Vim dependencies
+Install vim-plug:
 
-5. Create symlinks by editing and run the `init_osx` or `init_debian` script.
+```
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+```
 
-
-6. Install vim-plug:
-    ```
-     curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    ```
-
-    Follow this up by running `:PlugInstall` in vim.
-
-7. (Linux) Be sure that vim is built with python
-
-    ```
-    sudo apt-get install vim-nox
-    ```
+Follow this up by running `:PlugInstall` in vim.
 
 
-8. (Linux) Be sure you have build tools
+Be sure you have build tools (on OSX)
 
-    ```
-    sudo apt-get install build-essential cmake
-    sudo apt-get install python2.7-dev
-    ```
+```
+brew install cmake
+```
 
-9. Be sure you have build tools (on OSX)
+(Optional) Install YouCompleteMe:
 
-    ```brew install cmake```
+NOTE: this requires python libraries
+```
+cd ~/.vim/plugged/YouCompleteMe
+git submodule update --init --recursive
+./install.py
+```
 
-10. (Optional) Install YouCompleteMe:
+(Optional) Install prettier
 
-    ```
-    cd ~/.vim/plugged/YouCompleteMe
-    git submodule update --init --recursive
-    ./install.py
-    ```
+```
+yarn global add prettier
+```
 
-11. (Optional) Install prettier
-
-    ```
-    yarn global add prettier
-    ```
-
-12. Installing fzf
+Installing fzf
 
 I changed the fuzzy finding library from ctrlp because that was way slow. Install fzf via brew or
 change the vimrc to install via vim-plug
 
-    ```
-    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-    Plug 'junegunn/fzf.vim'
-    ```
+```
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+```
 
-## Updating submodules
-    ```
-    vim :PlugUpdate or vim :PlugInstall!
-    ```
+### Updating submodules
+```
+vim :PlugUpdate or vim :PlugInstall!
+```
+
 
 ## Common problems
 http://unix.stackexchange.com/questions/27851/after-installing-oh-my-zsh-zshrcsource34-no-such-file-or-directory
@@ -136,9 +138,12 @@ Getting the must overwrite and no backup? link the proper dir and chmod
 `sudo chmod 0750 ~/.vim/vim/tmp/backup`
 
 
-python error when sinstalling YCM
+python error when installing YCM
 https://stackoverflow.com/questions/62546912/youcompleteme-completed-failed
 ERROR: Python headers are missing in /Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.8/Headers.
 /usr/local/bin/python3.9 install.py --all
 
 install go https://github.com/ycm-core/YouCompleteMe/issues/3074
+
+zshell theme not updating
+- make sure zshrc is properly symlinked
