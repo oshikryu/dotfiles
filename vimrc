@@ -253,6 +253,7 @@ augroup setFileNumsAndSpacing
     autocmd FileType html set number
     autocmd FileType css set number
     autocmd FileType less set number
+    autocmd FileType scala set number
 
     " HTML
     autocmd FileType html setlocal sw=2
