@@ -17,3 +17,11 @@ alias sup='supervisorctl'
 
 # use vim editing in bash
 set -o vi     
+
+# >>> JVM installed by coursier >>>
+export JAVA_HOME="/Users/ryuta/Library/Caches/Coursier/arc/https/github.com/AdoptOpenJDK/openjdk11-binaries/releases/download/jdk-11%252B28/OpenJDK11-jdk_x64_mac_hotspot_11_28.tar.gz/jdk-11+28/Contents/Home"
+# <<< JVM installed by coursier <<<
+
+# >>> coursier install directory >>>
+export PATH="$PATH:/Users/ryuta/Library/Application Support/Coursier/bin"
+# <<< coursier install directory <<<
