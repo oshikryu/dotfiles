@@ -1,4 +1,5 @@
 ## Installation (linux)
+For amazon-linux, substitute `yum` for `apt-get`
 
 Install zsh (on Debian):
 
