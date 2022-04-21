@@ -1,11 +1,31 @@
 ## Installation (linux)
+Install brew
+```
+brew update
+brew install python3
+brew install git
+brew install zsh
+brew install tmux
+brew install reattach-user-namespace
+brew install cmake
+brew install fzf
+```
+
+Clone repo and dependencies
+```
+git clone git@github.com:oshikryu/dotfiles.git ~/.dot
+cd ~/.dot
+git submodule update --init --recursive
+```
+
+
 For amazon-linux, substitute `yum` for `apt-get`
 
 Install zsh (on Debian):
 
 ```
-sudo apt-get update
-sudo apt-get install zsh
+sudo yum update
+sudo yum install zsh
 ```
 
 Change to zsh:
@@ -15,6 +35,9 @@ chsh -s /bin/zsh
 ```
 
 Create symlinks by editing and run the `init_debian` script.
+```
+./init_debian
+```
 
 
 (Linux) Be sure that vim is built with python
@@ -29,6 +52,13 @@ sudo apt-get install vim-nox
 ```
 sudo apt-get install build-essential cmake
 sudo apt-get install python2.7-dev
+```
+
+Youcompleteme
+```
+cd ~/.vim/plugged/YouCompleteMe
+git submodule update --init --recursive
+./install.py
 ```
 
 ## Debugging
@@ -53,8 +83,6 @@ Need to get the correct path to fzf in vimrc
 https://ops.tips/gists/navigating-the-linux-kernel-source-with-youcompleteme/
 ```
 sudo yum install gcc-c++ ncurses-devel python-devel cmake
-
-  
 CC=gcc-8 CXX=g++-8 python3 ./install.py
 ```
 
