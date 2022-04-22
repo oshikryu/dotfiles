@@ -85,4 +85,23 @@ https://ops.tips/gists/navigating-the-linux-kernel-source-with-youcompleteme/
 sudo yum install gcc-c++ ncurses-devel python-devel cmake
 CC=gcc-8 CXX=g++-8 python3 ./install.py
 ```
+  
+  or 
+```
+brew install gcc@8
+brew link gcc@8
+./install.py
+```
+  
+### zshrc for amazon-linux
+Remove or comment out this line
+```
+# ask for ssh key password only the first time you boot up
+if [ ! -S ~/.ssh/ssh_auth_sock ]; then
+  eval `ssh-agent`
+  ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
+fi
+export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
+ssh-add -l | grep "The agent has no identities" && ssh-add
+```
 
