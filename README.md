@@ -44,6 +44,7 @@ brew install tmux
 brew install reattach-user-namespace
 brew install cmake
 brew install fzf
+brew install the_silver_searcher
 ```
 
 Clone repo and git dependencies:
@@ -108,6 +109,11 @@ change the vimrc to install via vim-plug
 ```
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+```
+
+To use in-file search via Ag
+```
+:FzfAg
 ```
 
 ### Updating submodules
