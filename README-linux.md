@@ -9,6 +9,7 @@ brew install tmux
 brew install reattach-user-namespace
 brew install cmake
 brew install fzf
+brew install the_silver_searcher
 ```
 
 Clone repo and dependencies
