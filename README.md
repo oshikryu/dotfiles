@@ -45,6 +45,8 @@ brew install reattach-user-namespace
 brew install cmake
 brew install fzf
 brew install the_silver_searcher
+brew install ripgrep
+brew install bat
 ```
 
 Clone repo and git dependencies:
