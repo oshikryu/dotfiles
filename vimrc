@@ -13,7 +13,7 @@ Plug 'Valloric/YouCompleteMe'
 Plug 'tpope/vim-surround'
 Plug 'Raimondi/delimitMate'
 Plug 'sheerun/vim-polyglot'
-Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'Quramy/tsuquyomi'
 

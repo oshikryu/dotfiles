@@ -10,6 +10,8 @@ brew install reattach-user-namespace
 brew install cmake
 brew install fzf
 brew install the_silver_searcher
+brew install ripgrep
+brew install bat
 ```
 
 Clone repo and dependencies
@@ -71,12 +73,12 @@ https://github.com/junegunn/fzf.vim/issues/439
 
 Need to get the correct path to fzf in vimrc
 ```
-  Plug 'junegunn/fzf', { 'dir': '~/opt/fzf' }
+Plug 'junegunn/fzf', { 'dir': '~/opt/fzf' }
 ```
 
 ### colorscheme not found
 ```
-  cp -r colors ~/.vim/
+cp -r colors ~/.vim/
 ```
 
 ### YcmServer
