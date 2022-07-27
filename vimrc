@@ -365,7 +365,7 @@ nnoremap <Leader>T :FzfTags<CR>
 "nnoremap <C-p> :FzfFiles<CR>
 " Have FZF list all tracked files plus untracked files minus your ignored files
 nnoremap <C-p> :FzfGitFiles --exclude-standard --others --cached<CR>
-nnoremap <Leader>gt :FzfRg<CR>
+nnoremap <Leader>gt :FzfRg <CR>
 " }}}
 
 " default split locations
