@@ -25,3 +25,10 @@ export JAVA_HOME="/Users/ryuta/Library/Caches/Coursier/arc/https/github.com/Adop
 # >>> coursier install directory >>>
 export PATH="$PATH:/Users/ryuta/Library/Application Support/Coursier/bin"
 # <<< coursier install directory <<<
+# BEGIN ANSIBLE MANAGED BLOCK
+if command -v pyenv 1>/dev/null 2>&1; then
+  export PYENV_ROOT="$HOME/.pyenv"
+  export PATH="$PYENV_ROOT/bin:$PATH"
+  eval "$(pyenv init --path)"
+fi
+# END ANSIBLE MANAGED BLOCK
