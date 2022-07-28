@@ -13,8 +13,19 @@ export VISUAL=vim
     #source ~/.bash_profile
 #fi
 
-# refresh build env for h2oclient
-alias nombom='echo "\n (╯°□°）╯︵ ┻━┻ \n" && npm cache clear && rm -rf node_modules && npm install'
+# fzf vim plugin
+export FZF_DEFAULT_COMMAND='rg --files --follow --hidden'
+
+alias lsa='ls -lah' # l for list style, a for all including hidden, h for human readable file sizes
+alias h='history' # Show history
+alias c='clear' # Clear terminal
+alias ..='cd ..' # Move up 1 dir
+alias ...='cd ../..' # Move up 2 dirs
+alias rbash=". ~/.bash_profile" # reloads bash profile
+alias ebash='mate ~/.bashrc ~/.bash_aliases ~/.inputrc' # Open our bash config files in textmate.
+alias ping='ping -c 5' # Limit command to ping the specified server only 5 times.
+alias psc='ps ux' # Good overview of running processes.
+alias fkill='kill -9' # For those hard to kill processes.
 
 #######
 # GIT #
@@ -47,18 +58,3 @@ alias gitstat="git log --stat"
 alias gitchangelog="git log --oneline --no-merges ${1}..HEAD"
 alias gittopcontrib="git shortlog -ns"
 alias gitdiff="git difftool $1"
-
-# terminal notifier
-alias brunchd='brunch watch --env dev'
-
-# docker #
-# auto execute
-alias dma="docker exec -it ma bash"
-alias dmo="docker exec -it mongo bash"
-
-# start smtool
-venvsm() {
-    test ! -d ${HOME}/.virtualenvs/smtool && virtualenv ${HOME}/.virtualenvs/smtool
-    . ${HOME}/.virtualenvs/smtool/bin/activate
-    pip install /opt/sightmachine/smtool/
-}
