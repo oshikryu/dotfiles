@@ -52,7 +52,7 @@ sudo chsh -s /bin/zsh ec2-user
 ```
 
 Create symlinks by editing and run the `init_debian` script.
-Remove previous .bash_profile to apply zsh theme
+Remove previous `.bash_profile` and `.zprofile` to apply zsh theme
 ```
 ./init_debian
 ```
@@ -104,10 +104,11 @@ cp -r colors ~/.vim/
 https://ops.tips/gists/navigating-the-linux-kernel-source-with-youcompleteme/
 ```
 sudo yum install gcc-c++ ncurses-devel python-devel cmake
+
 CC=gcc-8 CXX=g++-8 python3 ./install.py
 ```
 
-  or 
+or
 ```
 brew install gcc@8
 brew link gcc@8
