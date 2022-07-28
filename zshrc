@@ -73,6 +73,14 @@ zmodload zsh/terminfo
 bindkey "$terminfo[kcuu1]" history-substring-search-up
 bindkey "$terminfo[kcud1]" history-substring-search-down
 
+# ask for ssh key password only the first time you boot up
+# if [ ! -S ~/.ssh/ssh_auth_sock ]; then
+#   eval `ssh-agent`
+#   ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
+# fi
+# export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
+# ssh-add -l | grep "The agent has no identities" && ssh-add
+
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 #export PATH="/usr/local/opt/ruby/bin:$PATH"
@@ -83,17 +91,6 @@ export PATH="/usr/local/sbin:$PATH"
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
 
-
-# ----------------- old google cloud path ------------- #
-# The next line updates PATH for the Google Cloud SDK.
-#-if [ -f '/Users/ryuta/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/ryuta/Downloads/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-#if [ -f '/Users/ryuta/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/ryuta/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
-# ----------------- old google cloud path ------------- #
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/ryuta.oshikiri/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/ryuta.oshikiri/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/ryuta.oshikiri/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/ryuta.oshikiri/google-cloud-sdk/completion.zsh.inc'; fi
+# export PATH="$PATH:/Users/ryutaoshikiri/projects/platform-apps/bin"
+# export PATH="/Users/ryutaoshikiri/projects/platform-apps/bin/.binaries:$PATH"
+# eval "$(pyenv init -)"

@@ -1,6 +1,10 @@
 ## Installation (linux)
 Install brew
 ```
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+```
 brew update
 brew install python3
 brew install git
@@ -21,6 +25,16 @@ cd ~/.dot
 git submodule update --init --recursive
 ```
 
+## Vim dependencies
+Install vim-plug:
+
+```
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+```
+
+Follow this up by running `:PlugInstall` in vim.
+
 
 For amazon-linux, substitute `yum` for `apt-get`
 
@@ -34,10 +48,11 @@ sudo yum install zsh
 Change to zsh:
 
 ```
-chsh -s /bin/zsh
+sudo chsh -s /bin/zsh ec2-user
 ```
 
 Create symlinks by editing and run the `init_debian` script.
+Remove previous .bash_profile to apply zsh theme
 ```
 ./init_debian
 ```
@@ -64,6 +79,9 @@ git submodule update --init --recursive
 ./install.py
 ```
 
+### Git
+update gitconfig to use proper email
+
 ## Debugging
 ### fzf
 E605: Exception not caught: fzf#run function not found. You also need Vim plugin from the main fzf repository (i.e. junegunn/fzf *and* junegunn/fzf.vim)
@@ -88,14 +106,14 @@ https://ops.tips/gists/navigating-the-linux-kernel-source-with-youcompleteme/
 sudo yum install gcc-c++ ncurses-devel python-devel cmake
 CC=gcc-8 CXX=g++-8 python3 ./install.py
 ```
-  
+
   or 
 ```
 brew install gcc@8
 brew link gcc@8
 ./install.py
 ```
-  
+
 ### zshrc for amazon-linux
 Remove or comment out this line
 ```
