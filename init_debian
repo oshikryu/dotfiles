@@ -12,6 +12,7 @@ sudo chsh -s /bin/zsh ec2-user
 rm ~/.profile
 rm ~/.bash_profile
 rm ~/.zprofile
+rm ~/.zshrc
 
 mv ~/.profile ~/.profile.bak
 
@@ -32,6 +33,7 @@ ln -s ~/.dot/gitignore ~/.gitignore
 ln -s ~/.dot/ipython_config.py ~/.ipython/profile_default/ipython_config.py
 
 cp -r colors ~/.vim/
+git config user.email "ryuta.oshikiri@dominodatalab.com"
 
 brew install gcc@8
 brew link gcc@8
