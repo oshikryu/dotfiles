@@ -10,7 +10,6 @@ brew install python3
 brew install git
 brew install zsh
 brew install tmux
-brew install reattach-user-namespace
 brew install cmake
 brew install fzf
 brew install the_silver_searcher
@@ -57,26 +56,20 @@ Remove previous `.bash_profile` and `.zprofile` to apply zsh theme
 ./init_debian
 ```
 
-
-(Linux) Be sure that vim is built with python
-
-```
-sudo apt-get install vim-nox
-```
-
-
-(Linux) Be sure you have build tools
-
-```
-sudo apt-get install build-essential cmake
-sudo apt-get install python2.7-dev
-```
-
 Youcompleteme
 ```
+wget https://cmake.org/files/v3.24/cmake-3.24.1.tar.gz
+tar -xvzf cmake-3.24.1.tar.gz
+cd cmake-3.24.1
+./bootstrap
+sudo make
+sudo make install
+
+sudo yum install gcc-c++ ncurses-devel python-devel cmake
 cd ~/.vim/plugged/YouCompleteMe
 git submodule update --init --recursive
-./install.py
+
+CC=gcc-8 CXX=g++-8 python3 ./install.py
 ```
 
 ### Git
@@ -102,13 +95,6 @@ cp -r colors ~/.vim/
 ### YcmServer
 
 https://ops.tips/gists/navigating-the-linux-kernel-source-with-youcompleteme/
-```
-sudo yum install gcc-c++ ncurses-devel python-devel cmake
-
-CC=gcc-8 CXX=g++-8 python3 ./install.py
-```
-
-or
 ```
 brew install gcc@8
 brew link gcc@8
