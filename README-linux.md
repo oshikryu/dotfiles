@@ -24,6 +24,12 @@ cd ~/.dot
 git submodule update --init --recursive
 ```
 
+Create symlinks by editing and run the `init_debian` script.
+Remove previous `.bash_profile` and `.zprofile` to apply zsh theme
+```
+./init_debian
+```
+
 ## Vim dependencies
 Install vim-plug:
 
@@ -50,12 +56,6 @@ Change to zsh:
 sudo chsh -s /bin/zsh ec2-user
 ```
 
-Create symlinks by editing and run the `init_debian` script.
-Remove previous `.bash_profile` and `.zprofile` to apply zsh theme
-```
-./init_debian
-```
-
 Youcompleteme
 ```
 wget https://cmake.org/files/v3.24/cmake-3.24.1.tar.gz
@@ -73,7 +73,10 @@ CC=gcc-8 CXX=g++-8 python3 ./install.py
 ```
 
 ### Git
-update gitconfig to use proper email
+```
+git config --global user.email "ryuta.oshikiri@dominodatalab.com"
+git config --list
+```
 
 ## Debugging
 ### fzf
@@ -90,15 +93,6 @@ Plug 'junegunn/fzf', { 'dir': '~/opt/fzf' }
 ### colorscheme not found
 ```
 cp -r colors ~/.vim/
-```
-
-### YcmServer
-
-https://ops.tips/gists/navigating-the-linux-kernel-source-with-youcompleteme/
-```
-brew install gcc@8
-brew link gcc@8
-./install.py
 ```
 
 ### zshrc for amazon-linux
