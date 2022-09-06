@@ -33,7 +33,21 @@ ln -s ~/.dot/gitignore ~/.gitignore
 ln -s ~/.dot/ipython_config.py ~/.ipython/profile_default/ipython_config.py
 
 cp -r colors ~/.vim/
-git config user.email "ryuta.oshikiri@dominodatalab.com"
 
-brew install gcc@8
-brew link gcc@8
+# set git user to ddl
+git config --global user.email "ryuta.oshikiri@dominodatalab.com"
+git config --list
+
+# youcompleteme installation
+wget https://cmake.org/files/v3.24/cmake-3.24.1.tar.gz
+tar -xvzf cmake-3.24.1.tar.gz
+cd cmake-3.24.1
+./bootstrap
+sudo make
+sudo make install
+
+sudo yum install gcc-c++ ncurses-devel python-devel cmake
+cd ~/.vim/plugged/YouCompleteMe
+git submodule update --init --recursive
+
+CC=gcc-8 CXX=g++-8 python3 ./install.py
