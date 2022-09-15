@@ -1,14 +1,22 @@
 ## Installation (linux)
 Install brew
+
 ```
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+# brew uninstall script
+ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/uninstall.sh)"
+
+# install
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+echo 'eval "$(/home/ec2-user/.linuxbrew/bin/brew shellenv)"' >> /home/ec2-user/.bash_profile
+eval "$(/home/ec2-user/.linuxbrew/bin/brew shellenv)"
 ```
+
 
 ```
 brew update
+brew install gcc
 brew install python3
 brew install git
-brew install zsh
 brew install tmux
 brew install cmake
 brew install fzf
