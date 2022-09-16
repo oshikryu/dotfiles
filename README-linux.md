@@ -3,7 +3,7 @@ Install brew
 
 ```
 # brew uninstall script
- /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/uninstall.sh)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/uninstall.sh)"
 
 # install
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
@@ -11,10 +11,17 @@ echo 'eval "$(/home/ec2-user/.linuxbrew/bin/brew shellenv)"' >> /home/ec2-user/.
 eval "$(/home/ec2-user/.linuxbrew/bin/brew shellenv)"
 ```
 
+```
+sudo yum group install "Development Tools"
+sudo yum install man-pages
+gcc --version
+```
+
 
 ```
 brew update
 brew install gcc
+brew install zsh
 brew install python3
 brew install git
 brew install tmux
