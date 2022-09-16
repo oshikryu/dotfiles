@@ -38,9 +38,12 @@ eval "$(/home/ec2-user/.linuxbrew/bin/brew shellenv)"
 
 cp -r colors ~/.vim/
 
+# pluginstall vim deps
+vim +'PlugInstall --sync' +qa
+
 # set git user to ddl
 git config --global user.email "ryuta.oshikiri@dominodatalab.com"
-git config --list
+# git config --list
 
 # youcompleteme installation
 wget https://cmake.org/files/v3.24/cmake-3.24.1.tar.gz
