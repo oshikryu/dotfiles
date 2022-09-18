@@ -1,74 +1,49 @@
-# Dotfiles
-
-## SSH keys
-
-1. Create ssh keys and add to github https://help.github.com/articles/generating-ssh-keys/
-```
-ls -al ~/.ssh
-ssh-keygen -t rsa -b 4096
-<enter>
-<enter>
-<enter>
-ssh-add ~/.ssh/id_rsa
-```
-2. Copy id_rsa.pub
-
-3. For OSX 10.12 > you need to add your SSH key to the SSH agent
-https://docs.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#adding-your-ssh-key-to-the-ssh-agent
-
-4. (If no config file) `touch ~/.ssh/config`
-5. Open your ~/.ssh/config file, then modify the file, replacing ~/.ssh/id_rsa if you are not using the default location and name for your id_rsa key.
-
->
-Host *
-  AddKeysToAgent yes
-  UseKeychain yes
-  IdentityFile ~/.ssh/id_rsaOpen your ~/.ssh/config file, then modify the file, replacing ~/.ssh/id_rsa if you are not using the default location and name for your id_rsa key.
-
-## Git
-Since the `gitconfig` is symlinked, update the email to match the proper system usage
-
-## Installation (OSX)
+## Installation (linux)
 Install brew
+
 ```
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+# brew uninstall
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/uninstall.sh)"
+
+# brew install
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+echo 'eval "$(/home/ec2-user/.linuxbrew/bin/brew shellenv)"' >> /home/ec2-user/.bash_profile
+eval "$(/home/ec2-user/.linuxbrew/bin/brew shellenv)"
 ```
 
-Install related brew libraries
+```
+sudo yum group install "Development Tools"
+sudo yum install man-pages
+gcc --version
+```
+
+
 ```
 brew update
+brew install gcc
+brew install zsh
 brew install python3
 brew install git
-brew install zsh
 brew install tmux
-brew install reattach-user-namespace
 brew install cmake
 brew install fzf
+brew install the_silver_searcher
 brew install ripgrep
 brew install bat
 ```
 
-Clone repo and git dependencies:
-
+Clone repo and dependencies
 ```
 git clone git@github.com:oshikryu/dotfiles.git ~/.dot
 cd ~/.dot
 git submodule update --init --recursive
 ```
 
-Change to zsh:
-
+Create symlinks by editing and run the `init_debian` script.
+Remove previous `.bash_profile` and `.zprofile` to apply zsh theme
 ```
-chsh -s /bin/zsh
+./init_debian
 ```
-
-Create symlinks by editing and run the `init_osx`
-
-```
-./init_osx
-```
-
-Your shell zsh theme should change
 
 ## Vim dependencies
 Install vim-plug:
@@ -81,76 +56,69 @@ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 Follow this up by running `:PlugInstall` in vim.
 
 
-Be sure you have build tools (on OSX)
+For amazon-linux, substitute `yum` for `apt-get`
+
+Install zsh (on Debian):
 
 ```
-brew install cmake
+sudo yum update
+sudo yum install zsh
 ```
 
-(Optional) Install YouCompleteMe:
+Change to zsh:
 
-NOTE: this requires python libraries
 ```
+sudo chsh -s /bin/zsh ec2-user
+```
+
+Youcompleteme
+```
+wget https://cmake.org/files/v3.24/cmake-3.24.1.tar.gz
+tar -xvzf cmake-3.24.1.tar.gz
+cd cmake-3.24.1
+./bootstrap
+sudo make
+sudo make install
+
+sudo yum install gcc-c++ ncurses-devel python-devel cmake
 cd ~/.vim/plugged/YouCompleteMe
 git submodule update --init --recursive
-./install.py
+
+CC=gcc-8 CXX=g++-8 python3 ./install.py
 ```
 
-(Optional) Install prettier
-
+### Git
 ```
-yarn global add prettier
-```
-
-Installing fzf
-
-I changed the fuzzy finding library from ctrlp because that was way slow. Install fzf via brew or
-change the vimrc to install via vim-plug
-
-```
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
+git config --global user.email "ryuta.oshikiri@dominodatalab.com"
+git config --list
 ```
 
-To use in-file search via Ag
+## Debugging
+### fzf
+E605: Exception not caught: fzf#run function not found. You also need Vim plugin from the main fzf repository (i.e. junegunn/fzf *and* junegunn/fzf.vim)
+Error detected while processing function <SNR>67_history:
+
+https://github.com/junegunn/fzf.vim/issues/439
+
+Need to get the correct path to fzf in vimrc
 ```
-:FzfAg
+Plug 'junegunn/fzf', { 'dir': '~/opt/fzf' }
 ```
 
-### Updating submodules
+### colorscheme not found
 ```
-vim :PlugUpdate or vim :PlugInstall!
+cp -r colors ~/.vim/
 ```
 
+### zshrc for amazon-linux
+Remove or comment out this line
+```
+# ask for ssh key password only the first time you boot up
+if [ ! -S ~/.ssh/ssh_auth_sock ]; then
+  eval `ssh-agent`
+  ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
+fi
+export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
+ssh-add -l | grep "The agent has no identities" && ssh-add
+```
 
-## Common problems
-http://unix.stackexchange.com/questions/27851/after-installing-oh-my-zsh-zshrcsource34-no-such-file-or-directory
-
-no submodule mapping
-http://stackoverflow.com/questions/4185365/no-submodule-mapping-found-in-gitmodule-for-a-path-thats-not-a-submodule
-
-Autoindent is not working:
-:set indentexpr=
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-
-Updating osx version needs to have compatible brew macvim
-
-TMUX
-https://superuser.com/questions/397076/tmux-exits-with-exited-on-mac-os-x
-brew install reattach-to-user-namespace
-
-backup/swap files:
-Getting the must overwrite and no backup? link the proper dir and chmod
-`sudo chmod 0750 ~/.vim/vim/tmp/swap`
-`sudo chmod 0750 ~/.vim/vim/tmp/backup`
-
-
-python error when installing YCM
-https://stackoverflow.com/questions/62546912/youcompleteme-completed-failed
-ERROR: Python headers are missing in /Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.8/Headers.
-/usr/local/bin/python3.9 install.py --all
-
-install go https://github.com/ycm-core/YouCompleteMe/issues/3074
-
-zshell theme not updating
-- make sure zshrc is properly symlinked
