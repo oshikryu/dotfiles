@@ -20,7 +20,7 @@ gcc --version
 
 ```
 brew update
-brew install gcc
+brew install gcc@8
 brew install zsh
 brew install python3
 brew install git
