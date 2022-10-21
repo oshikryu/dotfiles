@@ -12,6 +12,7 @@ export PYTHONPATH
 # set editors
 export EDITOR=vim
 export VISUAL=vim
+export DOMINO=/Users/ryutaoshikiri/projects/domino
 
 # fzf vim plugin
 export FZF_DEFAULT_COMMAND='rg --files --follow --hidden'
