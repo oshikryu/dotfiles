@@ -43,7 +43,7 @@ function virtualenv_info {
     [ $VIRTUAL_ENV ] && echo '['`basename $VIRTUAL_ENV`']'
 }
 
-PROMPT='%{$fg[green]%}%m:%{$fg[cyan]%}%~ %{$fg[white]%}($(vi_mode_prompt_info)%{$fg[green]%}$(virtualenv_info)$(git_prompt_info)%{$reset_color%}%) ∴ %{$reset_color%}'
+PROMPT='%{$fg[green]%}%m:%{$fg[cyan]%}%~%{$fg[green]%}$(virtualenv_info) %{$fg[white]%}($(vi_mode_prompt_info)$(git_prompt_info)%{$reset_color%}%) ∴ %{$reset_color%}'
 # RPROMPT=''
 VIRTUAL_ENV_DISABLE_PROMPT=1
 
