@@ -73,18 +73,13 @@ sudo chsh -s /bin/zsh ec2-user
 
 Youcompleteme
 ```
-wget https://cmake.org/files/v3.24/cmake-3.24.1.tar.gz
-tar -xvzf cmake-3.24.1.tar.gz
-cd cmake-3.24.1
-./bootstrap
-sudo make
-sudo make install
+env PYTHON_CONFIGURE_OPTS="--enable-shared" pyenv install --verbose 3.10.8
 
 sudo yum install gcc-c++ ncurses-devel python-devel cmake
 cd ~/.vim/plugged/YouCompleteMe
 git submodule update --init --recursive
 
-CC=gcc-8 CXX=g++-8 python3 ./install.py
+CC=gcc CXX=g++-8 python3 ./install.py
 ```
 
 ### Git
