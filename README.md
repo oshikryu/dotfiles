@@ -12,8 +12,8 @@ eval "$(/home/ec2-user/.linuxbrew/bin/brew shellenv)"
 ```
 
 ```
-sudo yum group install "Development Tools"
-sudo yum install man-pages
+sudo yum group install "Development Tools" -y
+sudo yum install man-pages -y
 gcc --version
 ```
 
@@ -62,7 +62,7 @@ Install zsh (on Debian):
 
 ```
 sudo yum update
-sudo yum install zsh
+sudo yum install zsh -y
 ```
 
 Change to zsh:
@@ -75,7 +75,7 @@ Youcompleteme
 ```
 env PYTHON_CONFIGURE_OPTS="--enable-shared" pyenv install --verbose 3.10.8
 
-sudo yum install gcc-c++ ncurses-devel python-devel cmake
+sudo yum install gcc-c++ ncurses-devel python-devel cmake -y
 cd ~/.vim/plugged/YouCompleteMe
 git submodule update --init --recursive
 
