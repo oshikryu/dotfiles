@@ -70,18 +70,6 @@ Change to zsh:
 ```
 sudo chsh -s /bin/zsh ec2-user
 ```
-
-Youcompleteme
-```
-env PYTHON_CONFIGURE_OPTS="--enable-shared" pyenv install --verbose 3.10.8
-
-sudo yum install gcc-c++ ncurses-devel python-devel cmake -y
-cd ~/.vim/plugged/YouCompleteMe
-git submodule update --init --recursive
-
-CC=gcc CXX=g++-8 python3 ./install.py
-```
-
 ### Git
 ```
 git config --global user.email "ryuta.oshikiri@dominodatalab.com"
