@@ -3,7 +3,7 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 sudo yum update
-sudo yum install zsh
+sudo yum install zsh -y
 
 # for amazon linux
 sudo chsh -s /bin/zsh ec2-user
@@ -46,9 +46,13 @@ git config --global user.email "ryuta.oshikiri@dominodatalab.com"
 # git config --list
 
 # youcompleteme installation
-
-sudo yum install gcc-c++ ncurses-devel python-devel cmake
+pip install --user cmake
+sudo yum install gcc-c++ ncurses-devel python-devel cmake -y
 cd ~/.vim/plugged/YouCompleteMe
 git submodule update --init --recursive
 
-CC=gcc CXX=g++-8 python3 ./install.py
+env PYTHON_CONFIGURE_OPTS="--enable-shared" pyenv install --verbose 3.9.13
+
+# run ycm install
+CC=gcc CXX=g++-8 /home/ec2-user/.pyenv/versions/3.9.13/bin/python3.9 /home/ec2-user/.vim/plugged/YouCompleteMe/third_party/ycmd/build.py --all --verbose
+# CC=gcc CXX=g++-8 python3 ./install.py
