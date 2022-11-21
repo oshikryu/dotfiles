@@ -44,15 +44,3 @@ vim +'PlugInstall --sync' +qa
 # set git user to ddl
 git config --global user.email "ryuta.oshikiri@dominodatalab.com"
 # git config --list
-
-# youcompleteme installation
-pip install --user cmake
-sudo yum install gcc-c++ ncurses-devel python-devel cmake -y
-cd ~/.vim/plugged/YouCompleteMe
-git submodule update --init --recursive
-
-env PYTHON_CONFIGURE_OPTS="--enable-shared" pyenv install --verbose 3.9.13
-
-# run ycm install
-CC=gcc CXX=g++-8 /home/ec2-user/.pyenv/versions/3.9.13/bin/python3.9 /home/ec2-user/.vim/plugged/YouCompleteMe/third_party/ycmd/build.py --all --verbose
-# CC=gcc CXX=g++-8 python3 ./install.py
