@@ -13,32 +13,29 @@ Plug 'davidhalter/jedi-vim'
 Plug 'tpope/vim-surround'
 Plug 'Raimondi/delimitMate'
 Plug 'sheerun/vim-polyglot'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
 Plug 'Quramy/tsuquyomi'
 Plug 'derekwyatt/vim-scala'
-
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 Plug 'pangloss/vim-javascript'    " JavaScript support
 Plug 'leafgarland/typescript-vim' " TypeScript syntax
 Plug 'maxmellon/vim-jsx-pretty'   " JS and JSX syntax
 Plug 'jparise/vim-graphql'        " GraphQL syntax
+" file browser
+Plug 'nvim-tree/nvim-web-devicons' " optional, for file icons
+Plug 'nvim-tree/nvim-tree.lua'"
+Plug 'ellisonleao/gruvbox.nvim'
 
 " post install (yarn install | npm install) then load plugin only for editing supported files
 Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
 
-" On-demand loading
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 call plug#end()
 
 filetype plugin indent on
 " highlighting breaks on yaml
 set mmp=5000
-
-" performance improvement by using older version of regex
-" slows down typescript highlighting by a lot
-" set re=1
 
 " remap leader key if not using US keyboard
 let mapleader=","
@@ -55,15 +52,25 @@ set norelativenumber
 set t_Co=256
 set background=dark
 syntax on
-colorscheme desert256
-augroup colorSchemeSetup
-    au!
-    autocmd ColorScheme * highlight Pmenu guibg=brown gui=bold
-augroup END
+
+" ----------------------------------------------------------
+if has('nvim')
+  augroup nvimTreeCommands
+      autocmd VimEnter * nmap <F3> :NvimTreeToggle<CR>
+      autocmd VimEnter * imap <F3> <Esc>:NvimTreeToggle<CR>a
+  augroup END
+else
+  " desert color scheme
+  colorscheme desert256
+  augroup colorSchemeSetup
+      au!
+      autocmd ColorScheme * highlight Pmenu guibg=brown gui=bold
+  augroup END
+endif
+" ----------------------------------------------------------
 
 " change Search highlight
 highlight Search ctermfg=None ctermbg=244
-
 
 " map some leaders quick keys
 nnoremap <silent> <leader>c :call SetCursorline()<CR>
@@ -93,7 +100,7 @@ set synmaxcol=1000
 " always higlight
 " set redrawtime=10000
 
-let &colorcolumn=join(range(101,999),",")
+" let &colorcolumn=join(range(101,999),",")
 let g:cursorline = 1
 
 augroup updateCursor
@@ -337,17 +344,6 @@ command! Vimrc edit ~/.vimrc
 
 " remove ^M in dos files
 command! FileToUnix %s///g
-
- " nerdtree
-augroup nerdTreeCommands
-    au!
-    autocmd VimEnter * wincmd p
-    nmap <silent> <leader>p :NERDTreeToggle<CR>
-    let NERDTreeIgnore = ['\.pyc$']
-    autocmd VimEnter * nmap <F3> :NERDTreeToggle<CR>
-    autocmd VimEnter * imap <F3> <Esc>:NERDTreeToggle<CR>a
-    let g:NERDTreeWinSize = 30
-augroup END
 
 " *.ipy files
 augroup pysetup

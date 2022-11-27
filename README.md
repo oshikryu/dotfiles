@@ -11,13 +11,14 @@ echo 'eval "$(/home/ec2-user/.linuxbrew/bin/brew shellenv)"' >> /home/ec2-user/.
 eval "$(/home/ec2-user/.linuxbrew/bin/brew shellenv)"
 ```
 
+Install development tools
 ```
 sudo yum group install "Development Tools" -y
 sudo yum install man-pages -y
 gcc --version
 ```
 
-
+Install related brew libraries
 ```
 brew update
 brew install gcc@8
@@ -27,10 +28,12 @@ brew install git
 brew install tmux
 brew install cmake
 brew install fzf
-brew install the_silver_searcher
 brew install ripgrep
 brew install bat
+brew install neovim
 ```
+
+Remove vim deps
 
 Clone repo and dependencies
 ```

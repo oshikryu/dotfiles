@@ -1,39 +1,6 @@
-# Dotfiles
-
-## SSH keys
-
-1. Create ssh keys and add to github https://help.github.com/articles/generating-ssh-keys/
-```
-ls -al ~/.ssh
-ssh-keygen -t rsa -b 4096
-<enter>
-<enter>
-<enter>
-ssh-add ~/.ssh/id_rsa
-```
-2. Copy id_rsa.pub
-
-3. For OSX 10.12 > you need to add your SSH key to the SSH agent
-https://docs.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#adding-your-ssh-key-to-the-ssh-agent
-
-4. (If no config file) `touch ~/.ssh/config`
-5. Open your ~/.ssh/config file, then modify the file, replacing ~/.ssh/id_rsa if you are not using the default location and name for your id_rsa key.
-
->
-Host *
-  AddKeysToAgent yes
-  UseKeychain yes
-  IdentityFile ~/.ssh/id_rsaOpen your ~/.ssh/config file, then modify the file, replacing ~/.ssh/id_rsa if you are not using the default location and name for your id_rsa key.
-
-## Git
-Since the `gitconfig` is symlinked, update the email to match the proper system usage
-
-```
-git config --global user.email "ryushikiri@gmail.com"
-```
-
 ## Installation (OSX)
 Install brew
+
 ```
 # brew uninstall
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/uninstall.sh)"
@@ -53,10 +20,10 @@ brew install git
 brew install tmux
 brew install cmake
 brew install fzf
-brew install the_silver_searcher
 brew install reattach-to-user-namespace
 brew install ripgrep
 brew install bat
+brew install neovim
 ```
 
 Clone repo and git dependencies:
@@ -95,15 +62,6 @@ Follow this up by running `:PlugInstall` in vim.
 vim +'PlugInstall --sync' +qa
 ```
 
-(Optional) Install YouCompleteMe:
-
-NOTE: this requires python libraries
-```
-cd ~/.vim/plugged/YouCompleteMe
-git submodule update --init --recursive
-./install.py
-```
-
 (Optional) Install prettier
 
 ```
@@ -120,14 +78,41 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 ```
 
-To use in-file search via Ag
-```
-:FzfAg
-```
-
 ### Updating submodules
 ```
 vim :PlugUpdate or vim :PlugInstall!
+```
+
+## SSH keys
+
+1. Create ssh keys and add to github https://help.github.com/articles/generating-ssh-keys/
+```
+ls -al ~/.ssh
+ssh-keygen -t rsa -b 4096
+<enter>
+<enter>
+<enter>
+ssh-add ~/.ssh/id_rsa
+```
+2. Copy id_rsa.pub
+
+3. For OSX 10.12 > you need to add your SSH key to the SSH agent
+https://docs.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#adding-your-ssh-key-to-the-ssh-agent
+
+4. (If no config file) `touch ~/.ssh/config`
+5. Open your ~/.ssh/config file, then modify the file, replacing ~/.ssh/id_rsa if you are not using the default location and name for your id_rsa key.
+
+>
+Host *
+  AddKeysToAgent yes
+  UseKeychain yes
+  IdentityFile ~/.ssh/id_rsaOpen your ~/.ssh/config file, then modify the file, replacing ~/.ssh/id_rsa if you are not using the default location and name for your id_rsa key.
+
+## Git
+Since the `gitconfig` is symlinked, update the email to match the proper system usage
+
+```
+git config --global user.email "ryushikiri@gmail.com"
 ```
 
 
