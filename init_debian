@@ -32,7 +32,7 @@ ln -s ~/.dot/gitignore ~/.gitignore
 
 ln -s ~/.dot/ipython_config.py ~/.ipython/profile_default/ipython_config.py
 mkdir ~/.config/nvim
-ln -s ~/.dot/init.vim ~/.config/nvim/init.vim
+ln -s ~/.dot/init.lua ~/.config/nvim/init.lua
 
 # add brew to bash
 echo 'eval "$(/home/ec2-user/.linuxbrew/bin/brew shellenv)"' >> /home/ec2-user/.bash_profile
