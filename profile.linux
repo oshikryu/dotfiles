@@ -9,6 +9,10 @@ export PATH
 export EDITOR=vim
 export VISUAL=vim
 
+# use nvim when possible - faster
+alias vim="nvim"
+alias vi="nvim"
+
 #if [ -f ~/.bash_profile ]; then
     #source ~/.bash_profile
 #fi
