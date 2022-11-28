@@ -25,7 +25,7 @@ ln -s ~/.dot/ipython_config.py ~/.ipython/profile_default/ipython_config.py
 mkdir ~/.config/nvim
 ln -s ~/.dot/init.lua ~/.config/nvim/init.lua
 
-# cp -r colors ~/.vim/
+cp -r colors ~/.vim/
 
 # pluginstall vim deps
 vim +'PlugInstall --sync' +qa
