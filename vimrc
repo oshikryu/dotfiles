@@ -456,10 +456,12 @@ function! InsertDebug()
   execute "normal o".trace
 endfunction
 
+
+" scala system out print shortcut
+imap sll System.out.println("");<Esc>F"i
+
 " Console log from insert mode; Puts focus inside parentheses
-imap cll console.log();<Esc>==f(a
-" Console log coffeescript version
-imap clc console.log()<Esc>==f(a
+imap cll console.log()<Esc><S-f>(a
 " Console log from visual mode on next line, puts visual selection inside parentheses
 vmap cll yocll<Esc>p
 " Console log from normal mode, inserted on next line with word your on inside parentheses
