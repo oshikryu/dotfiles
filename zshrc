@@ -93,7 +93,7 @@ export PATH="$PATH:$HOME/.rvm/bin"
 
 export PATH="$PATH:/Users/ryutaoshikiri/projects/platform-apps/bin"
 export PATH="/Users/ryutaoshikiri/projects/platform-apps/bin/.binaries:$PATH"
-eval "$(pyenv init -)"
+# eval "$(pyenv init -)"
 export PATH="$PATH:/usr/local/opt/privoxy/sbin"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
