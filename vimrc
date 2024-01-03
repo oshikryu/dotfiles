@@ -257,7 +257,6 @@ augroup setFileNumsAndSpacing
     autocmd FileType javascript set number
     autocmd FileType javascript.jsx set number
     autocmd FileType typescript set number
-    autocmd FileType coffee set number
     autocmd FileType html set number
     autocmd FileType css set number
     autocmd FileType less set number
@@ -283,6 +282,16 @@ augroup setFileNumsAndSpacing
     autocmd FileType javascript setlocal sw=2
     autocmd FileType javascript setlocal ts=2
     autocmd FileType javascript setlocal sts=2
+
+    " scala tabs
+    autocmd FileType scala setlocal sw=2
+    autocmd FileType scala setlocal ts=2
+    autocmd FileType scala setlocal sts=2
+
+    " python tabs
+    autocmd FileType python setlocal sw=2
+    autocmd FileType python setlocal ts=2
+    autocmd FileType python setlocal sts=2
 augroup END
 
 " folding
