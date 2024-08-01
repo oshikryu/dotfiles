@@ -14,15 +14,15 @@ bind o kill-pane -a
 set -g repeat-time 200
 
 # pane movement
-bind -r h select-pane -L
-bind -r j select-pane -D
-bind -r k select-pane -U
-bind -r l select-pane -R
-
-bind -r H resize-pane -L 5
-bind -r J resize-pane -D 5
-bind -r K resize-pane -U 5
-bind -r L resize-pane -R 5
+# bind -r h select-pane -L
+# bind -r j select-pane -D
+# bind -r k select-pane -U
+# bind -r l select-pane -R
+# 
+# bind -r H resize-pane -L 5
+# bind -r J resize-pane -D 5
+# bind -r K resize-pane -U 5
+# bind -r L resize-pane -R 5
 
 bind < rotate-window -D
 bind > rotate-window -U
@@ -51,7 +51,7 @@ set -g message-style fg=white,bg=black,bright
 # status lines
 set -g status-left-length 60
 set -g status-left "#h #[fg=green][#S] #[fg=yellow]#W:#T"
-set -g status-utf8 on
+# set -g status-utf8 on
 
 
 # 15% | 28 Nov 18:15
@@ -76,11 +76,3 @@ bind Up resize-pane -Z
 
 unbind Down
 bind DOWN resize-pane -Z
-
-# Copy mode
-# ctrl + b, P
-bind P paste-buffer
-bind-key -t vi-copy 'v' begin-selection
-bind-key -t vi-copy 'y' copy-selection
-bind-key -t vi-copy 'r' rectangle-toggle
-bind -t vi-copy 'Escape' cancel
