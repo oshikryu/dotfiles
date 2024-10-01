@@ -12,6 +12,7 @@ brew install fzf
 brew install ripgrep
 brew install bat
 brew install neovim
+brew install pre-commit
 
 # yum updates
 sudo yum update -y
