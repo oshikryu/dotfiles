@@ -24,6 +24,7 @@ brew install reattach-to-user-namespace
 brew install ripgrep
 brew install bat
 brew install neovim
+brew install direnv
 ```
 
 Clone repo and git dependencies:

@@ -264,6 +264,8 @@ augroup setFileNumsAndSpacing
     autocmd FileType scala set number
     autocmd FileType feature set number
     autocmd FileType yaml set number
+    autocmd FileType go set number
+
 
     " HTML
     autocmd FileType html setlocal sw=2

@@ -98,3 +98,5 @@ export PATH="$PATH:/usr/local/opt/privoxy/sbin"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
+
+. "$HOME/.local/bin/env"
