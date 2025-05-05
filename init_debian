@@ -58,6 +58,3 @@ ln -s ~/.vim/autoload ~/.config/nvim/autoload
 # pluginstall vim deps
 nvim +'PlugInstall --sync' +qa
 
-# set git user to ddl
-git config --global user.email "ryuta.oshikiri@dominodatalab.com"
-# git config --list
