@@ -116,6 +116,9 @@ Since the `gitconfig` is symlinked, update the email to match the proper system 
 git config --global user.email "ryushikiri@gmail.com"
 ```
 
+## Specific profile
+Create a `domino-profile.osx` to include sensitive creds and mappings that should not be committed
+
 
 ## Common problems
 http://unix.stackexchange.com/questions/27851/after-installing-oh-my-zsh-zshrcsource34-no-such-file-or-directory

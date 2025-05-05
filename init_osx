@@ -56,3 +56,7 @@ cp -r colors ~/.vim/
 nvim +'PlugInstall --sync' +qa
 
 yarn global add prettier
+
+# set git user to ddl
+# git config --global user.email "ryuta.oshikiri@dominodatalab.com"
+# git config --list
