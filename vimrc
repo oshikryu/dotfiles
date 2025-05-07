@@ -18,7 +18,10 @@ Plug 'derekwyatt/vim-scala'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
-" Plug 'tpope/vim-fugitive'
+" git related
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
+
 Plug 'pangloss/vim-javascript'    " JavaScript support
 Plug 'leafgarland/typescript-vim' " TypeScript syntax
 Plug 'maxmellon/vim-jsx-pretty'   " JS and JSX syntax
@@ -245,9 +248,6 @@ set hlsearch
 
 " set case insensitive search by default
 set ignorecase
-
-" paste mode hotkey
-set pastetoggle=<F2>
 
 set ai
 set ts=2
@@ -707,8 +707,8 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
 
 " go debugger
-nnoremap <F5> :lua require'dap'.continue()<CR>
-nnoremap <F9> :lua require'dap'.toggle_breakpoint()<CR>
-nnoremap <F10> :lua require'dap'.step_over()<CR>
-nnoremap <F11> :lua require'dap'.step_into()<CR>
-nnoremap <F12> :lua require'dap'.step_out()<CR>
+"nnoremap <F5> :lua require'dap'.continue()<CR>
+"nnoremap <F9> :lua require'dap'.toggle_breakpoint()<CR>
+"nnoremap <F10> :lua require'dap'.step_over()<CR>
+"nnoremap <F11> :lua require'dap'.step_into()<CR>
+"nnoremap <F12> :lua require'dap'.step_out()<CR>
