@@ -11,6 +11,28 @@ vim.cmd([[source ~/.dot/vimrc]])
 require("nvim-tree").setup()
 require'nvim-web-devicons'.setup()
 
+--  -----------------------------------
+--  Tree-sitter Configuration
+--  -----------------------------------
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = { "typescript", "tsx", "javascript" },
+  highlight = {
+    enable = true,
+    additional_vim_regex_highlighting = false,
+  },
+}
+
+-- Enable LSP
+local lspconfig = require("lspconfig")
+
+-- Enable autocompletion capabilities
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+-- Configure tsserver
+lspconfig.ts_ls.setup({
+  capabilities = capabilities,
+})
+
 -- require'nvim-web-devicons'.get_icons()
 
 vim.opt.background = "dark"
@@ -26,3 +48,4 @@ vim.keymap.set('i', '<F2>', function()
   vim.o.paste = not vim.o.paste
   print("Paste mode: " .. tostring(vim.o.paste))
 end, { noremap = true, silent = false })
+

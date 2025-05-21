@@ -13,7 +13,6 @@ Plug 'davidhalter/jedi-vim'
 Plug 'tpope/vim-surround'
 Plug 'Raimondi/delimitMate'
 Plug 'sheerun/vim-polyglot'
-Plug 'Quramy/tsuquyomi'
 Plug 'derekwyatt/vim-scala'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -22,9 +21,16 @@ Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 
-Plug 'pangloss/vim-javascript'    " JavaScript support
-Plug 'leafgarland/typescript-vim' " TypeScript syntax
-Plug 'maxmellon/vim-jsx-pretty'   " JS and JSX syntax
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+" LSP support
+Plug 'neovim/nvim-lspconfig'
+
+" Completion engine (optional but recommended)
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'L3MON4D3/LuaSnip'
+Plug 'saadparwaiz1/cmp_luasnip'
+
 
 " Go related plugins
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
@@ -274,6 +280,7 @@ augroup setFileNumsAndSpacing
     autocmd FileType feature set number
     autocmd FileType yaml set number
     autocmd FileType go set number
+    autocmd FileType typescriptreact set number
 
 
     " HTML
@@ -528,8 +535,9 @@ inoremap <Esc>D <left>
 augroup fileTypeUpdater
     au!
     autocmd BufRead,BufNewFile /etc/nginx/sites-*/* set filetype=conf
-    autocmd bufnewfile,bufread *.jsx set filetype=javascript.jsx
-    autocmd bufnewfile,bufread *.tsx set filetype=javascript.jsx
+    autocmd BufNewFile,BufRead *.jsx set filetype=javascript.jsx
+    au BufNewFile,BufRead *.ts set filetype=typescript
+    au BufNewFile,BufRead *.tsx set filetype=typescriptreact
 augroup END
 
 " airline caching
@@ -703,8 +711,6 @@ nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
-
-
 
 " go debugger
 "nnoremap <F5> :lua require'dap'.continue()<CR>
