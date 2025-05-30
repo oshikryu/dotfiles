@@ -15,7 +15,7 @@ require'nvim-web-devicons'.setup()
 --  Tree-sitter Configuration
 --  -----------------------------------
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = { "typescript", "tsx", "javascript" },
+  ensure_installed = { "typescript", "tsx", "javascript", "python", "scala", "lua", "vim", "bash" },
   highlight = {
     enable = true,
     additional_vim_regex_highlighting = false,
