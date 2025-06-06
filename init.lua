@@ -15,7 +15,7 @@ require'nvim-web-devicons'.setup()
 --  Tree-sitter Configuration
 --  -----------------------------------
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = { "typescript", "tsx", "javascript", "python", "scala", "lua", "vim", "bash" },
+  ensure_installed = { "typescript", "tsx", "javascript", "python", "scala", "lua", "vim", "bash", "yaml", "json" },
   highlight = {
     enable = true,
     additional_vim_regex_highlighting = false,
@@ -49,3 +49,7 @@ vim.keymap.set('i', '<F2>', function()
   print("Paste mode: " .. tostring(vim.o.paste))
 end, { noremap = true, silent = false })
 
+-- Enable jump to open file in vim-tree directory
+vim.keymap.set('n', '<leader>j', function()
+  require("nvim-tree.api").tree.toggle({ find_file = true, focus = true })
+end, { desc = "Toggle NvimTree and find current file" })

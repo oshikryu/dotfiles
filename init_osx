@@ -15,6 +15,8 @@ brew install pre-commit
 brew install node
 brew install reattach-user-to-namespace
 brew install direnv
+brew install yarn
+brew install go
 
 
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \

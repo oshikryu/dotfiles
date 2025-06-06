@@ -4,7 +4,6 @@
 call plug#begin()
 Plug 'tpope/vim-sensible'
 Plug 'scrooloose/nerdcommenter'
-Plug 'scrooloose/syntastic'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -406,29 +405,6 @@ let g:pymode_breakpoint=0
 let g:pymode_run=0
 
 
-" --- Syntastic ---------------------------------------------------------------
-let g:syntastic_python_checkers=['flake8']
-let g:syntastic_python_flake8_args='--ignore=E126,E127,E128,E701,E702'
-let g:syntastic_python_flake8_args='--max-line-length=100'
-let g:syntastic_python_python_exec = 'python3'
-
-let g:syntastic_loc_list_height=4
-
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 1
-
-let g:syntastic_error_symbol='✗'
-let g:syntastic_warning_symbol='⚠'
-let g:syntastic_style_error_symbol = '?!'
-let g:syntastic_style_warning_symbol = '💩'
-
-let g:syntastic_javascript_checkers = ['jshint', 'eslint']
-" optional default eslint
-"let g:syntastic_javascript_eslint_exe = '[ -f $(npm bin)/eslint ] && $(npm bin)/eslint || eslint'
-
-nmap <silent> <leader>E :SyntasticToggleMode<CR>
-nmap <silent> <leader>e :SyntasticCheck<CR>
-
 " --- Jedi --------------------------------------------------------------------
 let g:jedi#use_tabs_not_buffers = 0
 let g:jedi#popup_on_dot = 0
@@ -436,11 +412,6 @@ augroup jediGroup
     au!
     autocmd FileType python setlocal completeopt-=preview
 augroup END
-
-
-" --- Ultisnips ---------------------------------------------------------------
-"let g:UltiSnipsSnippetDirectories = ["UltiSnips"]
-"let g:UltiSnipsExpandTrigger="<c-l>"
 
 
 " --- delimitMate -------------------------------------------------------------
@@ -485,10 +456,6 @@ function! InsertDebug()
   let trace = expand("debugger;")
   execute "normal o".trace
 endfunction
-
-
-" scala system out print shortcut
-imap sll System.out.println("");<Esc>F"i
 
 " Console log from insert mode; Puts focus inside parentheses
 imap cll console.log()<Esc><S-f>(a
@@ -542,11 +509,7 @@ augroup END
 
 " airline caching
 let g:airline_highlighting_cache=1
-
-" Strip trailing whitespace from all files
-"autocmd BufWritePre * %s/\s\+$//e
-"autocmd BufWritePre * %s/\s\+$//e
-"autocmd BufWritePre * %s/\s\+$//e
+let g:airline#extensions#tabline#enabled = 1
 
 " Auto reload vim when vimrc is changed!
 " http://superuser.com/questions/132029/how-do-you-reload-your-vimrc-file-without-restarting-vim

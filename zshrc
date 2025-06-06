@@ -43,8 +43,7 @@ function virtualenv_info {
     [ $VIRTUAL_ENV ] && echo '['`basename $VIRTUAL_ENV`']'
 }
 
-PROMPT='%{$fg[green]%}%m:%{$fg[cyan]%}%~%{$fg[green]%}$(virtualenv_info) %{$fg[white]%}($(vi_mode_prompt_info)$(git_prompt_info)%{$reset_color%}%) ∴ %{$reset_color%}'
-# RPROMPT=''
+PROMPT='%{$fg[green]%}%m:%{$fg[cyan]%}%~%{$fg[green]%}$(virtualenv_info) %{$fg[white]%}$(vi_mode_prompt_info)$(git_prompt_info)%{$reset_color%} ∴ %{$reset_color%}'
 VIRTUAL_ENV_DISABLE_PROMPT=1
 
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[yellow]%}"
@@ -52,34 +51,10 @@ ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_colors%}"
 ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[red]%} ✗"
 ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[green]%} ✓"
 
-
-## set this back to the original so that zsh uses the base python to run
-## virtualenv.  This is originally set in .zprofile
-#export VIRTUALENVWRAPPER_PYTHON=$VIRTUALENVWRAPPER_PYTHON_ORIGINAL
-#
-##soruce virtualenv
-#source virtualenvwrapper.sh 2> /dev/null
-#
-## initializes the semicolon command
-#. ~/.vim/bundle/vim-semicolon/scripts/semicolon_init
-#
-## automatically start virtualenv if VIRTUAL_ENV is set
-## (used with tmux to inherit the current virtualenv)
-#if [ -n "$VIRTUAL_ENV" ]; then
-#    workon $(basename $VIRTUAL_ENV)
-#fi
 source $ZSH/plugins/history-substring-search/history-substring-search.zsh
 zmodload zsh/terminfo
 bindkey "$terminfo[kcuu1]" history-substring-search-up
 bindkey "$terminfo[kcud1]" history-substring-search-down
-
-# ask for ssh key password only the first time you boot up
-# if [ ! -S ~/.ssh/ssh_auth_sock ]; then
-#   eval `ssh-agent`
-#   ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
-# fi
-# export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
-# ssh-add -l | grep "The agent has no identities" && ssh-add
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
