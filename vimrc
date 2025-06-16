@@ -335,9 +335,11 @@ augroup autoCompleteGroup
     au!
     autocmd FileType python set omnifunc=pythoncomplete#Complete
     autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+    autocmd FileType typescript set omnifunc=javascriptcomplete#CompleteJS
     autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
     autocmd FileType css set omnifunc=csscomplete#CompleteCSS
     autocmd FileType less set omnifunc=csscomplete#CompleteCSS
+    autocmd FileType scala setlocal omnifunc=v:lua.vim.lsp.omnifunc
 augroup END
 
 set hidden
@@ -421,19 +423,7 @@ augroup END
 
 " --- delimitMate -------------------------------------------------------------
 imap <C-c> <CR><Esc>O
-
-
-" --- YouCompleteMe -----------------------------------------------------------
-let g:ycm_add_preview_to_completeopt=0
-let g:ycm_confirm_extra_conf=0
-set completeopt-=preview
-
-
-" pydoc.vim
-let g:pydoc_cmd = 'python -m pydoc'
-let g:pydoc_open_cmd = 'vsplit'
-let g:pydoc_highlight = 0
-
+let delimitMate_expand_cr=1
 
 " insert ipdb for python
 map <Leader>p :call InsertLine()<CR>
@@ -468,9 +458,6 @@ imap cll console.log()<Esc><S-f>(a
 vmap cll yocll<Esc>p
 " Console log from normal mode, inserted on next line with word your on inside parentheses
 nmap cll yiwocll<Esc>p
-
-"delimitMate
-let delimitMate_expand_cr=1
 
 " vim commit
 augroup vimCommits

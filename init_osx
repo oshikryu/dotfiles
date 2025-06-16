@@ -12,12 +12,12 @@ brew install ripgrep
 brew install bat
 brew install neovim
 brew install pre-commit
-brew install node
 brew install reattach-user-to-namespace
 brew install direnv
-brew install yarn
 brew install go
 brew install coursier
+brew install node
+brew install yarn
 
 
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
@@ -59,7 +59,4 @@ cp -r colors ~/.vim/
 nvim +'PlugInstall --sync' +qa
 
 yarn global add prettier
-
-# set git user to ddl
-# git config --global user.email "ryuta.oshikiri@dominodatalab.com"
-# git config --list
+yarn global add typescript typescript-language-server
