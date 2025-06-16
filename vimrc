@@ -24,6 +24,11 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " LSP support
 Plug 'neovim/nvim-lspconfig'
 
+" scala support
+Plug 'scalameta/nvim-metals'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'mfussenegger/nvim-dap' " optional: for debugging
+
 " Completion engine (optional but recommended)
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
