@@ -33,8 +33,6 @@ lspconfig.ts_ls.setup({
   capabilities = capabilities,
 })
 
--- require'nvim-web-devicons'.get_icons()
-
 vim.opt.background = "dark"
 vim.cmd([[colorscheme gruvbox]])
 

@@ -1,4 +1,4 @@
-## Installation (linux)
+## Installation (OSX)
 Install brew
 
 ```
@@ -7,21 +7,12 @@ Install brew
 
 # brew install
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-echo 'eval "$(/home/ec2-user/.linuxbrew/bin/brew shellenv)"' >> /home/ec2-user/.bash_profile
-eval "$(/home/ec2-user/.linuxbrew/bin/brew shellenv)"
-```
-
-Install development tools
-```
-sudo yum group install "Development Tools" -y
-sudo yum install man-pages -y
-gcc --version
 ```
 
 Install related brew libraries
+Be sure you have build tools (on OSX)
 ```
 brew update
-brew install gcc@8
 brew install zsh
 brew install python3
 brew install git
@@ -31,22 +22,36 @@ brew install fzf
 brew install ripgrep
 brew install bat
 brew install neovim
+brew install pre-commit
+brew install reattach-user-to-namespace
+brew install direnv
+brew install go
+brew install coursier
+brew install node
+brew install yarn
 ```
 
-Remove vim deps
+Clone repo and git dependencies:
 
-Clone repo and dependencies
 ```
 git clone git@github.com:oshikryu/dotfiles.git ~/.dot
 cd ~/.dot
 git submodule update --init --recursive
 ```
 
-Create symlinks by editing and run the `init_debian` script.
-Remove previous `.bash_profile` and `.zprofile` to apply zsh theme
+Change to zsh:
+
 ```
-./init_debian
+chsh -s /bin/zsh
 ```
+
+Create symlinks by editing and run the `init_osx`
+
+```
+./init_osx
+```
+
+Your shell zsh theme should change
 
 ## Vim dependencies
 Install vim-plug:
@@ -58,53 +63,95 @@ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 Follow this up by running `:PlugInstall` in vim.
 
-
-For amazon-linux, substitute `yum` for `apt-get`
-
-Install zsh (on Debian):
-
 ```
-sudo yum update
-sudo yum install zsh -y
+vim +'PlugInstall --sync' +qa
 ```
 
-Change to zsh:
+(Optional) Install prettier
 
 ```
-sudo chsh -s /bin/zsh ec2-user
-```
-### Git
-```
-git config --global user.email "ryuta.oshikiri@dominodatalab.com"
-git config --list
+yarn global add prettier
 ```
 
-## Debugging
-### fzf
-E605: Exception not caught: fzf#run function not found. You also need Vim plugin from the main fzf repository (i.e. junegunn/fzf *and* junegunn/fzf.vim)
-Error detected while processing function <SNR>67_history:
+Installing fzf
 
-https://github.com/junegunn/fzf.vim/issues/439
+I changed the fuzzy finding library from ctrlp because that was way slow. Install fzf via brew or
+change the vimrc to install via vim-plug
 
-Need to get the correct path to fzf in vimrc
 ```
-Plug 'junegunn/fzf', { 'dir': '~/opt/fzf' }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 ```
 
-### colorscheme not found
+### Updating submodules
 ```
-cp -r colors ~/.vim/
-```
-
-### zshrc for amazon-linux
-Remove or comment out this line
-```
-# ask for ssh key password only the first time you boot up
-if [ ! -S ~/.ssh/ssh_auth_sock ]; then
-  eval `ssh-agent`
-  ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
-fi
-export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
-ssh-add -l | grep "The agent has no identities" && ssh-add
+vim :PlugUpdate or vim :PlugInstall!
 ```
 
+## SSH keys
+
+1. Create ssh keys and add to github https://help.github.com/articles/generating-ssh-keys/
+```
+ls -al ~/.ssh
+ssh-keygen -t rsa -b 4096
+<enter>
+<enter>
+<enter>
+ssh-add ~/.ssh/id_rsa
+```
+2. Copy id_rsa.pub
+
+3. For OSX 10.12 > you need to add your SSH key to the SSH agent
+https://docs.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#adding-your-ssh-key-to-the-ssh-agent
+
+4. (If no config file) `touch ~/.ssh/config`
+5. Open your ~/.ssh/config file, then modify the file, replacing ~/.ssh/id_rsa if you are not using the default location and name for your id_rsa key.
+
+>
+Host *
+  AddKeysToAgent yes
+  UseKeychain yes
+  IdentityFile ~/.ssh/id_rsaOpen your ~/.ssh/config file, then modify the file, replacing ~/.ssh/id_rsa if you are not using the default location and name for your id_rsa key.
+
+## Git
+Since the `gitconfig` is symlinked, update the email to match the proper system usage
+
+```
+git config --global user.email "ryushikiri@gmail.com"
+```
+
+## Specific profile
+Create a `domino-profile.osx` to include sensitive creds and mappings that should not be committed
+
+
+## Common problems
+http://unix.stackexchange.com/questions/27851/after-installing-oh-my-zsh-zshrcsource34-no-such-file-or-directory
+
+no submodule mapping
+http://stackoverflow.com/questions/4185365/no-submodule-mapping-found-in-gitmodule-for-a-path-thats-not-a-submodule
+
+Autoindent is not working:
+:set indentexpr=
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+Updating osx version needs to have compatible brew macvim
+
+TMUX
+https://superuser.com/questions/397076/tmux-exits-with-exited-on-mac-os-x
+brew install reattach-to-user-namespace
+
+backup/swap files:
+Getting the must overwrite and no backup? link the proper dir and chmod
+`sudo chmod 0750 ~/.vim/vim/tmp/swap`
+`sudo chmod 0750 ~/.vim/vim/tmp/backup`
+
+
+python error when installing YCM
+https://stackoverflow.com/questions/62546912/youcompleteme-completed-failed
+ERROR: Python headers are missing in /Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.8/Headers.
+/usr/local/bin/python3.9 install.py --all
+
+install go https://github.com/ycm-core/YouCompleteMe/issues/3074
+
+zshell theme not updating
+- make sure zshrc is properly symlinked
