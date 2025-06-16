@@ -8,7 +8,6 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'honza/vim-snippets'
-Plug 'davidhalter/jedi-vim'
 Plug 'tpope/vim-surround'
 Plug 'Raimondi/delimitMate'
 Plug 'sheerun/vim-polyglot'
@@ -410,15 +409,6 @@ set splitright
 let g:pymode_lint=0
 let g:pymode_breakpoint=0
 let g:pymode_run=0
-
-
-" --- Jedi --------------------------------------------------------------------
-let g:jedi#use_tabs_not_buffers = 0
-let g:jedi#popup_on_dot = 0
-augroup jediGroup
-    au!
-    autocmd FileType python setlocal completeopt-=preview
-augroup END
 
 
 " --- delimitMate -------------------------------------------------------------
