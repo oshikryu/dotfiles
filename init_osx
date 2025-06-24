@@ -55,8 +55,10 @@ ln -s ~/.vim/autoload ~/.config/nvim/autoload
 
 cp -r colors ~/.vim/
 
-# pluginstall vim deps
-nvim +'PlugInstall --sync' +qa
 
 yarn global add prettier
 yarn global add typescript typescript-language-server
+yarn global add pyright
+
+# pluginstall vim deps
+nvim +'PlugInstall --sync' +qa
