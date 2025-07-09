@@ -83,6 +83,13 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 ```
 
+Add env-specific environment variables in `env.local`
+Note, these are sensitive things so ensure that it is not checked in to git
+
+```
+touch ~/.env.local
+```
+
 ### Updating submodules
 ```
 vim :PlugUpdate or vim :PlugInstall!
