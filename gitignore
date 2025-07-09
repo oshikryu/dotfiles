@@ -1,2 +1,9 @@
 .DS_Store
 *.pyc
+.gitrwhist
+.netrwhist
+vim/bundle
+vim/vim
+vim/plugged
+vim/autoload
+oh-my-zsh/

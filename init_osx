@@ -54,6 +54,9 @@ ln -s ~/.dot/goconfig.lua ~/.config/nvim/lua/goconfig.lua
 ln -s ~/.dot/init.lua ~/.config/nvim/init.lua
 ln -s ~/.vim/autoload ~/.config/nvim/autoload
 
+# setup local env variables file
+touch ~/.env.local
+
 cp -r colors ~/.vim/
 
 

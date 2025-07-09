@@ -130,3 +130,8 @@ export PATH="$PATH:/Users/ryuta/Library/Application Support/Coursier/bin"
 # <<< coursier install directory <<<
 
 [ -f ~/.local/bin/env ] && . ~/.local/bin/env
+
+# Load local, untracked environment variables
+if [ -f "$HOME/.env.local" ]; then
+  source "$HOME/.env.local"
+fi
