@@ -4,7 +4,14 @@ PATH=/usr/local/share/npm/bin:$PATH
 PATH=/usr/local/opt/ruby/bin:$PATH
 PATH=$HOME/.dot/bin:$PATH
 PATH=$HOME/.yarn/bin:$PATH
-PATH=$PATH:$(go env GOPATH)/bin
+
+# Ensure brew binaries and Go are available
+PATH="/opt/homebrew/bin:$PATH"
+
+# Add GOPATH bin if go is available
+if command -v go &> /dev/null; then
+  PATH="$PATH:$(go env GOPATH)/bin"
+fi
 export PATH
 
 # set editors
@@ -110,9 +117,6 @@ alias supstatus='supervisorctl status'
 alias sup='supervisorctl'
 
 
-# vagrant #
-alias vagrantnp='vagrant up --no-provision'
-
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
@@ -125,12 +129,4 @@ export PATH="$PATH:$HOME/.rvm/bin"
 export PATH="$PATH:/Users/ryuta/Library/Application Support/Coursier/bin"
 # <<< coursier install directory <<<
 
-. "$HOME/.local/bin/env"
-
-
-# domino-specific
-include_file="./domino-profile.osx"
-
-if [ -r "$include_file" ]; then
-    . "$include_file"   # or source "$include_file"
-fi
+[ -f ~/.local/bin/env ] && . ~/.local/bin/env
