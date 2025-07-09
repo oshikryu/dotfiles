@@ -440,7 +440,7 @@ function! InsertDebug()
   elseif l:filetype ==# 'python'
     let l:debug_line = 'import ipdb; ipdb.set_trace()'
   elseif l:filetype ==# 'go'
-    let l:debug_line = '// BREAKPOINT'
+    let l:debug_line = 'runtime.Breakpoint()'
   elseif l:filetype ==# 'lua'
     let l:debug_line = 'print("🔍 DEBUG")'
   elseif l:filetype ==# 'sh' || l:filetype ==# 'bash'

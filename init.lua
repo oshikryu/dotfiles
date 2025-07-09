@@ -25,7 +25,7 @@ end, { desc = "Open NvimTree to current file" })
 require("nvim-treesitter.configs").setup {
   ensure_installed = {
     "typescript", "tsx", "javascript", "python", "scala",
-    "lua", "vim", "bash", "yaml", "json"
+    "lua", "vim", "bash", "yaml", "json", "go"
   },
   highlight = {
     enable = true,
@@ -108,6 +108,13 @@ vim.keymap.set("n", "<Leader>b", dap.toggle_breakpoint, { desc = "DAP: Toggle Br
 vim.keymap.set("n", "<Leader>B", function()
   dap.set_breakpoint(vim.fn.input("Breakpoint condition: "))
 end, { desc = "DAP: Set Conditional Breakpoint" })
+
+vim.keymap.set('n', '<Leader>dr', function() require('dap').repl.open() end)
+vim.keymap.set('n', '<Leader>dl', function() require('dap').run_last() end)
+
+vim.keymap.set('n', '<Leader>w', function() dapui.open() end)
+vim.keymap.set('n', '<Leader>W', function() dapui.close() end)
+
 
 -- ─────────────────────────────────────────────
 --  Misc Keymaps
