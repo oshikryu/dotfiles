@@ -26,7 +26,6 @@ Plug 'neovim/nvim-lspconfig'
 " scala support
 Plug 'scalameta/nvim-metals'
 Plug 'nvim-lua/plenary.nvim'
-Plug 'mfussenegger/nvim-dap' " optional: for debugging
 
 " Completion engine (optional but recommended)
 Plug 'hrsh7th/nvim-cmp'
@@ -415,12 +414,6 @@ let g:pymode_run=0
 imap <C-c> <CR><Esc>O
 let delimitMate_expand_cr=1
 
-" insert ipdb for python
-map <Leader>p :call InsertLine()<CR>
-function! InsertLine()
-  let trace = expand("import ipdb; ipdb.set_trace()")
-  execute "normal o".trace
-endfunction
 
 "----------------------------------------
 " JAVASCRIPT
@@ -437,9 +430,27 @@ let g:jsx_ext_required = 0
 
 " insert debugger
 map <Leader>d :call InsertDebug()<CR>
+
 function! InsertDebug()
-  let trace = expand("debugger;")
-  execute "normal o".trace
+  let l:filetype = &filetype
+  let l:debug_line = ''
+
+  if l:filetype ==# 'javascript' || l:filetype ==# 'typescript' || l:filetype ==# 'typescriptreact'
+    let l:debug_line = 'debugger;'
+  elseif l:filetype ==# 'python'
+    let l:debug_line = 'import ipdb; ipdb.set_trace()'
+  elseif l:filetype ==# 'go'
+    let l:debug_line = '// BREAKPOINT'
+  elseif l:filetype ==# 'lua'
+    let l:debug_line = 'print("🔍 DEBUG")'
+  elseif l:filetype ==# 'sh' || l:filetype ==# 'bash'
+    let l:debug_line = 'echo "DEBUG: $VARIABLE"'
+  else
+    let l:debug_line = 'DEBUGGER_PLACEHOLDER'
+  endif
+
+  " Insert the debug line below the current line
+  execute 'normal! o' . l:debug_line
 endfunction
 
 " Console log from insert mode; Puts focus inside parentheses
@@ -656,10 +667,3 @@ nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
-
-" go debugger
-"nnoremap <F5> :lua require'dap'.continue()<CR>
-"nnoremap <F9> :lua require'dap'.toggle_breakpoint()<CR>
-"nnoremap <F10> :lua require'dap'.step_over()<CR>
-"nnoremap <F11> :lua require'dap'.step_into()<CR>
-"nnoremap <F12> :lua require'dap'.step_out()<CR>

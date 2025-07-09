@@ -116,3 +116,5 @@ vim.keymap.set("i", "<F2>", function()
   vim.o.paste = not vim.o.paste
   print("Paste mode: " .. tostring(vim.o.paste))
 end, { noremap = true })
+
+require("goconfig")
