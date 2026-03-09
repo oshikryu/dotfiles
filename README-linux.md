@@ -37,15 +37,12 @@ brew install go
 brew install coursier
 brew install node
 brew install yarn
+brew install zsh-history-substring-search
 ```
 
-Remove vim deps
-
-Clone repo and dependencies
+Clone repo:
 ```
 git clone git@github.com:oshikryu/dotfiles.git ~/.dot
-cd ~/.dot
-git submodule update --init --recursive
 ```
 
 Create symlinks by editing and run the `init_debian` script.
@@ -54,16 +51,10 @@ Remove previous `.bash_profile` and `.zprofile` to apply zsh theme
 ./init_debian
 ```
 
-## Vim dependencies
-Install vim-plug:
+## Neovim
 
-```
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-```
-
-Follow this up by running `:PlugInstall` in vim.
-
+Plugins are managed by [lazy.nvim](https://github.com/folke/lazy.nvim) and install automatically on first launch.
+Run `:Lazy update` inside Neovim to update plugins.
 
 For amazon-linux, substitute `yum` for `apt-get`
 
