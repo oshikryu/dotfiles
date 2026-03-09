@@ -44,7 +44,6 @@ mv ~/.profile ~/.profile.bak
 ln -s ~/.dot/profile.linux ~/.profile
 ln -s ~/.dot/zprofile ~/.zprofile
 ln -s ~/.dot/zshrc ~/.zshrc
-ln -s ~/.dot/oh-my-zsh/ ~/.oh-my-zsh
 
 ln -s ~/.dot/vim/ ~/.vim
 ln -s ~/.dot/vimrc ~/.vimrc

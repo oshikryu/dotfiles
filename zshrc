@@ -1,57 +1,62 @@
-# Path to your oh-my-zsh configuration.
-ZSH=$HOME/.oh-my-zsh
+# -----------------------------------------------------------------------------
+# zsh core setup
+# -----------------------------------------------------------------------------
+autoload -U colors && colors
+autoload -Uz compinit && compinit
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-#ZSH_THEME="robbyrussell"
+# completion
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+# history
+HISTSIZE=10000
+SAVEHIST=10000
+HISTFILE=~/.zsh_history
+setopt share_history hist_ignore_dups hist_ignore_space
 
-# Set to this to use case-sensitive completion
-# CASE_SENSITIVE="true"
-
-# Comment this out to disable weekly auto-update checks
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment following line if you want to disable colors in ls
-# DISABLE_LS_COLORS="true"
-
-# Uncomment following line if you want to disable autosetting terminal title.
-DISABLE_AUTO_TITLE="true"
-
-# Uncomment following line if you want red dots to be displayed while waiting for completion
-COMPLETION_WAITING_DOTS="true"
-
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git kubectl direnv pyenv)
-
-source $ZSH/oh-my-zsh.sh
-
+# don't auto-set terminal title
+setopt no_auto_title
 
 # -----------------------------------------------------------------------------
-# oshikryu
-
-# helper for prompt
+# prompt
+# -----------------------------------------------------------------------------
 function virtualenv_info {
     [ $VIRTUAL_ENV ] && echo '['`basename $VIRTUAL_ENV`']'
 }
 
-PROMPT='%{$fg[green]%}%m:%{$fg[cyan]%}%~%{$fg[green]%}$(virtualenv_info) %{$fg[white]%}$(vi_mode_prompt_info)$(git_prompt_info)%{$reset_color%} ∴ %{$reset_color%}'
+function git_prompt_info {
+    local branch
+    branch=$(git symbolic-ref --short HEAD 2>/dev/null) || return
+    local dirty
+    if [[ -n $(git status --porcelain 2>/dev/null) ]]; then
+        dirty="%{$fg[red]%} ✗"
+    else
+        dirty="%{$fg[green]%} ✓"
+    fi
+    echo "%{$fg[yellow]%}${branch}${dirty}%{$reset_color%}"
+}
+
+PROMPT='%{$fg[green]%}%m:%{$fg[cyan]%}%~%{$fg[green]%}$(virtualenv_info) %{$fg[white]%}$(git_prompt_info)%{$reset_color%} ∴ %{$reset_color%}'
 VIRTUAL_ENV_DISABLE_PROMPT=1
 
-ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[yellow]%}"
-ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_colors%}"
-ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[red]%} ✗"
-ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[green]%} ✓"
+# -----------------------------------------------------------------------------
+# plugins (native)
+# -----------------------------------------------------------------------------
+# direnv
+command -v direnv &>/dev/null && eval "$(direnv hook zsh)"
 
-source $ZSH/plugins/history-substring-search/history-substring-search.zsh
+# pyenv
+command -v pyenv &>/dev/null && eval "$(pyenv init -)"
+
+# kubectl completions
+command -v kubectl &>/dev/null && source <(kubectl completion zsh)
+
+# history substring search (up/down arrow)
+if [[ -f /opt/homebrew/share/zsh-history-substring-search/zsh-history-substring-search.zsh ]]; then
+    source /opt/homebrew/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+elif [[ -f /usr/share/zsh-history-substring-search/zsh-history-substring-search.zsh ]]; then
+    source /usr/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+fi
 zmodload zsh/terminfo
 bindkey "$terminfo[kcuu1]" history-substring-search-up
 bindkey "$terminfo[kcud1]" history-substring-search-down

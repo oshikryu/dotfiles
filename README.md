@@ -29,14 +29,13 @@ brew install go
 brew install coursier
 brew install node
 brew install yarn
+brew install zsh-history-substring-search
 ```
 
-Clone repo and git dependencies:
+Clone repo:
 
 ```
 git clone git@github.com:oshikryu/dotfiles.git ~/.dot
-cd ~/.dot
-git submodule update --init --recursive
 ```
 
 Change to zsh:
@@ -53,34 +52,26 @@ Create symlinks by editing and run the `init_osx`
 
 Your shell zsh theme should change
 
-## Vim dependencies
-Install vim-plug:
+## Neovim
+
+Neovim plugins are managed by [lazy.nvim](https://github.com/folke/lazy.nvim) and configured in `init.lua`.
+Plugins install automatically on first launch.
+
+To update plugins, run `:Lazy update` inside Neovim.
+
+### LSP
+
+Language servers need to be installed separately:
 
 ```
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+npm install -g typescript typescript-language-server
+npm install -g pyright
 ```
 
-Follow this up by running `:PlugInstall` in vim.
-
-```
-vim +'PlugInstall --sync' +qa
-```
-
-(Optional) Install prettier
+### Optional
 
 ```
 yarn global add prettier
-```
-
-Installing fzf
-
-I changed the fuzzy finding library from ctrlp because that was way slow. Install fzf via brew or
-change the vimrc to install via vim-plug
-
-```
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
 ```
 
 Add env-specific environment variables in `env.local`
@@ -88,11 +79,6 @@ Note, these are sensitive things so ensure that it is not checked in to git
 
 ```
 touch ~/.env.local
-```
-
-### Updating submodules
-```
-vim :PlugUpdate or vim :PlugInstall!
 ```
 
 ## SSH keys
@@ -132,33 +118,10 @@ Create a `domino-profile.osx` to include sensitive creds and mappings that shoul
 
 
 ## Common problems
-http://unix.stackexchange.com/questions/27851/after-installing-oh-my-zsh-zshrcsource34-no-such-file-or-directory
-
-no submodule mapping
-http://stackoverflow.com/questions/4185365/no-submodule-mapping-found-in-gitmodule-for-a-path-thats-not-a-submodule
-
-Autoindent is not working:
-:set indentexpr=
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-
-Updating osx version needs to have compatible brew macvim
 
 TMUX
 https://superuser.com/questions/397076/tmux-exits-with-exited-on-mac-os-x
 brew install reattach-to-user-namespace
 
-backup/swap files:
-Getting the must overwrite and no backup? link the proper dir and chmod
-`sudo chmod 0750 ~/.vim/vim/tmp/swap`
-`sudo chmod 0750 ~/.vim/vim/tmp/backup`
-
-
-python error when installing YCM
-https://stackoverflow.com/questions/62546912/youcompleteme-completed-failed
-ERROR: Python headers are missing in /Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.8/Headers.
-/usr/local/bin/python3.9 install.py --all
-
-install go https://github.com/ycm-core/YouCompleteMe/issues/3074
-
-zshell theme not updating
+zsh theme not updating
 - make sure zshrc is properly symlinked
