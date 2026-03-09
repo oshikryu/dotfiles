@@ -19,33 +19,8 @@ Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-" LSP support
-Plug 'neovim/nvim-lspconfig'
-
-" scala support
-Plug 'scalameta/nvim-metals'
-Plug 'nvim-lua/plenary.nvim'
-
-" Completion engine (optional but recommended)
-Plug 'hrsh7th/nvim-cmp'
-Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'L3MON4D3/LuaSnip'
-Plug 'saadparwaiz1/cmp_luasnip'
-
-
-" Go related plugins
+" Go support
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug 'mfussenegger/nvim-dap'
-Plug 'leoluz/nvim-dap-go'
-Plug 'nvim-neotest/nvim-nio'
-Plug 'rcarriga/nvim-dap-ui'
-Plug 'theHamsta/nvim-dap-virtual-text'
-
-" file browser
-Plug 'nvim-tree/nvim-web-devicons' " optional, for file icons
-Plug 'nvim-tree/nvim-tree.lua'"
-Plug 'ellisonleao/gruvbox.nvim'
 
 " post install (yarn install | npm install) then load plugin only for editing supported files
 Plug 'prettier/vim-prettier', {
@@ -75,19 +50,12 @@ set background=dark
 syntax on
 
 " ----------------------------------------------------------
-if has('nvim')
-  augroup nvimTreeCommands
-      autocmd VimEnter * nmap <F3> :NvimTreeToggle<CR>
-      autocmd VimEnter * imap <F3> <Esc>:NvimTreeToggle<CR>a
-  augroup END
-else
-  " desert color scheme
-  colorscheme desert256
-  augroup colorSchemeSetup
-      au!
-      autocmd ColorScheme * highlight Pmenu guibg=brown gui=bold
-  augroup END
-endif
+" desert color scheme
+colorscheme desert256
+augroup colorSchemeSetup
+    au!
+    autocmd ColorScheme * highlight Pmenu guibg=brown gui=bold
+augroup END
 " ----------------------------------------------------------
 
 " change Search highlight
@@ -403,13 +371,6 @@ nnoremap <Leader>gt :FzfRg <CR>
 set splitbelow
 set splitright
 
-" python mode
-" turn off lint, breakpoint, and run
-let g:pymode_lint=0
-let g:pymode_breakpoint=0
-let g:pymode_run=0
-
-
 " --- delimitMate -------------------------------------------------------------
 imap <C-c> <CR><Esc>O
 let delimitMate_expand_cr=1
@@ -484,12 +445,6 @@ let g:NERDCommentEmptyLines = 1
 
 " Enable trimming of trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitespace = 1
-
-"
-inoremap <Esc>A <up>
-inoremap <Esc>B <down>
-inoremap <Esc>C <right>
-inoremap <Esc>D <left>
 
 " DOS and nginx conf file highlighting
 augroup fileTypeUpdater
