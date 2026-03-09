@@ -4,4 +4,13 @@ vim/bundle
 vim/vim
 vim/plugged
 vim/autoload
-oh-my-zsh/
+*.swp
+*.swo
+*~
+tags
+*.zsh_history
+*.zcompdump*
+*.zsh_sessions
+.env.local
+.bash_history
+.lesshst

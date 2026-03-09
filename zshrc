@@ -14,8 +14,8 @@ SAVEHIST=10000
 HISTFILE=~/.zsh_history
 setopt share_history hist_ignore_dups hist_ignore_space
 
-# don't auto-set terminal title
-setopt no_auto_title
+# enable prompt command substitution
+setopt prompt_subst
 
 # -----------------------------------------------------------------------------
 # prompt
