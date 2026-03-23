@@ -66,26 +66,15 @@ bindkey -M vicmd 'j' history-substring-search-down
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-#export PATH="/usr/local/opt/ruby/bin:$PATH"
-
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
-
-export PATH="$PATH:/Users/ryutaoshikiri/projects/platform-apps/bin"
-export PATH="/Users/ryutaoshikiri/projects/platform-apps/bin/.binaries:$PATH"
-# eval "$(pyenv init -)"
 export PATH="$PATH:/usr/local/opt/privoxy/sbin"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-
-# . "$HOME/.local/bin/env"
-
 # bun completions
-[ -s "/Users/ryuta.oshikiri/.bun/_bun" ] && source "/Users/ryuta.oshikiri/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
