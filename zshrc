@@ -57,9 +57,12 @@ if [[ -f /opt/homebrew/share/zsh-history-substring-search/zsh-history-substring-
 elif [[ -f /usr/share/zsh-history-substring-search/zsh-history-substring-search.zsh ]]; then
     source /usr/share/zsh-history-substring-search/zsh-history-substring-search.zsh
 fi
-zmodload zsh/terminfo
-bindkey "$terminfo[kcuu1]" history-substring-search-up
-bindkey "$terminfo[kcud1]" history-substring-search-down
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+bindkey -M viins '^[[A' history-substring-search-up
+bindkey -M viins '^[[B' history-substring-search-down
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
