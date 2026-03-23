@@ -17,7 +17,6 @@ export PATH
 # set editors
 export EDITOR=vim
 export VISUAL=vim
-export DOMINO=/Users/ryuta.oshikiri/projects/domino
 
 # fzf vim plugin
 export FZF_DEFAULT_COMMAND='rg --files --follow --hidden'
@@ -55,46 +54,42 @@ function pman () {
   man -t $1 | open -f -a /Applications/Preview.app
 }
 
-########
-# RUBY #
-########
-alias irb='irb --readline -r irb/completion -rubygems' # use readline, completion and require rubygems in irb
-# Opens specified gem in textmate: mategem <gem name>
-function mategem {
-  # Uncomment this and comment the one bellow if your not using rvm.
-  # mate /Library/Ruby/Gems/1.8/gems/`ls /Library/Ruby/Gems/1.8/gems/|grep $1|sort|tail -1`
-  mate $rvm_gems_path/$rvm_ruby_string/gems/`ls $rvm_gems_path/$rvm_ruby_string/gems/|grep $1|sort|tail -1`
-}
-
-#########
-# RAILS #
-#########
-alias ss="script/server"
-alias sc="script/console"
-alias sg="script/generate"
-alias rdbm="rake db:migrate"
-alias rdbc="rake db:create"
-
-##########
-# PYTHON #
-##########
-
 #######
 # GIT #
 #######
 alias gs='git status'
-alias GS='git status'
-alias Gs='git status'
-alias gS='git status'
 alias pusho="git push origin"
 alias pullo="git pull origin"
-alias gd='git diff | mate'
+alias gd='git diff | vim'
 alias gaa="git add --all"
 alias gco='git checkout'
-alias greset="git reset HEAD ."
 alias gundo='git reset --soft HEAD^'
 alias gpushup='git push --set-upstream origin'
 alias gdc='git diff --cached'
+alias gc='git commit'
+alias gcm='git commit -m'
+alias gca='git commit --amend'
+alias gcan='git commit --amend --no-edit'
+# branch management
+alias gb='git branch'
+alias gba='git branch -a'
+alias gbd='git branch -d'
+alias gsw='git switch'
+# worktree
+alias gwt='git worktree list'
+alias gwta='git worktree add'
+alias gwtr='git worktree remove'
+# stash
+alias gst='git stash'
+alias gstp='git stash pop'
+alias gstl='git stash list'
+# rebase
+alias grb='git rebase'
+alias grbc='git rebase --continue'
+alias grba='git rebase --abort'
+# other
+alias gcp='git cherry-pick'
+alias gbl='git blame'
 # automatically stage all tracked files (including deleted ones)
 alias adderall='git add -u .'
 # git remove all removed tracked files
@@ -111,12 +106,6 @@ alias gitchangelog="git log --oneline --no-merges ${1}..HEAD"
 alias gittopcontrib="git shortlog -ns"
 alias gitdiff="git difftool $1"
 
-
-# supervisor #
-alias supstatus='supervisorctl status'
-alias sup='supervisorctl'
-
-
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
@@ -124,10 +113,6 @@ export NVM_DIR="$HOME/.nvm"
 export PATH="$PATH:$HOME/.rvm/bin"
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-
-# >>> coursier install directory >>>
-export PATH="$PATH:/Users/ryuta/Library/Application Support/Coursier/bin"
-# <<< coursier install directory <<<
 
 [ -f ~/.local/bin/env ] && . ~/.local/bin/env
 
