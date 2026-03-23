@@ -1,81 +1,49 @@
 ## Installation (OSX)
-Install brew
+
+### 1. Install Homebrew
 
 ```
-# brew uninstall
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/uninstall.sh)"
-
-# brew install
+# install
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+
+# uninstall (if needed)
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/uninstall.sh)"
 ```
 
-Install related brew libraries
-Be sure you have build tools (on OSX)
-```
-brew update
-brew install zsh
-brew install python3
-brew install git
-brew install tmux
-brew install cmake
-brew install fzf
-brew install ripgrep
-brew install bat
-brew install neovim
-brew install pre-commit
-brew install reattach-user-to-namespace
-brew install direnv
-brew install go
-brew install coursier
-brew install node
-brew install yarn
-brew install zsh-history-substring-search
-```
-
-Clone repo:
+### 2. Clone repo
 
 ```
 git clone git@github.com:oshikryu/dotfiles.git ~/.dot
 ```
 
-Change to zsh:
+### 3. Run the init script
 
-```
-chsh -s /bin/zsh
-```
-
-Create symlinks by editing and run the `init_osx`
+This installs brew dependencies, switches to zsh, creates symlinks, sets up neovim with lazy.nvim, and installs language servers.
 
 ```
 ./init_osx
 ```
 
-Your shell zsh theme should change
+The script will optionally prompt to install the legacy vim-plug config.
 
 ## Neovim
 
-Neovim plugins are managed by [lazy.nvim](https://github.com/folke/lazy.nvim) and configured in `init.lua`.
-Plugins install automatically on first launch.
+Plugins are managed by [lazy.nvim](https://github.com/folke/lazy.nvim) and configured in `init.lua`. Plugins install automatically on first launch.
 
-To update plugins, run `:Lazy update` inside Neovim.
+- Update plugins: `:Lazy update`
+- Sync plugins: `:Lazy sync`
 
 ### LSP
 
-Language servers need to be installed separately:
+Language servers are installed by the init script via yarn:
 
 ```
-npm install -g typescript typescript-language-server
-npm install -g pyright
+yarn global add typescript typescript-language-server pyright prettier
 ```
 
-### Optional
+## Environment variables
 
-```
-yarn global add prettier
-```
-
-Add env-specific environment variables in `env.local`
-Note, these are sensitive things so ensure that it is not checked in to git
+Add env-specific or sensitive variables in `~/.env.local` (created by the init script, not tracked by git):
 
 ```
 touch ~/.env.local
@@ -83,45 +51,42 @@ touch ~/.env.local
 
 ## SSH keys
 
-1. Create ssh keys and add to github https://help.github.com/articles/generating-ssh-keys/
+1. Generate a key and add to the SSH agent:
 ```
-ls -al ~/.ssh
 ssh-keygen -t rsa -b 4096
-<enter>
-<enter>
-<enter>
 ssh-add ~/.ssh/id_rsa
 ```
-2. Copy id_rsa.pub
 
-3. For OSX 10.12 > you need to add your SSH key to the SSH agent
-https://docs.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#adding-your-ssh-key-to-the-ssh-agent
+2. Copy `~/.ssh/id_rsa.pub` and add to GitHub: https://docs.github.com/en/authentication/connecting-to-github-with-ssh
 
-4. (If no config file) `touch ~/.ssh/config`
-5. Open your ~/.ssh/config file, then modify the file, replacing ~/.ssh/id_rsa if you are not using the default location and name for your id_rsa key.
-
->
+3. For OSX 10.12+, add to `~/.ssh/config`:
+```
 Host *
   AddKeysToAgent yes
   UseKeychain yes
-  IdentityFile ~/.ssh/id_rsaOpen your ~/.ssh/config file, then modify the file, replacing ~/.ssh/id_rsa if you are not using the default location and name for your id_rsa key.
+  IdentityFile ~/.ssh/id_rsa
+```
 
 ## Git
-Since the `gitconfig` is symlinked, update the email to match the proper system usage
+
+The `gitconfig` is symlinked. Update the email to match your environment:
 
 ```
 git config --global user.email "ryushikiri@gmail.com"
 ```
 
-## Specific profile
-Create a `domino-profile.osx` to include sensitive creds and mappings that should not be committed
+## Troubleshooting
 
-
-## Common problems
-
-TMUX
-https://superuser.com/questions/397076/tmux-exits-with-exited-on-mac-os-x
+### tmux exits immediately on launch
+```
 brew install reattach-to-user-namespace
+```
+See: https://superuser.com/questions/397076/tmux-exits-with-exited-on-mac-os-x
 
-zsh theme not updating
-- make sure zshrc is properly symlinked
+### zsh theme not updating
+Make sure `~/.zshrc` is properly symlinked to `~/.dot/zshrc`.
+
+### colorscheme not found (legacy vim-plug only)
+```
+cp -r colors ~/.vim/
+```

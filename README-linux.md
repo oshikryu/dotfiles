@@ -1,100 +1,76 @@
-## Installation (linux)
-Install brew
+## Installation (Linux)
+
+### 1. Install Homebrew
 
 ```
-# brew uninstall
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/uninstall.sh)"
-
-# brew install
+# install
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 echo 'eval "$(/home/ec2-user/.linuxbrew/bin/brew shellenv)"' >> /home/ec2-user/.bash_profile
 eval "$(/home/ec2-user/.linuxbrew/bin/brew shellenv)"
+
+# uninstall (if needed)
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/uninstall.sh)"
 ```
 
-Install development tools
+### 2. Install development tools
+
 ```
 sudo yum group install "Development Tools" -y
 sudo yum install man-pages -y
-gcc --version
 ```
 
-Install related brew libraries
-```
-brew update
-brew install zsh
-brew install python3
-brew install git
-brew install tmux
-brew install cmake
-brew install fzf
-brew install ripgrep
-brew install bat
-brew install neovim
-brew install pre-commit
-brew install reattach-user-to-namespace
-brew install direnv
-brew install go
-brew install coursier
-brew install node
-brew install yarn
-brew install zsh-history-substring-search
-```
+### 3. Clone repo
 
-Clone repo:
 ```
 git clone git@github.com:oshikryu/dotfiles.git ~/.dot
 ```
 
-Create symlinks by editing and run the `init_debian` script.
-Remove previous `.bash_profile` and `.zprofile` to apply zsh theme
+### 4. Run the init script
+
+This installs brew and yum dependencies, switches to zsh, creates symlinks, and sets up neovim with lazy.nvim.
+
 ```
 ./init_debian
 ```
 
+The script will optionally prompt to install the legacy vim-plug config.
+
+For Amazon Linux, substitute `yum` for `apt-get`.
+
 ## Neovim
 
-Plugins are managed by [lazy.nvim](https://github.com/folke/lazy.nvim) and install automatically on first launch.
-Run `:Lazy update` inside Neovim to update plugins.
+Plugins are managed by [lazy.nvim](https://github.com/folke/lazy.nvim) and configured in `init.lua`. Plugins install automatically on first launch.
 
-For amazon-linux, substitute `yum` for `apt-get`
+- Update plugins: `:Lazy update`
+- Sync plugins: `:Lazy sync`
 
-Install zsh (on Debian):
+## Git
 
-```
-sudo yum update
-sudo yum install zsh -y
-```
-
-Change to zsh:
+The `gitconfig` is symlinked. Update the email for your environment:
 
 ```
-sudo chsh -s /bin/zsh ec2-user
-```
-### Git
-```
-git config --global user.email "ryuta.oshikiri@dominodatalab.com"
+git config --global user.email "your-email@example.com"
 git config --list
 ```
 
-## Debugging
-### fzf
-E605: Exception not caught: fzf#run function not found. You also need Vim plugin from the main fzf repository (i.e. junegunn/fzf *and* junegunn/fzf.vim)
-Error detected while processing function <SNR>67_history:
+## Troubleshooting
 
-https://github.com/junegunn/fzf.vim/issues/439
+### fzf: `fzf#run function not found`
 
-Need to get the correct path to fzf in vimrc
-```
-Plug 'junegunn/fzf', { 'dir': '~/opt/fzf' }
-```
+Ensure fzf is installed via brew and the fzf plugin is loaded in `init.lua`. With lazy.nvim, fzf is declared as a plugin dependency and should work automatically.
 
-### colorscheme not found
+See: https://github.com/junegunn/fzf.vim/issues/439
+
+### colorscheme not found (legacy vim-plug only)
+
 ```
 cp -r colors ~/.vim/
 ```
 
-### zshrc for amazon-linux
-Remove or comment out this line
+### zsh SSH agent issues on Amazon Linux
+
+If you get SSH agent errors, remove or comment out the SSH agent block in `zshrc`:
+
 ```
 # ask for ssh key password only the first time you boot up
 if [ ! -S ~/.ssh/ssh_auth_sock ]; then
@@ -104,4 +80,3 @@ fi
 export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
 ssh-add -l | grep "The agent has no identities" && ssh-add
 ```
-
