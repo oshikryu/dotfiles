@@ -13,7 +13,7 @@ brew install \
   bat \
   neovim \
   pre-commit \
-  reattach-user-to-namespace \
+  reattach-to-user-namespace \
   zsh-history-substring-search \
   direnv \
   go \
