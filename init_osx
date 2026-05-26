@@ -56,6 +56,10 @@ yarn global add \
   typescript-language-server \
   pyright
 
+# rust + cargo
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+source "$HOME/.cargo/env"
+
 # optional: legacy vim-plug setup
 read -p "Install vim-plug and legacy vim config? (y/N) " install_vimplug
 if [[ "$install_vimplug" =~ ^[Yy]$ ]]; then

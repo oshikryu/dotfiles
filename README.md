@@ -41,6 +41,15 @@ Language servers are installed by the init script via yarn:
 yarn global add typescript typescript-language-server pyright prettier
 ```
 
+## Rust
+
+Rust is installed via `rustup` by the init script. The cargo bin path (`~/.cargo/bin`) is already in `PATH` via `zshrc`.
+
+To update Rust later:
+```
+rustup update
+```
+
 ## Environment variables
 
 Add env-specific or sensitive variables in `~/.env.local` (created by the init script, not tracked by git):

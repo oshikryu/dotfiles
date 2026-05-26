@@ -114,3 +114,4 @@ export NVM_DIR="$HOME/.nvm"
 if [ -f "$HOME/.env.local" ]; then
   source "$HOME/.env.local"
 fi
+. "$HOME/.cargo/env"
