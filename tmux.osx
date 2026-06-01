@@ -44,19 +44,18 @@ set-window-option -g window-status-current-style bg=default
 set-window-option -g window-status-current-style bright
 
 setw -g window-status-activity-style none
-set -g pane-border-style fg=colour240,bg=colour234
-set -g pane-active-border-style fg=yellow,bg=default
+set -g pane-border-style fg=white,bg=default
+set -g pane-active-border-style fg=white,bg=default
 set -g window-style fg=colour240,bg=colour234
 set -g window-active-style fg=white,bg=default
 set -g message-style fg=white,bg=black,bright
 
 # status lines
 set -g status-left-length 60
-set -g status-left "#h #[fg=green][#S] #[fg=yellow]#W:#T"
+set -g status-left "#[fg=green,bold][#S] #[fg=white]#W"
 
-
-# 15% | 28 Nov 18:15
-set -g status-right "#[fg=yellow]#(claude status 2>/dev/null)#[default] | #(battery) | #[fg=cyan]%d %b %R"
+set -g status-right-length 140
+set -g status-right "#{?client_prefix,#[bg=red fg=white bold] PRE #[default] ,}#[fg=magenta]CPU:#(ps -A -o %cpu | awk '{s+=\$1} END {print int(s) \"%\"}') #[fg=blue]MEM:#(top -l 1 -s 0 | awk '/PhysMem/{print \$2}') #[fg=green]#(pmset -g batt | grep -o '[0-9]*%' | head -1) #[fg=yellow]#(git -C #{pane_current_path} branch --show-current 2>/dev/null) #[fg=white]| #[fg=cyan]%d %b %H:%M"
 
 
 # other settings
