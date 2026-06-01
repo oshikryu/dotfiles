@@ -44,8 +44,10 @@ set-window-option -g window-status-current-style bg=default
 set-window-option -g window-status-current-style bright
 
 setw -g window-status-activity-style none
-set -g pane-border-style fg=white,bg=default
+set -g pane-border-style fg=colour240,bg=colour234
 set -g pane-active-border-style fg=yellow,bg=default
+set -g window-style fg=colour240,bg=colour234
+set -g window-active-style fg=white,bg=default
 set -g message-style fg=white,bg=black,bright
 
 # status lines
@@ -54,7 +56,7 @@ set -g status-left "#h #[fg=green][#S] #[fg=yellow]#W:#T"
 
 
 # 15% | 28 Nov 18:15
-set -g status-right "#(battery) | #[fg=cyan]%d %b %R"
+set -g status-right "#[fg=yellow]#(claude status 2>/dev/null)#[default] | #(battery) | #[fg=cyan]%d %b %R"
 
 
 # other settings
