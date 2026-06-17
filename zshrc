@@ -80,9 +80,9 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-export PATH="$HOME/.local/bin:$PATH"
 
 # GitHub token from macOS Keychain (only if keychain has an entry)
 _gh_token="$(security find-generic-password -a "$USER" -s GH_TOKEN -w 2>/dev/null)"
 [[ -n "$_gh_token" ]] && export GH_TOKEN="$_gh_token"
 unset _gh_token
+export PATH="$HOME/.local/bin:$PATH"

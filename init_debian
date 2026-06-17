@@ -42,8 +42,20 @@ ln -s ~/.dot/tmux.linux ~/.tmux.conf
 ln -s ~/.dot/gitconfig ~/.gitconfig
 ln -s ~/.dot/gitignore ~/.gitignore
 
+# machine-specific git overrides (not tracked, e.g. work email/excludesfile)
+[ -f ~/.dot/gitconfig.local ] || cat > ~/.dot/gitconfig.local <<'EOF'
+# Machine-specific git config overrides, loaded after gitconfig and not tracked.
+# Uncomment and edit as needed (e.g. on a work machine):
+#
+# [user]
+# 	email = you@work-example.com
+# [core]
+# 	excludesfile = ~/.dot/.gitexclude.work
+EOF
+
 mkdir -p ~/.claude
-ln -sf ~/.dot/claude/settings.json ~/.claude/settings.json
+# one-time copy (not a symlink) so machine-specific edits (model, etc.) stay local
+[ -f ~/.claude/settings.json ] || cp ~/.dot/claude/settings.json ~/.claude/settings.json
 ln -sf ~/.dot/claude/statusline-command.sh ~/.claude/statusline-command.sh
 
 ln -s ~/.dot/ipython_config.py ~/.ipython/profile_default/ipython_config.py

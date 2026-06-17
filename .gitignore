@@ -12,5 +12,6 @@ tags
 *.zcompdump*
 *.zsh_sessions
 .env.local
+gitconfig.local
 .bash_history
 .lesshst
