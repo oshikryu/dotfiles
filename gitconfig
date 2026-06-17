@@ -19,3 +19,6 @@
 	default = upstream
 [pull]
 	ff = only
+
+[include]
+	path = ~/.dot/gitconfig.local
