@@ -78,10 +78,23 @@ Host *
 
 ## Git
 
-The `gitconfig` is symlinked. Update the email to match your environment:
+The `gitconfig` is symlinked and shared across machines (default email: `ryushikiri@gmail.com`).
+
+For machine-specific overrides (e.g. a work email or a different `core.excludesfile`), edit `~/.dot/gitconfig.local` — it's created by the init script, gitignored, and automatically included by `gitconfig`:
 
 ```
-git config --global user.email "ryushikiri@gmail.com"
+[user]
+	email = you@work-example.com
+[core]
+	excludesfile = ~/.dot/.gitexclude.work
+```
+
+## Claude Code settings
+
+`~/.claude/settings.json` is a one-time copy of `claude/settings.json` (not a live symlink), so local edits — like the model picked via `/model` — stay on that machine instead of leaking into the tracked file. To pick up changes made to the tracked `claude/settings.json` on an existing machine, copy it over manually:
+
+```
+cp ~/.dot/claude/settings.json ~/.claude/settings.json
 ```
 
 ## Troubleshooting
