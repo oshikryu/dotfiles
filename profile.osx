@@ -64,6 +64,7 @@ alias gaa="git add --all"
 alias gco='git checkout'
 alias gundo='git reset --soft HEAD^'
 alias gpushup='git push --set-upstream origin'
+alias gpf='git push --force-with-lease'
 alias gdc='git diff --cached'
 alias gc='git commit'
 alias gcm='git commit -m'
