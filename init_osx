@@ -34,6 +34,10 @@ ln -s ~/.dot/zshrc ~/.zshrc
 
 ln -s ~/.dot/tmux.osx ~/.tmux.conf
 
+# iTerm2 dynamic profile (saved colors/fonts/cursor settings)
+mkdir -p ~/"Library/Application Support/iTerm2/DynamicProfiles"
+ln -sf ~/.dot/iterm/profile.json ~/"Library/Application Support/iTerm2/DynamicProfiles/profile.json"
+
 ln -s ~/.dot/gitconfig ~/.gitconfig
 ln -s ~/.dot/gitignore ~/.gitignore
 
