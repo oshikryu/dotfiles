@@ -62,6 +62,9 @@ set -g status-right "#{?client_prefix,#[bg=red fg=white bold] PRE #[default] ,}#
 # other settings
 set -sg escape-time 1
 
+# allow OSC escape sequences (e.g. Claude Code desktop alerts) through tmux
+set -g allow-passthrough on
+
 set -g base-index 1
 setw -g pane-base-index 1
 
