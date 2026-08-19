@@ -52,6 +52,7 @@ require("lazy").setup({
   -- Git
   "tpope/vim-fugitive",
   "tpope/vim-rhubarb",
+  "gh-tui-tools/gh-review.nvim",
   -- FZF
   { "junegunn/fzf", build = function() vim.fn["fzf#install"]() end },
   "junegunn/fzf.vim",
