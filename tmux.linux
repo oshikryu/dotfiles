@@ -51,6 +51,9 @@ set -g window-style fg=colour240,bg=colour234
 set -g window-active-style fg=white,bg=default
 set -g message-style fg=white,bg=black,bright
 
+# bump tmux session scroll limit
+set -g history-limit 75000
+
 # status lines
 set -g status-left-length 60
 set -g status-left "#[fg=green,bold][#S] #[fg=white]#W"
