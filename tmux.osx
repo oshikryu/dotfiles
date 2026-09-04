@@ -7,9 +7,6 @@ bind C-a send-prefix
 bind | split-window -h -c '#{pane_current_path}'
 bind - split-window -v -c '#{pane_current_path}'
 
-# only
-#bind o kill-pane -a
-
 # repeat timing
 set -g repeat-time 200
 
@@ -30,7 +27,7 @@ bind / next-layout
 
 
 # colors
-set -g default-terminal "screen-256color"
+set -g default-terminal "tmux-256color"
 
 set -g status-fg white
 set -g status-bg colour235
@@ -50,9 +47,6 @@ set -g window-style fg=colour240,bg=colour234
 set -g window-active-style fg=white,bg=default
 set -g message-style fg=white,bg=black,bright
 
-# bump tmux session scroll limit
-set -g history-limit 75000
-
 # status lines
 set -g status-left-length 60
 set -g status-left "#[fg=green,bold][#S] #[fg=white]#W"
@@ -63,6 +57,9 @@ set -g status-right "#{?client_prefix,#[bg=red fg=white bold] PRE #[default] ,}#
 
 # other settings
 set -sg escape-time 0
+
+# scrollback buffer
+set-option -g history-limit 100000
 
 # allow OSC escape sequences (e.g. Claude Code desktop alerts) through tmux
 set -g allow-passthrough on
@@ -75,26 +72,20 @@ set -g visual-activity on
 
 set -g status-justify centre
 setw -g mode-keys vi
-set -g status-interval 10
+set -g status-interval 20
 
 unbind Down
 bind Up resize-pane -Z
-
-unbind Down
-bind DOWN resize-pane -Z
-
-# Use vim keybindings in copy mode
-setw -g mode-keys vi
+bind Down resize-pane -Z
 
 # Setup 'v' to begin selection as in Vim
 # Update default binding of `Enter` to also use copy-pipe
 unbind-key -T copy-mode-vi Space     ;   bind-key -T copy-mode-vi v send-keys -X begin-selection
-unbind-key -T copy-mode-vi Enter     ;   bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "reattach-to-user-namespace pbcopy"
+unbind-key -T copy-mode-vi Enter     ;   bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "pbcopy"
 unbind-key -T copy-mode-vi C-v       ;   bind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle
 unbind-key -T copy-mode-vi [         ;   bind-key -T copy-mode-vi [ send-keys -X begin-selection
 unbind-key -T copy-mode-vi ]         ;   bind-key -T copy-mode-vi ] send-keys -X copy-selection
 
 # OSX keyboard
-set -g default-command 'reattach-to-user-namespace $SHELL --login'
-bind C-c run "tmux save-buffer - | reattach-to-user-namespace pbcopy"
-bind C-v run "reattach-to-user-namespace pbpaste | tmux load-buffer - && tmux paste-buffer"
+bind C-c run "tmux save-buffer - | pbcopy"
+bind C-v run "pbpaste | tmux load-buffer - && tmux paste-buffer"
