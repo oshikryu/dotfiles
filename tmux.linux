@@ -44,7 +44,16 @@ set-window-option -g window-status-current-style fg=red
 set-window-option -g window-status-current-style bg=default
 set-window-option -g window-status-current-style bright
 
+# Claude Code state glyph per window (set by ~/.claude/hooks/tmux/state.sh):
+# cyan * = working, yellow ! = waiting on you, nothing = idle/not a Claude pane.
+set -g window-status-format "#I:#W#{?#{==:#{@claude_state},working}, #[fg=cyan]*#[default],}#{?#{==:#{@claude_state},waiting}, #[fg=yellow]!#[default],}"
+set -g window-status-current-format "#I:#W#{?#{==:#{@claude_state},working}, #[fg=cyan]*#[default],}#{?#{==:#{@claude_state},waiting}, #[fg=yellow]!#[default],}"
+
 setw -g window-status-activity-style none
+setw -g window-status-bell-style fg=black,bg=red
+set -g monitor-bell on
+set -g bell-action any
+set -g visual-bell off
 set -g pane-border-style fg=white,bg=default
 set -g pane-active-border-style fg=white,bg=default
 set -g window-style fg=colour240,bg=colour234
@@ -55,8 +64,10 @@ set -g message-style fg=white,bg=black,bright
 set -g status-left-length 60
 set -g status-left "#[fg=green,bold][#S] #[fg=white]#W"
 
-set -g status-right-length 140
-set -g status-right "#{?client_prefix,#[bg=red fg=white bold] PRE #[default] ,}#[fg=magenta]CPU:#(top -bn2 -d0.1 | grep '%Cpu' | tail -1 | awk '{print int(\$2) \"%\"}') #[fg=blue]MEM:#(free -m | awk '/Mem/{print int(\$3/\$2*100) \"%\"}') #[fg=yellow]#(git -C #{pane_current_path} branch --show-current 2>/dev/null) #[fg=white]| #[fg=cyan]%d %b %H:%M"
+set -g @aws_profile ""
+
+set -g status-right-length 160
+set -g status-right "#{?client_prefix,#[bg=red fg=white bold] PRE #[default] ,}#[fg=magenta]CPU:#(top -bn2 -d0.1 | grep '%Cpu' | tail -1 | awk '{print int(\$2) \"%\"}') #[fg=blue]MEM:#(free -m | awk '/Mem/{print int(\$3/\$2*100) \"%\"}') #{?@aws_profile,#[fg=colour214]aws:#{@aws_profile} ,}#[fg=yellow]#(git -C #{pane_current_path} branch --show-current 2>/dev/null)#(git -C #{pane_current_path} status --porcelain 2>/dev/null | grep -q . && echo '*') #[fg=white]| #[fg=cyan]%d %b %H:%M"
 
 
 # other settings

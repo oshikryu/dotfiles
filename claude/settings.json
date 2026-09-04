@@ -1,7 +1,145 @@
 {
+  "model": "sonnet",
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "ai-dlc --sync-repo . 2>/dev/null || echo '{\"systemMessage\":\"⚠️ AI-DLC sync failed — run: ai-dlc --sync-repo . in this repo to debug.\"}'"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/tmux/state.sh working"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/tmux/state.sh working"
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/tmux/state.sh waiting"
+          },
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/tmux/bell.sh"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/tmux/state.sh idle"
+          },
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/tmux/bell.sh"
+          },
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/tmux/title.sh"
+          }
+        ]
+      }
+    ],
+    "TaskCompleted": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node /opt/homebrew/lib/node_modules/@to-the-source/rosey-ai-dlc/dist/hooks/task-completed-check.js"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node /Users/ryutaoshikiri/projects/rosey-ai-dlc/dist/hooks/task-completed-check.js"
+          }
+        ]
+      }
+    ],
+    "TeammateIdle": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node /opt/homebrew/lib/node_modules/@to-the-source/rosey-ai-dlc/dist/hooks/teammate-idle-check.js"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node /Users/ryutaoshikiri/projects/rosey-ai-dlc/dist/hooks/teammate-idle-check.js"
+          }
+        ]
+      }
+    ]
+  },
   "enabledPlugins": {
     "pyright-lsp@claude-plugins-official": true,
     "typescript-lsp@claude-plugins-official": true
   },
-  "agentPushNotifEnabled": true
+  "effortLevel": "medium",
+  "modelSettings": {
+    "claude-sonnet-5": {
+      "effortLevel": "medium"
+    },
+    "claude-opus-5": {
+      "effortLevel": "medium"
+    }
+  },
+  "agentPushNotifEnabled": true,
+  "autoMode": {
+    "environment": [
+      "### Org-wide",
+      "**Organization**: None configured",
+      "**Cloud provider(s)**: None configured",
+      "**Repository visibility**: internal (to-the-source/rosey-money-tools) — not public, but not fully private either; treat as org-internal trust boundary, not public",
+      "**Internal sharing / snippet hosting**: None configured — treat public paste/gist services as outside the trust boundary",
+      "**Secrets management**: None configured",
+      "**Default / protected branches**: main (protected; rulesets active: `main`, `Copilot review for default branch`, `main`, `main-require-PR-no-bypass`)",
+      "**CI/CD deploy targets**: None configured",
+      "**Network posture**: None configured",
+      "**Source control**: The trusted repo (to-the-source/rosey-money-tools) and its remote (github.com:to-the-source/rosey-money-tools.git) only",
+      "**Trusted internal domains**: None configured",
+      "**Trusted cloud buckets**: None configured",
+      "**Key internal services**: None configured",
+      "**Internal package registry**: npm.pkg.github.com",
+      "**Sensitive data locations & audiences**: any file or store holding personal data, confidential business data, credentials, regulated data, or similarly sensitive material; preserve exact handles when known and share only with audiences cleared at the [named+specifics] bar",
+      "**Data retention / declassification**: None configured",
+      "**Sensitive remote targets**: any namespace, host, or container whose name carries `prod` or `production` as a whole word or name segment (hyphen/underscore/dot-delimited — e.g. matches `prod-db`, not `producer`)",
+      "**Protected deployment namespaces / environments**: None configured — fall back to the Sensitive remote targets heuristic",
+      "**Protected IaC scopes**: IAM, RBAC, networking, quota, and node-pool resources; anything whose name or tag carries `prod` or `production` as a whole word or name segment",
+      "### User-specific",
+      "**Primary use of Claude Code**: software development (AI-DLC spec-first workflow: Elaboration → Construction → QA, Linear-integrated)",
+      "**Trusted repo**: to-the-source/rosey-money-tools (github.com:to-the-source/rosey-money-tools.git) — internal visibility, main branch protected via rulesets",
+      "**Org-specific CLIs**: ai-dlc (AI-DLC workflow compiler/CLI, seen in this project's transcripts)",
+      "routine under bills-service/ namespace (k8s -n bills-service) qualifies as this project's own workload, not a shared/production cluster"
+    ]
+  }
 }
