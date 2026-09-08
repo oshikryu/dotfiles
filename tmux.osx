@@ -43,7 +43,7 @@ set-window-option -g window-status-current-style bright
 # Claude Code state glyph per window (set by ~/.claude/hooks/tmux/state.sh):
 # cyan * = working, yellow ! = waiting on you, nothing = idle/not a Claude pane.
 set -g window-status-format "#I:#W#{?#{==:#{@claude_state},working}, #[fg=cyan]*#[default],}#{?#{==:#{@claude_state},waiting}, #[fg=yellow]!#[default],}"
-set -g window-status-current-format "#I:#W#{?#{==:#{@claude_state},working}, #[fg=cyan]*#[default],}#{?#{==:#{@claude_state},waiting}, #[fg=yellow]!#[default],}"
+set -g window-status-current-format "#I#{?#{==:#{@claude_state},working}, #[fg=cyan]*#[default],}#{?#{==:#{@claude_state},waiting}, #[fg=yellow]!#[default],}"
 
 setw -g window-status-activity-style none
 setw -g window-status-bell-style fg=black,bg=red

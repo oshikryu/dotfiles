@@ -13,5 +13,6 @@ tags
 *.zsh_sessions
 .env.local
 gitconfig.local
+claude/settings.json
 .bash_history
 .lesshst

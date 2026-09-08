@@ -1,3 +1,24 @@
 tags
 
 **/.claude/settings.local.json
+
+# AI-DLC managed files — do not edit this section
+.agents/skills/
+.cursor/rules/ai-dlc.mdc
+.cursor/rules/canonize-skill-pack.mdc
+.cursor/rules/clean-code.mdc
+.cursor/rules/crud-artifacts.mdc
+.cursor/rules/cursor-plan-execution.mdc
+.cursor/rules/degrees-of-abstraction.mdc
+.cursor/rules/interaction-contract.mdc
+.cursor/rules/mermaid-doc-diagram-authoring.mdc
+.cursor/rules/okg-submodule-linear-closure.mdc
+.cursor/rules/overlay-first-generated-guidance.mdc
+.cursor/rules/prompt-decomposition.mdc
+.cursor/rules/prompt-eval-sweep.mdc
+.cursor/rules/prompt-guardrails.mdc
+.cursor/rules/prompt-rubric.mdc
+.cursor/rules/provider-compiler.mdc
+.cursor/rules/reverse-engineer.mdc
+.cursor/rules/skipped-check-handoff.mdc
+.cursor/rules/tdd.mdc
